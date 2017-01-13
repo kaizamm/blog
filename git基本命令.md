@@ -35,5 +35,8 @@ git commit -m "first commit"
 git remote add origin git@github.com:kaizamm/git.git
 git push -u origin master
 ```
+#### 查看远程仓库暂存区状态
+git remote
+
 #### 从远程仓克隆
-git clone git@github.com:michaelliao/gitskills.git
+git clone git@github.com:kaizamm/git.git
