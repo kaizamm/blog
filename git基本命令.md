@@ -6,8 +6,8 @@ date: 2017.1.13
 ### 本地仓库 工作区 暂存区(stage)
 + makdir project && cd project && git init project为工作区，.git为版本库
 + git add file.txt 把文件添加到暂存区；
-+ git rm file.txt 删除已经git add 到暂存区的文件
-+ git commit -a "first commit" 提交更改到版本库，可多次git add file后，再git commit
++ git rm --cached file.txt   删除已经git add 到暂存区的文件
++ git commit -m "first commit" 提交更改到版本库，可多次git add file后，再git commit
 + git checkout -- file.txt 可从版本库里把文件checkout出来
 + git status 查看工作区状态，可看到暂存区中是否有git add后未commit的文件
 
