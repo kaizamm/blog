@@ -42,7 +42,7 @@ git rm 删除暂存区的文件，而错误提交到了版本库则需用git res
 git init
 git add README.md
 git commit -m "first commit"
-git remote add origin https://github.com/kaizamm/git.git
+git remote add origin https://github.com/kaizamm/git.git #将远程主机命名为origin
 git push -u origin master
 ```
 + SSH
@@ -53,8 +53,27 @@ git commit -m "first commit"
 git remote add origin git@github.com:kaizamm/git.git
 git push -u origin master
 ```
-#### 查看远程仓库暂存区状态
-git remote
+#### git remote
++ git remote 列出远程主机；git remote -v 列出远程主机时带上网址
++ git remote show origin #查看远程主机的详细信息
++ git remote add：主机名 添加远程主机，删除:git remote rm，重命名:git remote rename
 
+#### git Fetch
+一旦远程主机版本库有了更新，需要将这些更新取回本地，则需要用到git fetch; git fetch命令通常用来查看其他人的进程，因为它取回的代码对你的本地开发代码没有影响。
+```
+git fetch origin master
+git branch -a #查看所有分支，git brach -r 查看远程分支
+git checkout -b newbranch origin/master #表示在origin/master的基础上，创建一个新的分支；或者用git merge命令或git rebase命令，在本地分支上合并远程分支。
+```
+#### git Pull
+该命令是取回远程主机的某个分支的更新，再与本地指定分支合并
+```
+git pull <远程主机名> <远程分支名>:<本地分支名>
+git pull origin next:master #若远程分支是与当前分支合并，则冒号后的部分可以省略 git pull origin next #取回origin/next分支后，再与当前分支合并，等同于先做git fetch,再做git merge
+git fetch origin
+git merge origin/next
+```
+如果当前分支与远程分支存在追踪关系，git pull 就可以省略远程分支名，即可以直接git pull origin，同理git push，[更多详见](http://www.ruanyifeng.com/blog/2014/06/git_remote.html)
 #### 从远程仓克隆
+
 git clone git@github.com:kaizamm/git.git
