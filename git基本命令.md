@@ -28,10 +28,25 @@ date: 2017.1.13
 + git log 可查看3次历史提交日志，此时能看到版本库ID
 #### 删除错误提交的commit
 git rm 删除暂存区的文件，而错误提交到了版本库则需用git reset; 错误提交到版本库，此时工作区、暂存区、版本库都是一样的。git reset有三个选项， --hard 、 --mixed、 --soft。
+##### git reset
 + git reset --soft 版本库ID: 只将版本库里的内容回滚至上个版本，即撤消已提交的版本库，不影响工作区及暂存区。
 + git reset --mixed 版本库ID： 撤消已提交的版本库和暂存区，不影响工作区
 + git reset --hard HEAD^  git中HEAD表示当版本，上一个版本是HEAD^，上上个版本是HEAD^^，也可写成HEAD~100，这个表示向上100个版本。该命令将版本库、暂存区、工作区全部恢复至指定版本。
++ git reset 仅仅从暂存区移除所有的没有提交的修改。
+##### git revert
++ git revert 可以撤销某个之前的提交，但非删除那个提交，只是恢复那次提交的改动。改命令其实是产生一个新的提交。不会像git reset后，会提示版本落后的情况。
+
 + git reflog 可以用来记录你操作的每次命令，如当你回退到上上个版本后，又不知道最开始那个commit id，则可通过这个命令查看。
+
+#### 修改最后一次提交
+git commit --amend ,该参数可以直接修改最后的一次提交，若仅是修改注释，则无需修改暂存区。
+> 注意，请不要修改已经发布的提交。
+
+#### 撤消本地改动
++ 未被提交的文件，如工作区的文件有修改，发现修改有错误，想恢复到以前，则直接用git checkout -- file
++ 放弃工作区所有本地改动，让你的本地恢复到上次提交之后的版本，可以用git reset --hard HEAD ，或者用git checkout <SHA>
+> 指针脱离(detached），如果想在在这种情况下提交，可通过创建新的分支来实现，即 git checkout -b <SHA>
+
 
 ### 远程仓库
 在[github](https://github.com/)注册并创建一个private reposity
@@ -73,7 +88,43 @@ git pull origin next:master #若远程分支是与当前分支合并，则冒号
 git fetch origin
 git merge origin/next
 ```
+
+#### git checkout
+git checkout 常用来创建分支和切换分支;
+创建一个新分支，git branch newbranch;
+切换到新的分支，git checkout newbranch;
+这两个命令可以合并成一个命令，git checkout -b newbranch;
+
+#### 指针 HEAD
+#### git branch
+现在让我们来看一个简单的分支与合并的例子，实际工作中大体也会用到这样的工作流程：
+1.开发某个网站。
+2.为实现某个新的需求，创建一个分支。
+3.在这个分支上开展工作。
+假设此时，你突然接到一个电话说有个很严重的问题需要紧急修补，那么可以按照下面的方式处理：
+
+返回到原先已经发布到生产服务器上的分支。
+为这次紧急修补建立一个新分支，并在其中修复问题。
+通过测试后，回到生产服务器所在的分支，将修补分支合并进来，然后再推送到生产服务器上。
+切换到之前实现新需求的分支，继续工作。[更多](https://git-scm.com/book/zh/v1/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9u%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6)
+
+
+
+#### git pull
 如果当前分支与远程分支存在追踪关系，git pull 就可以省略远程分支名，即可以直接git pull origin，同理git push，[更多详见](http://www.ruanyifeng.com/blog/2014/06/git_remote.html)
 #### 从远程仓克隆
 
 git clone git@github.com:kaizamm/git.git
+
+### git config
++ git config --global --list 列出当前的全局环境变量
++ git config --config user.name "kaiz" 设置git用户名
++ git config --config user.email "xxx@email.com" 设置邮箱
+
+### 配置github ssh keys
+```
+$ssh-keygen -t rsa #三个回车
+拷备id_rsa.pub内容，粘贴至github/setting/SSH and GPG keys
+$ssh -T git@github.com
+提示 Hi kaizamm! You've successfully authenticated, but GitHub does not provide shell access.则成功
+```
