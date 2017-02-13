@@ -43,7 +43,7 @@ git commit --amend ,该参数可以直接修改最后的一次提交，若仅是
 > 注意，请不要修改已经发布的提交。
 
 #### 撤消本地改动
-+ 未被提交的文件，如工作区的文件有修改，发现修改有错误，想恢复到以前，则直接用git checkout -- file
++ 未被提交的文件，如工作区的文件有修改，发现修改有错误，想恢复到以前，则直接用git checkout \-\- file
 + 放弃工作区所有本地改动，让你的本地恢复到上次提交之后的版本，可以用git reset --hard HEAD ，或者用git checkout <SHA>
 > 指针脱离(detached），如果想在在这种情况下提交，可通过创建新的分支来实现，即 git checkout -b <SHA>
 
@@ -90,10 +90,14 @@ git merge/rebase origin/next
 ```
 
 #### git checkout
-git checkout 常用来创建分支和切换分支;
-创建一个新分支，git branch newbranch;
-切换到新的分支，git checkout newbranch;
+#### git checkout 常用来创建分支和切换分支;
++ 创建一个新分支，git branch newbranch;
++ 切换到新的分支，git checkout newbranch;
 这两个命令可以合并成一个命令，git checkout -b newbranch;
+
+#### 从本地版本库检出文件
++ git checkout \-\- file
+
 
 #### 指针 HEAD
 #### git branch
