@@ -86,7 +86,7 @@ git checkout -b newbranch origin/master #表示在origin/master的基础上，�
 git pull <远程主机名> <远程分支名>:<本地分支名>
 git pull origin next:master #若远程分支是与当前分支合并，则冒号后的部分可以省略 git pull origin next #取回origin/next分支后，再与当前分支合并，等同于先做git fetch,再做git merge
 git fetch origin
-git merge origin/next
+git merge/rebase origin/next
 ```
 
 #### git checkout
@@ -97,18 +97,9 @@ git checkout 常用来创建分支和切换分支;
 
 #### 指针 HEAD
 #### git branch
-现在让我们来看一个简单的分支与合并的例子，实际工作中大体也会用到这样的工作流程：
-1.开发某个网站。
-2.为实现某个新的需求，创建一个分支。
-3.在这个分支上开展工作。
-假设此时，你突然接到一个电话说有个很严重的问题需要紧急修补，那么可以按照下面的方式处理：
-
-返回到原先已经发布到生产服务器上的分支。
-为这次紧急修补建立一个新分支，并在其中修复问题。
-通过测试后，回到生产服务器所在的分支，将修补分支合并进来，然后再推送到生产服务器上。
-切换到之前实现新需求的分支，继续工作。[更多](https://git-scm.com/book/zh/v1/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9u%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6)
-
-
++ git branch -d <branchname> 删了一个分支
++ git merge/rebase <branchname>把该分支合并到当前分支，只能合并新增的文件，当该分支中有与主分支中有文件同名时会有冲突，若有冲突需要手动处理完该冲突后，才能继续合并
+[更多](https://git-scm.com/book/zh/v1/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6)
 
 #### git pull
 如果当前分支与远程分支存在追踪关系，git pull 就可以省略远程分支名，即可以直接git pull origin，同理git push，[更多详见](http://www.ruanyifeng.com/blog/2014/06/git_remote.html)
