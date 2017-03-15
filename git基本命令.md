@@ -87,6 +87,8 @@ git pull <远程主机名> <远程分支名>:<本地分支名>
 git pull origin next:master #若远程分支是与当前分支合并，则冒号后的部分可以省略 git pull origin next #取回origin/next分支后，再与当前分支合并，等同于先做git fetch,再做git merge
 git fetch origin
 git merge/rebase origin/next
+
+git merge --allow-unrelated-histories a b (http://stackoverflow.com/questions/27641380/git-merge-commits-into-an-orphan-branch/36528527#36528527)
 ```
 
 #### git checkout
