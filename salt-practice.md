@@ -45,7 +45,7 @@ salt '目标机器' 函数
 >原理都是在匹配的目标机器上执行python模块中的函数，可以编写自己的python模块推送到minion上按上述方式执行
 #### pkg.install
 + `salt 'node2' pkg.install httpd`
-####
+
 ### 状态系统
 状态系统通过sls文件描述minion要达到什么状态，底层由saltstack状态模块保证minion处于该状态。
 + `salt 'node2' pkg.install httpd`
@@ -60,14 +60,9 @@ install_httpd:
 
 >两者都达到了在目标机器上部署httpd服务的目的，但是执行远程命令的方式每次都会执行相同的逻辑和指令，而状态文件则是根据描述让minion处于指定状态，当前状态和所需状态不同时才执行相关操作。
 
-### grains
-grains是saltstack中记录minion的一些静态信息组件，如cpu、内存、磁盘、网络信息等，可通过grains.items查看minion的所有grains信息，minions的grains信息是minions启动时采集汇报给master的。
-+ 查grains信息 `salt '*' sys.list_functions grains`
-+ 查看文档信息 `salt '*' sys.doc grains`
-
 ### highstate
 通过top.sls作为入口，对模块和主机进行管理，用top.sls组织多个状态文件，对模块进行拆分和复用，实现环境的配置管理；file_roots默认只有一个base环境，/srv/salt，top.sls就在环境的根目录下。
-![](1.png)
+![](https://github.com/kaizamm/blog/1.png)
 
 #### top.sls
 ```
@@ -102,7 +97,9 @@ conf1:
 
 ### grains
 saltstack中记录minion静态信息的组件（os类型、cpu核数、内存大小、ip地址等），在minion启动时采集汇报给master，因此grains通常是存储的静态、不常变化的数据，存储在minon本地。minion可以操作自己的grains数据（增删改）可通过如下命令查看每项grains数据。
-salt 'node2' grains.items
+`salt 'node2' grains.items`。minions的grains信息是minions启动时采集汇报给master的。
++ 查grains信息 `salt '*' sys.list_functions grains`
++ 查看文档信息 `salt '*' sys.doc grains`
 
 ### pillar
 与grains类似，但pillar存储的相对经常变化的数据，存储在master本地。minion只能查看自己的pillar数据。可通过如下命令查看每项pillar数据： `salt '*' pillar.items`
@@ -161,7 +158,7 @@ My hostname is node2
      - /srv/salt/prod/states
 ```
 在多环境下，每个环境的根目录下维护各自的top.sls
-![](2.png)
+![](https://github.com/kaizamm/blog/2.png)
 
 分别在base、dev、prod环境的myconf.txt中写入不同内容，执行如下命令让不同环境的Minion处于对应的描述状态
 ```
