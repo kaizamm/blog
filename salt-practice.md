@@ -62,7 +62,11 @@ install_httpd:
 
 ### highstate
 通过top.sls作为入口，对模块和主机进行管理，用top.sls组织多个状态文件，对模块进行拆分和复用，实现环境的配置管理；file_roots默认只有一个base环境，/srv/salt，top.sls就在环境的根目录下。
+<<<<<<< HEAD
 ![](https://github.com/kaizamm/blog/blob/master/1.png)
+=======
+![](https://github.com/kaizamm/blog/1.png)
+>>>>>>> parent of ce041cb... del all
 
 #### top.sls
 ```
@@ -89,8 +93,11 @@ conf1:
     - group: root
     - mode: 644
 ```
+<<<<<<< HEAD
 ![](https://github.com/kaizamm/blog/blob/master/state-file-described.png)
 
+=======
+>>>>>>> parent of ce041cb... del all
 在myapp/files/myconf.txt中写入任意内容，执行如下命令让minion处于描述的状态。`salt 'node2' state.apply`
 
 参考：
@@ -160,7 +167,11 @@ My hostname is node2
      - /srv/salt/prod/states
 ```
 在多环境下，每个环境的根目录下维护各自的top.sls
+<<<<<<< HEAD
 ![](https://github.com/kaizamm/blog/blob/master/2.png)
+=======
+![](https://github.com/kaizamm/blog/2.png)
+>>>>>>> parent of ce041cb... del all
 
 分别在base、dev、prod环境的myconf.txt中写入不同内容，执行如下命令让不同环境的Minion处于对应的描述状态
 ```
