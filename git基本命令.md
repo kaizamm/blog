@@ -90,12 +90,12 @@ git merge/rebase origin/next
 ```
 
 #### git checkout
-#### git checkout 常用来创建分支和切换分支;
+##### git checkout 常用来创建分支和切换分支
 + 创建一个新分支，git branch newbranch;
 + 切换到新的分支，git checkout newbranch;
 这两个命令可以合并成一个命令，git checkout -b newbranch;
 
-#### 从本地版本库检出文件
+##### 从本地版本库检出文件
 + git checkout \-\- file
 
 
@@ -123,3 +123,38 @@ $ssh-keygen -t rsa #三个回车
 $ssh -T git@github.com
 提示 Hi kaizamm! You've successfully authenticated, but GitHub does not provide shell access.则成功
 ```
+### git 工作流程
+git支持很多种工作流程，我们采用的一般是这样，远程创建一个主分支，本地每人创建功能分支，日常工作流程如下：
+
+去自己的工作分支
+```
+$ git checkout work
+
+工作
+....
+
+提交工作分支的修改
+$ git commit -a
+
+回到主分支
+$ git checkout master
+
+获取远程最新的修改，此时不会产生冲突
+$ git pull
+
+回到工作分支
+$ git checkout work
+
+用rebase合并主干的修改，如果有冲突在此时解决
+$ git rebase master
+
+回到主分支
+$ git checkout master
+
+合并工作分支的修改，此时不会产生冲突。
+$ git merge work
+
+提交到远程主干
+$ git push
+```
+这样做的好处是，远程主干上的历史永远是线性的。每个人在本地分支解决冲突，不会在主干上产生冲突。
