@@ -160,3 +160,5 @@ $ git merge work
 $ git push
 ```
 这样做的好处是，远程主干上的历史永远是线性的。每个人在本地分支解决冲突，不会在主干上产生冲突。
+
+> 当出现history-not-related时，git merge --allow-unrelated-histories a b
