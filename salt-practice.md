@@ -6,7 +6,7 @@ date:  2017.3.2
 依赖zeromq，salt-master监听两个端口：4505/tcp，publist_port，提供远程执行命令发送功能；4506/tcp，ret_port，用于文件服务、认证、结果搜索等功能接口
 ```
 yum install https://repo.saltstack.com/yum/redhat/salt-repo-latest-1.el7.noarch.rpm -y
- yum clean expire-cache
+yum clean expire-cache
 yum install salt-master
 yum install salt-minion
 salt-master -l debug #查看debug信息
