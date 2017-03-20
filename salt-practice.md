@@ -181,6 +181,7 @@ salt '*' state.apply saltenv=prod # prod环境
 参考：
 +	https://docs.saltstack.com/en/latest/topics/tutorials/states_pt4.html
 
-### salt state.service
-
+### 总结
++ salt state.service
 在minion端可以通过  salt-call service.status <service_name> 查看minion端发送给master的信息; 如：tomcat的daemon（/etc/init.d/tomcat）里在 case语法里需加入 status，以保证service tomcat status显示服务当前运行状态。
++ salt state.service 可管理daemon程序，管理非daemon程序可用supervisor
