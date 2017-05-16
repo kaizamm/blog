@@ -3,7 +3,7 @@ title: salt-practice
 date:  2017.3.2
 ---
 ### 概述
-依赖zeromq，salt-master监听两个端口：4505/tcp，publist_port，提供远程执行命令发送功能；4506/tcp，ret_port，用于文件服务、认证、结果搜索等功能接口
+依赖zeromq，salt-master监听两个端口：4505/tcp，publist_port，提供远程执行命令发送功能；4506/tcp，ret_port，用于文件服务、认证、结果搜索等功能接口，master端口需开通4505、4506,minion端口无特定端口要开通，minion端通过订阅master端4505端口的消息，然后将消息通过master端的4506端口返回结果
 ```
 yum install https://repo.saltstack.com/yum/redhat/salt-repo-latest-1.el7.noarch.rpm -y
 yum clean expire-cache
@@ -182,6 +182,5 @@ salt '*' state.apply saltenv=prod # prod环境
 +	https://docs.saltstack.com/en/latest/topics/tutorials/states_pt4.html
 
 ### 总结
-+ salt state.service
-在minion端可以通过  salt-call service.status <service_name> 查看minion端发送给master的信息; 如：tomcat的daemon（/etc/init.d/tomcat）里在 case语法里需加入 status，以保证service tomcat status显示服务当前运行状态。
++ salt-call test.ping 在minion端运行该语句，查看本地Minion是否正常。在minion端可以通过salt-call service.status <service_name> 查看minion端发送给master的信息; 如：tomcat的daemon（/etc/init.d/tomcat）里在 case语法里需加入 status，以保证service tomcat status显示服务当前运行状态。
 + salt state.service 可管理daemon程序，管理非daemon程序可用supervisor
