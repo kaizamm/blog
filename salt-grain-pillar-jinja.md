@@ -80,8 +80,8 @@ apache2_conf:
 变量可以通过闭合的双大括号来引用，一个叫作user的Grain
 + ` The user {{ pillar['user'] }} is referred to here.`
 pillar类似
-+ ` The user {{ salt['grains.get']('user', 'larry') }} is referred to here `
-+ ` The user {{ salt['pillar.get']('user', 'larry') }} is referred to here `
++ ``` The user {{ salt['grains.get']('user', 'larry') }} is referred to here ```
++ ``` The user {{ salt['pillar.get']('user', 'larry') }} is referred to here ```
 如果pillar或grain中没有设置user，则使用默认的larry
 + ` The user {{ salt['config.get']('user', 'larry') }} is referred to here `
 salt会首先搜索minion配置文件中的值，如果没有找到，则会检查grain，如果还没有，则搜索pillar。如果还没有找到，它会搜索master配置。如果全没有找到，它地使用提供的默认值。
