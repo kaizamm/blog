@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                       http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+	<jaxws:endpoint id="approveService" implementor="com.qf.qcredit.bkend.service.impl.ApproveServiceImpl"
+		address="/approveService" />
+		
+	<jaxws:endpoint id="carApproveService" implementor="com.qf.qcredit.bkend.service.impl.CarApproveServiceImpl"
+		address="/carApproveService" />
+	
+	<jaxws:endpoint id="appMainService" implementor="com.qf.qcredit.bkend.service.impl.AppMainServiceImpl"
+		address="/appMainService" />
+	
+	<jaxws:endpoint id="echeckInfoService" implementor="com.qf.qcredit.bkend.service.impl.EcheckInfoServiceImpl"
+		address="/echeckInfoService" />
+		
+	<jaxws:endpoint id="entryService" implementor="com.qf.qcredit.bkend.service.impl.EntryServiceImpl"
+		address="/entryService" />
+		
+	<jaxws:endpoint id="cacheContextService" implementor="com.qf.qcredit.bkend.service.impl.CacheContextServiceImpl"
+		address="/cacheContextService" />
+		
+	<jaxws:endpoint id="desService" implementor="com.qf.qcredit.bkend.service.impl.DesServiceImpl"
+		address="/desService" />
+		
+	<jaxws:endpoint id="appNrListService" implementor="com.qf.qcredit.bkend.service.impl.AppNrListServiceImpl"
+		address="appNrListService" />
+		
+	<jaxws:endpoint id="blackListService" implementor="com.qf.qcredit.bkend.service.impl.BlackListServiceImpl"
+		address="blackListService" />		
+	
+	<jaxws:endpoint id="loginService" implementor="com.qf.qcredit.bkend.service.impl.LoginServiceImpl"
+		address="loginService" />	
+	
+	<jaxws:endpoint id="commonWorkflowService" implementor="com.qf.qcredit.bkend.service.impl.CommonWorkflowServiceImpl"
+		address="/commonWorkflowService" />
+		
+	<jaxws:endpoint id="fileManageService" implementor="com.qf.qcredit.bkend.service.impl.FileMamageServiceImpl"
+		address="/fileManageService" />
+</beans>

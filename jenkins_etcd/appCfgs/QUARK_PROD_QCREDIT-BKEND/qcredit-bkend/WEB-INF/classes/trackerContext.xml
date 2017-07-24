@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: trackerContext.xml,v 1.2 2010/07/28 09:50:02 abel Exp $ -->	
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop 
+           http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+	
+	<bean id="sender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="${alert.mail.host}" />
+		<property name="username" value="${alert.mail.username}" />
+	</bean>
+	
+	<bean id="alertService" class="com.qf.modules.alert.AlertService">
+		<property name="mailHelper" ref="mailHelper"/>
+	</bean>
+	
+	<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+	    <property name="corePoolSize" value="10"/>
+	    <property name="maxPoolSize" value="30"/>
+	</bean>
+	
+	<bean id="mailHelper" class="com.qf.modules.alert.util.MailHelper">
+		<property name="sender" ref="sender" />
+		<property name="taskExecutor" ref="taskExecutor"/>
+		
+		<property name="mailFrom" value="${alert.mail.from}"/>
+		<property name="mailSubject" ref="subject" />
+	</bean>
+	
+	<bean id="subject" class="com.qf.modules.alert.util.SubjectFactoryBean">
+		<property name="subject" value="${alert.mail.subject}"/>
+	</bean>
+	
+
+</beans>
