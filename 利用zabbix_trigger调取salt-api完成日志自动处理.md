@@ -80,77 +80,91 @@ if __name__ == "__main__":
 
 
 ```
-
-### SALT 模块调用
+### salt.sls
 ```
-#!/USR/BIN/ENV PYTHON
-# _*_ ENCODING: UTF-8 _*_
-__AUTHOR__="KAIZ"
+/opt/logrotate.py:
+  file.managed:
+    - source: salt://logrotate_files/files/logrotate.py
+    - user: root
+    - group: root
+    - mode: 755
+  cmd.run:
+    - name: python /opt/logrotate.py {{ pillar['log_path'] }} {{ pillar['bak_path_'] }} {{ pillar['save_days'] }}
+    - require:
+      - file: /opt/logrotate.py
+```
 
-IMPORT OS,SYS,TIME
+
+### SALT 模块调用logrotate.py
+```
+#!/usr/bin/env python
+# _*_ encoding: UTF-8 _*_
+__author__="kaiz"
+
+import os,sys,time
 
 #处理日志
-CLASS ANAYSISLOG:
+class anaysislog:
     #两个变量，备份目录及目录名，初始化
-    DEF __INIT__(SELF,BAK_PATH,LOG_PATH,SAVE_DAYS):
-        SELF.BAK_PATH = BAK_PATH
-        SELF.LOG_PATH = LOG_PATH
-        SELF.SAVE_DAYS = SAVE_DAYS
+    def __init__(self,bak_path,log_path,save_days):
+        self.bak_path = bak_path
+        self.log_path = log_path
+        self.save_days = save_days
 
     #压缩日志文件
-    DEF LOGROTATE(SELF):
+    def logrotate(self):
         #开始压缩
-        PRINT "[INFO]START LOGROTATE,WAIT..."
+        print "[info]start logrotate,wait..."
         #文件压缩信号
-        IF NOT OS.PATH.ISDIR(BAK_PATH): OS.MAKEDIRS(BAK_PATH)
-        LOGROTATE_FILE_FLAG1 = OS.POPEN('FIND %S -MTIME +%S -NAME "*TXT" ' % (LOG_PATH,SAVE_DAYS)).READLINES()
-        LOGROTATE_FILE_FLAG2 = OS.POPEN('FIND %S -MTIME +%S -NAME "*LOG" ' % (LOG_PATH,SAVE_DAYS)).READLINES()
-        LOGROTATE_FILE_FLAG3 = OS.POPEN('FIND %S -MTIME +%S -NAME "*GZ" ' % (LOG_PATH,SAVE_DAYS)).READLINES()
-        LOGROTATE_FILE_FLAG4 = OS.POPEN('FIND %S -MTIME +%S -NAME "*BZ2" ' % (LOG_PATH,SAVE_DAYS)).READLINES()
-        LOG_PATH_ = OS.PATH.DIRNAME(OS.PATH.DIRNAME(LOG_PATH))
-        LOGROTATE_FILE_FLAG5 = OS.POPEN('FIND %S -NAME "CATALINA.OUT" ' % LOG_PATH_).READLINES()
-        LOGROTATE_FILE_FLAG6 = OS.POPEN('FIND %S -MTIME +30 ' % BAK_PATH).READLINES()
+        if not os.path.isdir(bak_path): os.makedirs(bak_path)
+        logrotate_file_flag1 = os.popen('find %s -mtime +%s -name "*txt" ' % (log_path,save_days)).readlines()
+        logrotate_file_flag2 = os.popen('find %s -mtime +%s -name "*log" ' % (log_path,save_days)).readlines()
+        logrotate_file_flag3 = os.popen('find %s -mtime +%s -name "*gz" ' % (log_path,save_days)).readlines()
+        logrotate_file_flag4 = os.popen('find %s -mtime +%s -name "*bz2" ' % (log_path,save_days)).readlines()
+        log_path_ = os.path.dirname(os.path.dirname(log_path))
+        logrotate_file_flag5 = os.popen('find %s -name "catalina.out" ' % log_path_).readlines()
+        logrotate_file_flag6 = os.popen('find %s -mtime +30 ' % bak_path).readlines()
         #开始移动日志到备份目录
-        OS.POPEN('FIND %S -MTIME +%S -NAME "*TXT" -EXEC MV {} %S \;' % (LOG_PATH,SAVE_DAYS,BAK_PATH))
-        OS.POPEN('FIND %S -MTIME +%S -NAME "*LOG" -EXEC MV {} %S \;' % (LOG_PATH,SAVE_DAYS,BAK_PATH))
-        OS.POPEN('FIND %S -NAME "*GZ" -EXEC MV {} %S \;' % (LOG_PATH,BAK_PATH))
-        OS.POPEN('FIND %S -NAME "*BZ2" -EXEC MV {} %S \;' % (LOG_PATH,BAK_PATH))
-        #删除BAK_PATH的一个月以前的压缩文件
-        IF LOGROTATE_FILE_FLAG6:
-            OS.POPEN('FIND %S -MTIME +30 -EXEC RM {} -RF \;' % BAK_PATH)
-            PRINT "DEL FILES BEFORE 30 DAYS UNDER %S" % BAK_PATH
+        os.popen('find %s -mtime +%s -name "*txt" -exec mv {} %s \;' % (log_path,save_days,bak_path))
+        os.popen('find %s -mtime +%s -name "*log" -exec mv {} %s \;' % (log_path,save_days,bak_path))
+        os.popen('find %s -name "*gz" -exec mv {} %s \;' % (log_path,bak_path))
+        os.popen('find %s -name "*bz2" -exec mv {} %s \;' % (log_path,bak_path))
+        #删除bak_path的一个月以前的压缩文件
+        if logrotate_file_flag6:
+            os.popen('find %s -mtime +30 -exec rm {} -rf \;' % bak_path)
+            print "del files before 30 days under %s" % bak_path
         #将备份目录里的日志压缩打包
-        OS.POPEN('FIND %S  -NAME "*LOG" -EXEC BZIP2 {} \;' % BAK_PATH)
-        #是否有文件被移动或CATALINA.OUT是否被清空
-        IF LOGROTATE_FILE_FLAG1 OR LOGROTATE_FILE_FLAG2 OR LOGROTATE_FILE_FLAG3 OR LOGROTATE_FILE_FLAG4:
-            PRINT "[INFO]LOGROTATE SUCCESS"
-        ELIF LOGROTATE_FILE_FLAG5:
-            #清空CATALINA.OUT
-            WITH OPEN (LOGROTATE_FILE_FLAG5[0].STRIP(),"R+") AS F:
-                F.TRUNCATE()
-            PRINT "[INFO]JUST TRUNCATE CATALINA.OUT"
-        ELSE:
-            PRINT "[INFO]LOGROTATE NOTHING"
+        os.popen('find %s  -name "*log" -exec bzip2 {} \;' % bak_path)
+        #是否有文件被移动或catalina.out是否被清空
+        if logrotate_file_flag1 or logrotate_file_flag2 or logrotate_file_flag3 or logrotate_file_flag4:
+            print "[info]logrotate success"
+        elif logrotate_file_flag5:
+            #清空catalina.out
+            with open (logrotate_file_flag5[0].strip(),"r+") as f:
+                f.truncate()
+            print "[info]just truncate catalina.out"
+        else:
+            print "[info]logrotate nothing"
 
 #主程序从这开始
-IF __NAME__ == "__MAIN__":
+if __name__ == "__main__":
     #实例化
-    TRY:
+    try:
     #源日志目录
-        LOG_PATH = SYS.ARGV[1]
+        log_path = sys.argv[1]
         #备份目录，取当前时间
-        CUR_TIME = TIME.STRFTIME('%Y-%M-%D-%H:%M')
-        BAK_PATH_ = SYS.ARGV[2]
-        BAK_PATH = BAK_PATH_+'/'+CUR_TIME
+        cur_time = time.strftime('%Y-%m-%d-%H:%M')
+        bak_path_ = sys.argv[2]
+        bak_path = bak_path_+'/'+cur_time
         #在源日志目录保留日志的天数
-        SAVE_DAYS = SYS.ARGV[3]
-        A = ANAYSISLOG(LOG_PATH,BAK_PATH_,LOG_PATH)
+        save_days = sys.argv[3]
+        a = anaysislog(log_path,bak_path_,log_path)
         #压缩
-        A.LOGROTATE()
-    EXCEPT EXCEPTION,E:
-        ERR = "[ERROR]"+CUR_TIME+STR(E)+"\N"
-        WITH OPEN("/TMP/LOGRATE_ERR.LOG","A+") AS F:
-          F.WRITE(ERR)
-        PRINT ERR
+        a.logrotate()
+    except Exception,e:
+        err = "[error]"+cur_time+str(e)+"\n"
+        with open("/tmp/lograte_err.log","a+") as f:
+          f.write(err)
+        print err
 
 ```
