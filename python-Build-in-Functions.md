@@ -59,3 +59,5 @@ True
 (item for item in iterable if function(item)) if function is not None and (item for item in iterable if item) if function is None.
 ```
 + getattr()
++ chr()
++ ord()
