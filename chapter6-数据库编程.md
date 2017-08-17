@@ -79,7 +79,7 @@ sqllite3.connect('marketing/test')
 + fetchone() 获取查询结果下一行
 + fetchmany([size=cursor.arraysize])
 + fetchall()
-+ __iter__()
++ \__iter\__()
 + messages
 + next()
 + nextset()
