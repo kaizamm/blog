@@ -129,3 +129,6 @@ In [79]: for data in cur.fetchall():
 #### mysqlclient
 该表现更相似于MySQLdb
 #### MySQL Connector/Python
+
+### ORM
+将数据库表转化python类，其中的数据列作为属性，而数据库操作则会作为方法。目前最知名的python ORM是SQL
