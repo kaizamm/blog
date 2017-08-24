@@ -1,6 +1,6 @@
 ---
 title: python-Build-in-Functions
-data: 2017.8.16
+date: 2017.8.16
 ---
 ### Build-in Functions
 参考 https://docs.python.org/3/library/functions.html#exec
