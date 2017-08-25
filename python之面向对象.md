@@ -8,9 +8,9 @@ date: 2017.7.21
 + 面向对象： 对函数进行分类和封装，让开发“更快更好更强”
 ### 创建类和对象
 面向对象其实就是对类和对象的使用，类就是一个模版，模版里包含多个函数，函数里实现一些功能；对象则是根据模版创建实例，通过实例对象可以执行类中的函数。
+
 ```
-#创建类
-class Foo:
+class Foo:  
   #创建类中的函数
   def Bar(self):
     #do something
@@ -18,6 +18,7 @@ class Foo:
 #根据类Foo创建对象obj
 obj = Foo()
 ```
+
 ### 面向对象的三大特性
 #### 封装
 封装故名思义就是将内容封装到某个地方，以后再去调用被封装在某处的内容。所以在使用面向对象的封装特性时，需要：
@@ -59,7 +60,7 @@ class Foo:
     print self.age
 ```
 
-### 继承
+###  继承
 继承，子类继承父类（派生类继承基类）
 ```
 class Father:
@@ -111,40 +112,169 @@ s1_obj = S1()
 Func(s1_obj)
 
 s2_obj = S2()
-Func(s2_obj) 
+Func(s2_obj)
 ```
 
+### 类的成员
+类的成员可以分为三大类：
++ 字段：普通字段、静态字段
++ 方法：普通方法、类方法、静态方法
++ 属性： 普通属性
 
+#### 字段
+普通字段和静态字段在定义和使用中有所区别，本质区别是内存中保存位置不同；普通字段属于类对象，静态字段属于类
+```
+class Province:
+  #静态字段
+  country = '中国'
 
+  def __ini__(self,name):
+    #普通字段
+    self.name = name
 
+ #直接访问普通字段
+obj = Province('河北省')
+print obj.name
 
+ #直接访问静态字段
+Provice.country
+```
+由上述代码可以看出普通字段需要创建对象来访问，静态字段通过类来访问。
 
+#### 方法
++ 普通方法：由对象调用，至少一个self参数，执行普通方法时，自动将调用该方法的对象赋值给self
++ 类方法：由类调用，至少一个cls参数，执行类方法时，自动将调用该方法的类复制给cls
++ 静态方法：由类调用，无默认参数
 
+```
+class Foo:
+  def __init__(self,name):
+    self.name = name
 
+  def ord_func(self):
+    """定义普通方法，至少一个self参数"""
+    #print self.name
+    print 普通方法
 
+  @classmethod
+  def class_func(cls):
+    """定义类方法，至少有一个cls参数"""
+    print "类方法"
 
+  @staticmethod
+  def static_func():
+    """定义静态方法，无默认参数"""
+    print '静态方法'
 
+#调用普通方法
+f = Foo()
+f.ord_func()
 
+#调用类方法
+Foo.class_func()
 
+#调用静态方法
+Foo.static_func()
 
+```
 
+#### 属性
+属性就是普通方法的变种，在定义时，在普通方法的基础上添加@property装饰器，属性仅有一个self参数，调用时无需括号；方法： foo_obj.func()，属性： foo_obj.prop; 属性两种定义方式，一种是用装饰器的形式，一种是静态字段
++ 属性的基本使用
+```
+###########定义#########
+class Foo:
 
+  def Func(self):
+    pass
 
+  #定义属性
+  @property
+  def prop(self):
+    return "kaiz"
+    pass
+###########调用##########
+foo_obj = Foo()
+foo_obj.func()
+foo_obj.prop      
+#调用属性
+result = foo_obj.prop
+```
+#### 类成员的修饰符
+类成员的修饰符
 
++ 私有成员：私有成员在命名时，前两个字符是下划线，特殊成员除外如： \__init\__、\__call\__、\__dict\__等
 
+```
+class C:
+  def __init__(self):
+    self.name = '公有字段'
+    self.__foo = '私有字段'
+```
 
++ 公有成员：公有静态字段类可可以访问，类内部也可以访问，派生类中也可以访问；私有静态字段，仅类内部可以访问
 
+```
+class C:
+  name = '公有静态字段'
+  def func(self):
+    print C.name
 
+class D(C):
+  def show(self):
+    print C.name
 
-### 概述
-ADT abstract data type 抽象数据类型，设计者在考虑一个程序部件时，首先给出一上清晰边界，通过一套接口描述说明这一种功能，如果适合实际需要，就通过接口使用，并不需要其具体实现细节。抽象数据类型的基本想法是把数据定义为抽象的对象集合，只为他们定义合法的数据操作。抽象数据类型提供的操作应该满足这些要求。
-+ 构造操作： 这类操作基于一些已知的信息，产生出这种类型的一个新对象。
-+ 解析操作： 这种操作从一个对象取得有用的信息
-+ 变动操作： 这类操作修改被操作的对象内部状态。
+C.name #类访问
 
+obj = C()
+obj.func() #类内部可以访问
 
-### isinstance()
-python提供了内置函数isinstance，专门用于检查类和对象的关系。表达式isinstance(obj，cls)检查对象obj是否为类cls的实例,当obj的类是cls时得到True，否则得到False。实际上，isinstance可以用于检测任何对象与任何类型的关系，如检查一个变量或参数的值是否为int类型或float类型等。
-### 静态方法和类方法
-+ 静态方法，定义的形式就是def行前加修饰符@staticmethod，静态方法实际上就是普通函数，只是由于某种原因需要定义在类里面。
-+ 类方法，定义形式是在def行前加修饰符@classmethod这种方法必须有一个表示其调用类的参数，习惯用cls作为参数名，还可以有任意多个其他参数。类方法也是类对象的属性，可以以属性的形式调用。在类方法执行时调用它的类将自动约束到方法的cls参数，可以通过这个参数访问该类的其他属性。
+obj_son = D()
+obj_son.show() #派生类中可以访问
+
+```
+对照如下
+```
+class C:
+  __name = "公有静态字段"
+  def func(self):
+    print C.__name
+
+class D:
+  def show(self):
+    print C.__name
+
+C.__name  #类访问  --> 错误
+
+obj = C()
+obj.func()  #类内部可以访问  -->正确
+
+obj_son = D()
+obj_son.show() #派生类中可以访问  -->错误
+```
+
+#### 类的特殊成员
++ __doc__
+表示类的描述信息
+```
+class Foo:
+  """描述类信息"""
+  def func(self):
+    pass
+
+print Foo.__doc
+#输入类的描述信息
+```
++ \__module\__:表示当前操作的对象在哪个模块
++ \__class\__表示操作的对象的类是什么
++ \__init\__
++ \__del\__:析构方法，对对象在内存在被释放时，自动触发执行，最后一次呐喊
++ \__call\__:对象后面加括号触发执行
++ \__dict\__:类或对象中的所有成员
++ \__str\__:如果一个类中定义了\__str\__方法，那就在打印对象时，默认输入该方法的返回值
++ \__getitem\__、\__setitem\__、\__delitem\__:用于索引操作，如字典。以上分别表示获取、设置、删除数据
++ \__getslice\__、\__setslice\__、\__delslice\__
+
+ 该三个方法用于分片操作
+ + \__iter\__
+ 用于迭代器，之所以列表、字典、元组可以进行for循环，是因为类型内部定义了 \__iter\__
