@@ -277,3 +277,5 @@ print Foo.__doc
 该三个方法用于分片操作
 + \__iter\__
 用于迭代器，之所以列表、字典、元组可以进行for循环，是因为类型内部定义了 \__iter\__
+
+参考 http://www.cnblogs.com/wupeiqi/p/4766801.html
