@@ -168,71 +168,21 @@ safe | 渲染值时不转义
 capitalize| 把值的首字母转换成大写，基他字母转换成小写
 lower| 把值转换成小写形式
 upper| 把值转换成大写形式
-__title__| 把值中每个单词的首字母都转换成大写
+title| 把值中每个单词的首字母都转换成大写
 trim| 把值的首尾空格去掉
 striptags|渲染之前把值中所有的HTML标签都删掉
 
 详见http://jinja.pocoo.org/docs/2.9/templates/#builtin-filters
 
 ### jinjia2控制结构
-```
-#if语句
-{% if user %}
-  hello,{{ user }}!
-{% else %}
-  hello,Stranger!
-{% endif %}
-#for语句
-<ul>
-  {% for comment in comments %}
-    <li>{{ comment }}</li>
-  {% endfor %}
-</ul>
 
-#宏，类似Python的继承
-{% macro render_comment(comment) %}
-  <li>{{ comment }}</li>
-{% endmacro %}
-
-<ul>
-  {% for comment in comments %}
-    {{ render_comment(comment) }}
-  {% endfor %}
-</ul>
-#为了重复使用宏，把其保存为单独的文件中，然后在需要使用的模版中导入：
-{% import 'macros.html' as macros %}
-<ul>
-  <% for comment in comments %>
-    {{ macros.render_comment(comment) }}
-  <% endfor %>
-</ul>
-#需要在多处重复使用的模板代码片段可以写入单独的文件，再包含在所有的模版中，以避免重复：
-{% include 'common.html' %}
-#另一种重复使用代码的强大方式是模版继承，它类似于python代码中类继承。首先创建一个名为base.html的基模版
-<html>
-<head>
-  {% block head %}
-  <__title__>{% block `__title__` %}{% endblock %} - My Application</__title__>
-  {% endblock %}
-</head>
-<body>
-  {% block body %}
-  {% endblock %}
-</body>
-</html>
-#block标签定义的元素可在衍生模版中修改。本例中，我们定义了名为head、__title__和body块。注意，__title__包含在head中。下面是基版的衍生模板
-{% extends "base.html" %} #extends指令声明模板衍生自base.html
-{% block __title__ %}Index{% endblock %}
-{% block head %}
-  {{ super() }} #super()获取原来的内容
-  <style>
-  </style>
-{% endblock %}
-{% block body %}
-<h1>Hello,World!</h1>
-{% endblock %}
-```
-
++ if语句
++ for语句
++ 宏，类似Python的继承
++ 为了重复使用宏，把其保存为单独的文件中，然后在需要使用的模版中导入：
++ 需要在多处重复使用的模板代码片段可以写入单独的文件，再包含在所有的模版中，以避免重复：
++ 另一种重复使用代码的强大方式是模版继承，它类似于python代码中类继承。首先创建一个名为base.html的基模版
++ block标签定义的元素可在衍生模版中修改。本例中，我们定义了名为head、__title__和body块。注意，__title__包含在head中。下面是基版的衍生模板
 
 ### 使用bootstrap
 官网http://getbootstrap.com
@@ -352,85 +302,16 @@ NoneOf  | 确保输入值不在可选值列表中
 
 ### 把表单渲染成HTML
 表单字段是可调用的，在模版中调用后会渲染成HTML。假设视图函数把一个NameForm实例通过参数form传入模版，在模板中可以生成一个简单的表单，如下所示：
-```
-<form method="POST">
-  {{ form.hidden_tag() }}
-  {{ form.name.lable }} {{ form.name() }}
-  {{ form.submit() }}
-</form>
-```
+
 当然这个表单很简陋，若想改进表单的外观，可以把参数传入渲染字段的函数，传入的参数会被转换成字段的HTML属性。例如，可以为字段指定id或class属性，然后定义CSS样式。
-```
-<form method="POST">
-  {{ form.hidden_tag() }}
-  {{ form.name.label }} {{ form.name(id='my-text-field') }}
-  {{ form.submit() }}
-</form>
-```
+
 即便能指定HTML属性，但按照这种方式渲染表单的工作量还是很大，所以在条件允许的情况下最好能使用Bootstrap中的表单样式。Flask-Bootstrap提供了一个非常高端的辅助函数，可以使用Bootstrap中预先定义好的表单样式渲染整个Flask-WTF表单，而这些操作只需一次调用即可完成。使用Flask-Bootstrap,上述表单可使用下面的方式渲染：
 ```
 {% import "bootstrap/wtf.html" as wtf %}
 {{ wtf.quick_form(form) }}
 ```
 import 指令使用方法和普通Python代码一样，允许导入模板中的元素并用在多个模版中。导入的bootstrap/wtf.html文件中定义了一个使用Bootstrap渲染Flask-WTF表单对象的辅助函数。wtf.quick_form()函数的参数为Flask-WTF表单对象，使用Bootstrap的默认样式渲染传入的表单。
-```
 
-#cat templates/index.html
-{% extends "base.html" %}
-{% import "bootstrap/wtf.html" as wtf %}
-
-{% block __title__ %}Flasky{% endblock %}
-
-{% block page_content %}
-<div class="page-header">
-    <h1>Hello, {% if name %}{{ name }}{% else %}Stranger{% endif %}!</h1>
-</div>
-{{ wtf.quick_form(form) }}
-{% endblock %}
-
-#cat templates/base.html
-{% extends "bootstrap/base.html" %}
-
-{% block __title__ %}Flasky{% endblock %}
-
-{% block head %}
-{{ super() }}
-<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
-<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
-{% endblock %}
-
-{% block navbar %}
-<div class="navbar navbar-inverse" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">Flasky</a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-{% endblock %}
-
-{% block content %}
-<div class="container">
-    {% block page_content %}{% endblock %}
-</div>
-{% endblock %}
-
-{% block scripts %}
-{{ super() }}
-{{ moment.include_moment() }}
-{% endblock %}
-```
 在index.html中，模板的内容现在有两部分，第一部份是页面头部，显示欢迎消息。这里用到一个模版条件语句。Jinja2中的条件语句格式为{% if condition %}...{% else %}...{% endif %}。如果条件计算结果为True,那么渲染if和else指令之间的值。反之，渲染else和endif之间的值。
 ### 在视图函数中处理表单
 在新版hello.py中，视图函数index()不仅要渲染表单，还要接收表单中的数据。
