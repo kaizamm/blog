@@ -1,6 +1,7 @@
 ---
 title: Flask_Web开发
 date: 2017.8.28
+tag: python
 ---
 ## 程序基本结构
 ### 环境准备
