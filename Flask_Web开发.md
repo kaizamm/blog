@@ -168,7 +168,7 @@ safe | 渲染值时不转义
 capitalize| 把值的首字母转换成大写，基他字母转换成小写
 lower| 把值转换成小写形式
 upper| 把值转换成大写形式
-t`title`| 把值中每个单词的首字母都转换成大写
+__title__| 把值中每个单词的首字母都转换成大写
 trim| 把值的首尾空格去掉
 striptags|渲染之前把值中所有的HTML标签都删掉
 
@@ -212,7 +212,7 @@ striptags|渲染之前把值中所有的HTML标签都删掉
 <html>
 <head>
   {% block head %}
-  <`title`>{% block ``title`` %}{% endblock %} - My Application</`title`>
+  <__title__>{% block `__title__` %}{% endblock %} - My Application</__title__>
   {% endblock %}
 </head>
 <body>
@@ -220,9 +220,9 @@ striptags|渲染之前把值中所有的HTML标签都删掉
   {% endblock %}
 </body>
 </html>
-#block标签定义的元素可在衍生模版中修改。本例中，我们定义了名为head、`title`和body块。注意，`title`包含在head中。下面是基版的衍生模板
+#block标签定义的元素可在衍生模版中修改。本例中，我们定义了名为head、__title__和body块。注意，__title__包含在head中。下面是基版的衍生模板
 {% extends "base.html" %} #extends指令声明模板衍生自base.html
-{% block `title` %}Index{% endblock %}
+{% block __title__ %}Index{% endblock %}
 {% block head %}
   {{ super() }} #super()获取原来的内容
   <style>
@@ -379,7 +379,7 @@ import 指令使用方法和普通Python代码一样，允许导入模板中的�
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block `title` %}Flasky{% endblock %}
+{% block __title__ %}Flasky{% endblock %}
 
 {% block page_content %}
 <div class="page-header">
@@ -391,7 +391,7 @@ import 指令使用方法和普通Python代码一样，允许导入模板中的�
 #cat templates/base.html
 {% extends "bootstrap/base.html" %}
 
-{% block `title` %}Flasky{% endblock %}
+{% block __title__ %}Flasky{% endblock %}
 
 {% block head %}
 {{ super() }}
