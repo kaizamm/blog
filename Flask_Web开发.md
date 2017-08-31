@@ -2,7 +2,7 @@
 title: Flask_Web开发
 date: 2017.8.28
 ---
-
+## 程序基本结构
 ### 环境准备
 官网  http://flask.pocoo.org/；实验环境python-virtualenv，安装 sudo yum install python-virtualenv 即可。用这个环境的好处，可在系统的python解释器中避免包的混乱和版本的冲突，为每个程序单独创建虚拟环境可以保证程序只能访问虚拟环境中的包，从而保持全局解释器的干净整洁，并且虚拟环境中不需要管理员权限。一旦安装完成，virtualenv实用工具就可以从常规账户中调用。
 ```
