@@ -264,8 +264,7 @@ def index():
 if __name__ == '__main__':
     manager.run()
 ```
-这个表单中的字段都定义为类变量，类变量的值是相应字段类型的对象。StringField类表示属性为type="text"的```<input>```元素。SubmitField类表示属性为type="submit"的```<input>```元素。StringField构造函数中的可选参数validators指定一个由验证函数组成的列表，在接受用户提交的数据之前验证数据。验证函数Required()确保提交的字段不为空。
-+ WTFomrs支持的HTML标准字段如下
+这个表单中的字段都定义为类变量，类变量的值是相应字段类型的对象。StringField类表示属性为type="text"的input元素。SubmitField类表示属性为type="submit"的input元素。StringField构造函数中的可选参数validators指定一个由验证函数组成的列表，在接受用户提交的数据之前验证数据。验证函数Required()确保提交的字段不为空。 WTFomrs支持的HTML标准字段如下
 
 字段类型|说明
 ---|---
@@ -286,7 +285,8 @@ FileField     | 文件上传字段
 SubmitField   | 表单提交按钮
 FormField     | 把表单作为字段嵌入另一个表单
 FieldList     | 一组指定类型的字段
-+ WTForms验证函数
+
+ WTForms验证函数
 
 验证函数| 说明
 ---|---
@@ -311,7 +311,7 @@ NoneOf  | 确保输入值不在可选值列表中
 
 import 指令使用方法和普通Python代码一样，允许导入模板中的元素并用在多个模版中。导入的bootstrap/wtf.html文件中定义了一个使用Bootstrap渲染Flask-WTF表单对象的辅助函数。wtf.quick_form()函数的参数为Flask-WTF表单对象，使用Bootstrap的默认样式渲染传入的表单。
 
-在index.html中，模板的内容现在有两部分，第一部份是页面头部，显示欢迎消息。这里用到一个模版条件语句。Jinja2中的条件语句格式为{% if condition %}...{% else %}...{% endif %}。如果条件计算结果为True,那么渲染if和else指令之间的值。反之，渲染else和endif之间的值。
+在index.html中，模板的内容现在有两部分，第一部份是页面头部，显示欢迎消息。这里用到一个模版条件语句。Jinja2中的条件语句格式为。如果条件计算结果为True,那么渲染if和else指令之间的值。反之，渲染else和endif之间的值。
 ### 在视图函数中处理表单
 在新版hello.py中，视图函数index()不仅要渲染表单，还要接收表单中的数据。
 ```
