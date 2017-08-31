@@ -306,10 +306,8 @@ NoneOf  | 确保输入值不在可选值列表中
 当然这个表单很简陋，若想改进表单的外观，可以把参数传入渲染字段的函数，传入的参数会被转换成字段的HTML属性。例如，可以为字段指定id或class属性，然后定义CSS样式。
 
 即便能指定HTML属性，但按照这种方式渲染表单的工作量还是很大，所以在条件允许的情况下最好能使用Bootstrap中的表单样式。Flask-Bootstrap提供了一个非常高端的辅助函数，可以使用Bootstrap中预先定义好的表单样式渲染整个Flask-WTF表单，而这些操作只需一次调用即可完成。使用Flask-Bootstrap,上述表单可使用下面的方式渲染：
-```
-{% import "bootstrap/wtf.html" as wtf %}
-{{ wtf.quick_form(form) }}
-```
+
+
 import 指令使用方法和普通Python代码一样，允许导入模板中的元素并用在多个模版中。导入的bootstrap/wtf.html文件中定义了一个使用Bootstrap渲染Flask-WTF表单对象的辅助函数。wtf.quick_form()函数的参数为Flask-WTF表单对象，使用Bootstrap的默认样式渲染传入的表单。
 
 在index.html中，模板的内容现在有两部分，第一部份是页面头部，显示欢迎消息。这里用到一个模版条件语句。Jinja2中的条件语句格式为{% if condition %}...{% else %}...{% endif %}。如果条件计算结果为True,那么渲染if和else指令之间的值。反之，渲染else和endif之间的值。
