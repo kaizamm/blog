@@ -2,6 +2,7 @@
 title: consul服务发现
 date: 2017.11.3
 ---
+文档主要来官网翻译 https://www.consul.io
 ### 什么是consul
 + Consul是个分布式、高可用的系统。此篇只介绍基础功能，深入的请移步[in-depth architecture overview](https://www.consul.io/docs/internals/architecture.html)。
 + 每个向consul提供服务的node节点都是一个consul agent。运行agent并不是为了服务发现或键值存储，而是为了健康检查。consul agent可以与多个consul servers通信。
@@ -237,4 +238,58 @@ $ consul kv get -detailed redis/config/minconns
 Consul提供一个UI。UI可以用于浏览所有的service和nodes，以及读写key/value数据，支持multi-datacenter
 ```
 $ consul agent -ui
+```
+UI的端口与HTTP API的端口一样，默认地址为http://localhost:8500/ui
+>注："-client"指定要将HTTP绑定到IP，绑定到一个外部IP，否则只能从本机进行访问。
+
+### Agent HTTP API
+
+#### List Members
+```
+[root@node1 ~]# curl 192.168.0.11:8500/v1/agent/members
+[{"Name":"agent-one","Addr":"192.168.0.11","Port":8301,"Tags":{"bootstrap":"1","build":"1.0.0:51ea240","dc":"dc1","id":"869d2f5b-36d9-2692-86d6-18d20d203da0","port":"8300","raft_vsn":"3","role":"consul","segment":"","vsn":"2","vsn_max":"3","vsn_min":"2","wan_join_port":"8302"},"Status":1,"ProtocolMin":1,"ProtocolMax":5,"ProtocolCur":2,"DelegateMin":2,"DelegateMax":5,"DelegateCur":4},{"Name":"agent-two","Addr":"192.168.0.12","Port":8301,"Tags":{"build":"1.0.0:51ea240","dc":"dc1","id":"c79f338c-ee64-2389-ac3f-01bfcfb02c3f","role":"node","segment":"","vsn":"2","vsn_max":"3","vsn_min":"2"},"Status":1,"ProtocolMin":1,"ProtocolMax":5,"ProtocolCur":2,"DelegateMin":2,"DelegateMax":5,"DelegateCur":4}]
+```
+##### Parameters
++ wan(bool:false)-指定列出WAN members而不是LAN members(默认)。该参数只适用于以server mode运行的agents，它在URL后面作为一个query参数传入。
++ segment(string: "")-指定列出members的一部份。
+##### Sample Request
+```
+[root@node1 ~]# curl http://192.168.0.11:8500/v1/agent/members
+```
+#### Read Configuration
+
+##### Sample Request
+
+```
+$ curl \
+    https://consul.rocks/v1/agent/self
+```
+
+#### Reload Agent
+##### Sample Request
+```
+$ curl \
+    --request PUT \
+    https://consul.rocks/v1/agent/reload
+```
+#### Enable Maintenance Mode
+
+##### Parameters
++ enable (bool: <required>) - Specifies whether to enable or disable maintenance mode. This is specified as part of the URL as a query string parameter.
++ reason(string: "") - Specifies a text string explaining the reason for placing the node into maintenance mode. This is simply to aid human operators. If no reason is provided, a default value will be used instead. This is specified as part of the URL as a query string parameter, and, as such, must be URI-encoded.
+
+##### Sample Request
+```
+$ curl \
+    --request PUT \
+    https://consul.rocks/v1/agent/maintenance?enable=true&reason=For+API+docs
+```
+
+
+
+更多详见https://www.consul.io/api/agent.html
+```
+$ curl https://consul.rocks/v1/agent/join/1.2.3.4
+$ curl https://consul.rocks/v1/agent/monitor
+$ curl https://consul.rocks/v1/agent/metrics
 ```
