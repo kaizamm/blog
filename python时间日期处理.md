@@ -30,6 +30,11 @@ print time.strftime("%a %b %d %H:%M:%S %Y", time.localtime())
 # 将格式字符串转换为时间戳
 a = "Sat Mar 28 22:24:24 2016"
 print time.mktime(time.strptime(a,"%a %b %d %H:%M:%S %Y"))
+'''
+2016-04-07 10:25:09
+Thu Apr 07 10:25:09 2016
+1459175064.0
+'''
 ```
 
 ### calendar日历模块
