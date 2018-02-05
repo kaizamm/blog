@@ -13,14 +13,14 @@ grain在设计之初用于描述minion的静态要素，执行模块能够使用
 
 ### 自定义grain
  在以前的版本中直接写到/etc/salt/minion中定义grain数据
-```
+```bash
 grains:
   foo: bar
   baz: qux
 ```
  这种方式仍在用，但不推荐，推荐直接将grain数据写到/etc/salt/grains中，优点： grain独立存储、grain能通过grain执行模块进行修改
 ` cat /etc/salt/grains `
-```
+```bash
 foo: bar
 baz: qux
 ```
@@ -28,7 +28,7 @@ baz: qux
 
 + `salt 'minionid' grains.setval mygrain 'this is the content of mygrain'`  这就在minion中增加了一个grain
 grain值支持多种类型，一般为字符串，也可以为列表
-```
+```bash
 my_items:
   - item1
   - item2
@@ -38,15 +38,15 @@ my_items:
 
 ### 使用pillar使变量集中化
 大多数场景下，pillar的表现行为和grain一致，但有一个区别，pillar在master上，grain在minion端。默认情况下，pillar存放在/srv/pillar/目录里。由于该区域存放的是用于众多minion信息，因此需要一种target方式来对应minion。正因如此，所以有了sls文件。pillar的top.sls文件在配置和功能上与state的top.sls文件一致。首先声明一个环境。然后是一个target，最后是该target需要使用的sls文件列表。
-```
+```bash
 base:
   '*':
     - pillar-test
 ```
 pillar的sls文件相对于state的sls文件简单许多，因为pillar只提供静态数据存储。以键值对的key/value方式进行定义，有时会包含一定的层级。
 
-`cat /srv/pillar/pillar-test.sls`
-```
+```bash
+#cat /srv/pillar/pillar-test.sls
 skel_dir: /etc/skel/
 role: web
 web_content:
@@ -67,7 +67,7 @@ web_content:
 
 ### jinja模版
 salt支持如下模版引擎：jinja/mako/wempy/cheetah/genshi；数据结构：yaml/yamlex/json/msgpack/py/pyobjects/pydsl。默认情况下，state的sls文件会首先使用jinja进行渲染，后再使用YAML渲染。可在sls文件的第一行中包含shabang行来指定渲染器： #!!py ,shabang也可以以管道符号分隔指定多个渲染器，如想用mako和json来替代默认的jinja和YAML，可以进行如下配置： '#!mako|json'，若要改系统默认，则在/etc/salt/master中修改，renderer: yaml_jinja，也可以在minion上使用file.managed state创建文件时指定模版引擎：
-```
+```bash
 apache2_conf:
   file:
     - managed
@@ -79,12 +79,12 @@ apache2_conf:
 + 常见grain pillar的引用
 
 变量可以通过闭合的双大括号来引用，一个叫作user的Grain
-```
+```bash
  The user {{ grains['user'] }} is referred to here.
  The user {{ pillar['user'] }} is referred to here.
- ```
-pillar类似
 ```
+pillar类似
+```bash
 The user {{ salt['grains.get']('user', 'larry') }} is referred to here
 The user {{ salt['pillar.get']('user', 'larry') }} is referred to here
 ```
@@ -93,21 +93,23 @@ The user {{ salt['pillar.get']('user', 'larry') }} is referred to here
 The user {{ salt['config.get']('user', 'larry') }} is referred to here
 ```
 salt会首先搜索minion配置文件中的值，如果没有找到，则会检查grain，如果还没有，则搜索pillar。如果还没有找到，它会搜索master配置。如果全没有找到，它地使用提供的默认值。
-```
+```bash
   {% set myvar = 'My Value' %}
-  ```
+```
 若是无法通过config.get获取到的，可以使用set关键字
 
 由于jinja是基于python的，因此 大多数python的数据类型都是可用的，如列表list，字典dictionary
-```
+```bash
  {% set mylist = ['apple','orange','bananas'] %}
 ```
-```
+
+```bash
 {% set mydict = {'favorite pie': 'key lime','favorite cake': 'sacchertorte'} %}
 ```
+
 + if语块，jinja提供逻辑处理，用于定义模版使用哪个部分、如何使用。条件判断使用if块。
 
-```
+```bash
 {% if grains['os_family'] == 'Debian'  %}
 apache2:
 {% if grains['os_family'] == 'RedHat'  %}
@@ -118,8 +120,11 @@ httpd:
   service:
     - running
 ```
+
+
 + for 语块
-```
+
+```bash
 {% set colors = ['blue','pink'] %}
 {% for color in colors %}
 {% color %}color
