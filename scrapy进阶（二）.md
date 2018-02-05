@@ -7,3 +7,9 @@ titile: scrapy进阶（二）
 
 ![scrapy_architecture][scrapy_architecture]
 [scrapy_architecture]: ./scrapy进阶（二）/scrapy_architecture.png
+
+### 关于scrapy解析需用的几个库
+### selenium
+#### urllib
+#### beautifulsoup
+#### bs4
