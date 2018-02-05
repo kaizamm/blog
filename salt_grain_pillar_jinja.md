@@ -26,13 +26,17 @@ baz: qux
 ```
 与第一种方式的区别就是没有顶级声明
 
-+ `salt 'minionid' grains.setval mygrain 'this is the content of mygrain'`  这就在minion中增加了一个grain
+```bash
+salt 'minionid' grains.setval mygrain 'this is the content of mygrain'`  这就在minion中增加了一个grain
+```
+
 grain值支持多种类型，一般为字符串，也可以为列表
 ```bash
 my_items:
   - item1
   - item2
 ```
+
 + salt 'minionid' grains.append my_items item3  对列表添加项目（item）时，可以用grains.append方法，用该方法时，需grain是一个list，形式如上
 + salt 'minionid' grains.delval my_items    删除一个grain (理论上可行，但在测试时提示无法删除grain）
 
@@ -83,12 +87,17 @@ apache2_conf:
  The user {{ grains['user'] }} is referred to here.
  The user {{ pillar['user'] }} is referred to here.
 ```
+
 pillar类似
+
 ```bash
 The user {{ salt['grains.get']('user', 'larry') }} is referred to here
+
 The user {{ salt['pillar.get']('user', 'larry') }} is referred to here
 ```
+
 如果pillar或grain中没有设置user，则使用默认的larry
+
 ```bash
 The user {{ salt['config.get']('user', 'larry') }} is referred to here
 ```
