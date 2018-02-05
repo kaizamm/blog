@@ -87,11 +87,11 @@ pillar类似
 ```
 The user {{ salt['grains.get']('user', 'larry') }} is referred to here
 The user {{ salt['pillar.get']('user', 'larry') }} is referred to here
- ```
+```
 如果pillar或grain中没有设置user，则使用默认的larry
- ```
+```
 The user {{ salt['config.get']('user', 'larry') }} is referred to here
-  ```
+```
 salt会首先搜索minion配置文件中的值，如果没有找到，则会检查grain，如果还没有，则搜索pillar。如果还没有找到，它会搜索master配置。如果全没有找到，它地使用提供的默认值。
 ```
   {% set myvar = 'My Value' %}
@@ -101,7 +101,7 @@ salt会首先搜索minion配置文件中的值，如果没有找到，则会检�
 由于jinja是基于python的，因此 大多数python的数据类型都是可用的，如列表list，字典dictionary
 ```
  {% set mylist = ['apple','orange','bananas'] %}
- ```
+```
 ```
 {% set mydict = {'favorite pie': 'key lime','favorite cake': 'sacchertorte'} %}
 ```
