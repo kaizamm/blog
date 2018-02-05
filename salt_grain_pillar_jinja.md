@@ -1,5 +1,5 @@
 ---
-title: salt-grains-pillars-jinja
+title: salt_grains_pillars_jinja
 date: 2017.5.17
 ---
 ### grains/pillars及模版基础
