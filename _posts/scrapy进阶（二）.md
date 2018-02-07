@@ -1,0 +1,15 @@
+---
+titile: scrapy进阶（二）
+---
+
+### 架构概览
+接下来的图表展现了Scrapy的架构，包括组件及在系统中发生的数据流的概览(绿色箭头所示)。 下面对每个组件都做了简单介绍，并给出了详细内容的链接。数据流如下所描述
+
+![scrapy_architecture][scrapy_architecture]
+[scrapy_architecture]: ./scrapy进阶（二）/scrapy_architecture.png
+
+### 关于scrapy解析需用的几个库
+### selenium
+#### urllib
+#### beautifulsoup
+#### bs4
