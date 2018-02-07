@@ -83,6 +83,7 @@ $ docker run -d \
     gliderlabs/registrator:latest \
       consul://192.168.0.11:8500
 ```
+>关于servicename：--label "SERVICE_NAME=some-service-name"，请参考https://gliderlabs.com/registrator/latest/user/services/
 
 ### 几个常用API
 #### deregister
