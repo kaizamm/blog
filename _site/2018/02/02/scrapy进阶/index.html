@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>scrapy进阶 - Think Deep,Work Lean</title>
+
+	<link rel="shortcut icon" href="/styles/images/favicon.jpg">
+	<link rel="icon" href="/styles/images/favicon.jpg">
+
+	<link rel="stylesheet" href="/styles/css/index.css">
+	<link rel="stylesheet" href="/styles/css/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/styles/css/syntax.css">
+	<link rel="canonical" href="/2018/02/02/scrapy%E8%BF%9B%E9%98%B6/">
+	<link rel="alternate" type="application/rss+xml" title="Think Deep,Work Lean" href="/feed.xml">
+	
+	<meta name="keywords" content="scrapy进阶, Think Deep,Work Lean, 张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+	<meta name="description" content="张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+
+	<script src="/styles/js/jquery.min.js"></script>
+	<!--[if lt IE 9]>
+    	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+  	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?a81273dded286ab83c533a4184e6ae8c";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+  	<style type="text/css">
+	  	.docs-content{
+	  		margin-bottom: 10px;
+	  	}
+  	</style>
+</head>
+
+  <body class="index">
+
+    <header class="navbar navbar-inverse navbar-fixed-top docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="/styles/images/logo.jpg">
+      </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">    
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/categories/">大类分解</a>
+        </li>
+        <li>
+          <a href="/tag">小类内聚</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></a>
+        </li>
+        <li>
+          <a href="/donate/"><strong>打赏</strong></a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a rel="nofollow" target="_blank" href="https://github.com/kaizamm">Github</a></li>
+            <li><a rel="nofollow" target="_blank" href="">关于作者</a></li>
+            <li><a rel="nofollow" href="/books">我的书单</a></li>
+            <li><a rel="nofollow" href="http://www.hifreud.com/domains/">域名管理</a></li>
+            <li><a rel="nofollow" href="/reference">推荐博客</a></li>
+            <li><a href="/feed.xml">RSS订阅</a></li>
+            <li class="divider"></li>
+            <li><a rel="nofollow" target="_blank" href="https://github.com/luoyan35714/LessOrMore.git">本项目</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    <div class="docs-header" id="content">
+  <div class="container">
+  	
+  		<!--
+		    <h1>scrapy进阶</h1>
+		    <p>Post on Feb 02, 2018 by <a href="/about">Kaiz</a></p>
+		-->
+		    <h1>不向静中参妙理,纵然颖悟也虚浮 立乎其大 和而不同 古之成大事者，不惟有超世之才，亦必有坚韧不拔之志</h1>
+    
+  </div>
+</div>
+    
+      
+<div class="banner">
+  <div class="container">
+  	
+    	<a href="/categories/#document-ref">document</a>	/
+    	<a href="/tag/#pythonscrapy-ref">pythonscrapy</a>
+    
+  </div>
+</div>
+
+    
+
+    <div class="container docs-container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="sidebar hidden-print" role="complementary">
+        <div id="navigation">
+  <h1>目录</h1>
+  <ul class="nav sidenav">
+  </ul>
+  <div style="height: 200px;width: 200px;">
+    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=5ytn1ssq6za&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"> 
+    </script>
+  </div>
+</div>
+
+ 
+      </div>
+    </div>
+    <div class="col-md-9" role="main">
+      <div class="panel docs-content">
+        <div class="wrapper">
+            <header class="post-header">
+              <h1 class="post-title">scrapy进阶</h1>
+              <!--
+                <p class="post-meta">Feb 2, 2018</p>
+              -->
+              <div class="meta">Posted on <span class="postdate">Feb 02, 2018</span> By <a target="_blank" href="https://kaizamm.github.com">Kaiz</a></div>
+              <br />
+            </header>
+            <article class="post-content">
+              <h3 id="item-pipeline">Item Pipeline</h3>
+<p>当Item在Spider中被收集之后，它将会被传递到Item Pipeline，一些组件会按照一定的顺序执行对Item的处理，每个item pipeline组件是实现了简单方法的python类。他们接收到Item并通过它执行一些行为，同时也决定此Item是否继续通过pipeline，或是被丢弃而不再进行处理。以下是item pipeline的一些典型应用：</p>
+<ul>
+  <li>清理HTML数据</li>
+  <li>验证爬取的数据，检查item包含某些字段</li>
+  <li>查重并丢弃</li>
+  <li>将爬取结果保存到数据库中</li>
+</ul>
+
+<h3 id="编写你的item-pipeline">编写你的item pipeline</h3>
+<p>每个item pipeline都是一个独立的python类</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>process_item(item,spider)
+# item： Item对象，被爬取的item
+# spider: Spider对象，被爬取该item的spider
+</code></pre></div></div>
+<p>每个item pipeline都需要调用该方法，这个方法必须返回一个item对象，或是抛出DropItem异常，被丢弃的item将不会被之后的pipeline组件所处理。</p>
+
+<p>也可以实现以下方法：</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">open_spider</span><span class="p">(</span><span class="n">spider</span><span class="p">)</span> <span class="c"># 当spider开启时，这个方法被调用</span>
+<span class="n">close_spider</span><span class="p">(</span><span class="n">spider</span><span class="p">)</span> <span class="c"># 当spider关闭时，这个方法被调用</span>
+</code></pre></div></div>
+
+<h4 id="样例">样例</h4>
+<ul>
+  <li>验证价格，同时丢弃没有价格的item</li>
+</ul>
+
+<p>让我们来看一下以下这个假设的pipeline，它为那些不含税(price_excludes_vat 属性)的item调整了 price 属性，同时丢弃了那些没有价格的item:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from scrapy.exceptions import DropItem
+
+class PricePipeline(object):
+
+    vat_factor = 1.15
+
+    def process_item(self, item, spider):
+        if item['price']:
+            if item['price_excludes_vat']:
+                item['price'] = item['price'] * self.vat_factor
+            return item
+        else:
+            raise DropItem("Missing price in %s" % item)
+</code></pre></div></div>
+
+<ul>
+  <li>将item写入JSON文件</li>
+</ul>
+
+<p>以下pipeline将所有(从所有spider中)爬取到的item，存储到一个独立地 items.jl 文件，每行包含一个序列化为JSON格式的item:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="k">class</span> <span class="nc">JsonWriterPipeline</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'items.jl'</span><span class="p">,</span> <span class="s">'wb'</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">process_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">spider</span><span class="p">):</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">item</span><span class="p">))</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span>
+        <span class="bp">self</span><span class="o">.</span><span class="nb">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">item</span>
+</code></pre></div></div>
+<blockquote>
+  <p>JsonWriterPipeline的目的只是为了介绍怎样编写item pipeline，如果你想要将所有爬取的item都保存到同一个JSON文件， 你需要使用 Feed exports 。</p>
+</blockquote>
+
+<ul>
+  <li>去重</li>
+</ul>
+
+<p>一个用于去重的过滤器，丢弃那些已经被处理过的item。让我们假设我们的item有一个唯一的id，但是我们spider返回的多个item中包含有相同的id:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">scrapy.exceptions</span> <span class="kn">import</span> <span class="n">DropItem</span>
+
+<span class="k">class</span> <span class="nc">DuplicatesPipeline</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ids_seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">process_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">spider</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s">'id'</span><span class="p">]</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ids_seen</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">DropItem</span><span class="p">(</span><span class="s">"Duplicate item found: </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">item</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ids_seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s">'id'</span><span class="p">])</span>
+            <span class="k">return</span> <span class="n">item</span>
+</code></pre></div></div>
+
+<ul>
+  <li>启用一个Item Pipeline组件</li>
+</ul>
+
+<p>为了启用一个Item Pipeline组件，你必须将它的类添加到 ITEM_PIPELINES 配置，就像下面这个例子:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ITEM_PIPELINES = {
+    'myproject.pipelines.PricePipeline': 300,
+    'myproject.pipelines.JsonWriterPipeline': 800,
+}
+</code></pre></div></div>
+<p>分配给每个类的整型值，确定了他们运行的顺序，item按数字从低到高的顺序，通过pipeline，通常将这些数字定义在0-1000范围内。</p>
+
+<h3 id="feed-exports">Feed exports</h3>
+<p>实现爬虫时最经常提到的需求就是能合适的保存爬取到的数据，或者说，生成一个带有爬取数据的”输出文件”(通常叫做”输出feed”)，来供其他系统使用。scrapy自带了Feed输出，并且支持多种序列化格式及存储方式。</p>
+<h4 id="序列化方式">序列化方式</h4>
+<p>feed输出使用到item exporters。其自带支持类型有：</p>
+<ul>
+  <li>JSON：使用JsonItemExplorter</li>
+  <li>JSON lines: JsonLinesItemExporter</li>
+  <li>CSV: CsvItemExporter</li>
+  <li>XML: XmlItemExporter</li>
+  <li>Pickle: PickleItemExporter</li>
+  <li>Marshal: MarshaItemExporter
+    <h4 id="存储storages">存储storages</h4>
+    <p>使用feed存储时通过使用URI(通过FEED_URI设置)来定义存储端。feed支持URI支持方式支持的多种存储后端类型。</p>
+  </li>
+  <li>本地文件系统
+将feed存储在本地系统，URI scheme: file，URI样例: file:///tmp/export.csv；注意: (只有)存储在本地文件系统时，您可以指定一个绝对路径 /tmp/export.csv 并忽略协议(scheme)。不过这仅仅只能在Unix系统中工作。</li>
+  <li>FTP
+将feed存储在FTP服务器。URI scheme: ftp
+URI样例: ftp://user:pass@ftp.example.com/path/to/export.csv</li>
+  <li>S3(需要boto)
+URI scheme: s3
+URI样例:
+s3://mybucket/path/to/export.csv
+s3://aws_key:aws_secret@mybucket/path/to/export.csv
+需要的外部依赖库: boto
+将feed存储在 Amazon S3 。</li>
+  <li>标准输出
+eed输出到Scrapy进程的标准输出。
+URI scheme: stdout;
+URI样例: stdout:</li>
+</ul>
+
+<h4 id="设定settings">设定settings</h4>
+<p>这些是配置feed输出的设定</p>
+<ul>
+  <li>FEED_URI (必须)</li>
+  <li>FEED_FORMAT:输出feed的序列化格式</li>
+  <li>FEED_STORAGES</li>
+  <li>FEED_EXPORTERS</li>
+  <li>FEED_STORE_EMPTY</li>
+</ul>
+
+<h3 id="link-extractors">Link Extractors</h3>
+<p>Link Extractors 是那些目的仅仅是从网页(scrapy.http.Response 对象)中抽取最终将会被follow链接的对象｡</p>
+
+<p>Scrapy默认提供2种可用的 Link Extractor, 但你通过实现一个简单的接口创建自己定制的Link Extractor来满足需求｡</p>
+
+<p>每个LinkExtractor有唯一的公共方法是 extract_links ,它接收一个 Response 对象,并返回一个 scrapy.link.Link 对象｡Link Extractors,要实例化一次并且 extract_links 方法会根据不同的response调用多次提取链接｡</p>
+
+<p>Link Extractors在 CrawlSpider 类(在Scrapy可用)中使用, 通过一套规则,但你也可以用它在你的Spider中,即使你不是从 CrawlSpider 继承的子类, 因为它的目的很简单: 提取链接｡</p>
+
+<h3 id="logging">logging</h3>
+<p>Scrapy提供了log功能。您可以通过 scrapy.log 模块使用。当前底层实现使用了 Twisted logging ，不过可能在之后会有所变化。</p>
+
+<p>log服务必须通过显示调用 scrapy.log.start() 来开启。</p>
+
+<ul>
+  <li>CRITICAL - 严重错误(critical)</li>
+  <li>ERROR - 一般错误(regular errors)</li>
+  <li>WARNING - 警告信息(warning messages)</li>
+  <li>INFO - 一般信息(informational messages)</li>
+  <li>DEBUG - 调试信息(debugging messages)</li>
+</ul>
+
+<p>您可以通过终端选项(command line option) –loglevel/-L 或 LOG_LEVEL 来设置log级别。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from scrapy import log
+log.msg("This is a warning", level=log.WARNING)
+</code></pre></div></div>
+
+<h4 id="scrapylog模块">scrapy.log模块</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scrapy</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">logfile</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">loglevel</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">logstdout</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span> <span class="c"># 启动log功能。该方法必须在记录(log)任何信息前被调用。否则调用前的信息将会丢失</span>
+
+<span class="n">scrapy</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">INFO</span><span class="p">,</span> <span class="n">spider</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span> <span class="c"># 记录信息(Log a message)</span>
+<span class="n">scrapy</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">CRITICAL</span>
+</code></pre></div></div>
+
+<h3 id="数据收集stats-collection">数据收集(Stats Collection)</h3>
+<h3 id="发送email">发送email</h3>
+<p>虽然Python通过 smtplib 库使得发送email变得很简单，Scrapy仍然提供了自己的实现。 该功能十分易用，同时由于采用了 Twisted非阻塞式(non-blocking)IO ，其避免了对爬虫的非阻塞式IO的影响。 另外，其也提供了简单的API来发送附件。 通过一些 settings 设置，您可以很简单的进行配置。有两种方法可以创建邮件发送器(mail sender)</p>
+<ul>
+  <li>通过标准构造器(constructor)创建:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">scrapy.mail</span> <span class="kn">import</span> <span class="n">MailSender</span>
+<span class="n">mailer</span> <span class="o">=</span> <span class="n">MailSender</span><span class="p">()</span>
+</code></pre></div>    </div>
+  </li>
+  <li>您可以传递一个Scrapy设置对象，其会参考 settings:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mailer</span> <span class="o">=</span> <span class="n">MailSender</span><span class="o">.</span><span class="n">from_settings</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>这是如何来发送邮件了(不包括附件):</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mailer</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">to</span><span class="o">=</span><span class="p">[</span><span class="s">"someone@example.com"</span><span class="p">],</span> <span class="n">subject</span><span class="o">=</span><span class="s">"Some subject"</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="s">"Some body"</span><span class="p">,</span> <span class="n">cc</span><span class="o">=</span><span class="p">[</span><span class="s">"another@example.com"</span><span class="p">])</span>
+</code></pre></div></div>
+
+<h3 id="telnet终端telnet-console">Telnet终端(Telnet Console)</h3>
+<p>Scrapy提供了内置的telnet终端，以供检查，控制Scrapy运行的进程。 telnet仅仅是一个运行在Scrapy进程中的普通python终端。因此您可以在其中做任何事。</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>telnet localhost 6023
+</code></pre></div></div>
+
+<p>telnet为了方便提供了一些默认定义的变量:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>快捷名称	 描述
+crawler	Scrapy Crawler <span class="o">(</span>scrapy.crawler.Crawler 对象<span class="o">)</span>
+engine	Crawler.engine属性
+spider	当前激活的爬虫<span class="o">(</span>spider<span class="o">)</span>
+slot	the engine slot
+extensions	扩展管理器<span class="o">(</span>manager<span class="o">)</span> <span class="o">(</span>Crawler.extensions属性<span class="o">)</span>
+stats	状态收集器 <span class="o">(</span>Crawler.stats属性<span class="o">)</span>
+settings	Scrapy设置<span class="o">(</span>setting<span class="o">)</span>对象 <span class="o">(</span>Crawler.settings属性<span class="o">)</span>
+est	打印引擎状态的报告
+prefs	针对内存调试 <span class="o">(</span>参考 调试内存溢出<span class="o">)</span>
+p	pprint.pprint 函数的简写
+hpy	针对内存调试 <span class="o">(</span>参考 调试内存溢出<span class="o">)</span>
+</code></pre></div></div>
+
+<h3 id="web-service">Web Service</h3>
+<p>Scrapy提供用于监控及控制运行中的爬虫的web服务(service)。 服务通过 JSON-RPC 2.0 协议提供大部分的资源，不过也有些(只读)资源仅仅输出JSON数据。</p>
+
+<h3 id="常见问题faq">常见问题(FAQ)</h3>
+<ul>
+  <li>Q:Scrapy相BeautifulSoup或lxml比较,如何呢？</li>
+</ul>
+
+<p>BeautifulSoup 及 lxml 是HTML和XML的分析库。Scrapy则是 编写爬虫，爬取网页并获取数据的应用框架(application framework)。</p>
+
+<p>Scrapy提供了内置的机制来提取数据(叫做 选择器(selectors))。 但如果您觉得使用更为方便，也可以使用 BeautifulSoup (或 lxml)。 总之，它们仅仅是分析库，可以在任何Python代码中被导入及使用。</p>
+
+<p>拿Scrapy与 BeautifulSoup (或 lxml) 比较就好像是拿 jinja2 与 Django 相比。</p>
+
+<ul>
+  <li>Q: Scrapy支持那些Python版本？</li>
+</ul>
+
+<p>Scrapy仅仅支持Python 2.7。 Python2.6的支持从Scrapy 0.20开始被废弃了。Scrapy不支持Python 3但已经在计划中</p>
+
+<ul>
+  <li>Q: 我要如何在spider里模拟用户登录呢?</li>
+</ul>
+
+<p>参考 使用FormRequest.from_response()方法模拟用户登录.
+http://scrapy-chs.readthedocs.io/zh_CN/0.24/topics/request-response.html#topics-request-response-ref-request-userlogin</p>
+
+<ul>
+  <li>Q: Scrapy是以广度优先还是深度优先进行爬取的呢？</li>
+</ul>
+
+<p>默认情况下，Scrapy使用 LIFO 队列来存储等待的请求。简单的说，就是 深度优先顺序 。深度优先对大多数情况下是更方便的。如果您想以 广度优先顺序 进行爬取，你可以设置以下的设定:</p>
+
+<pre><code class="language-BASH">DEPTH_PRIORITY = 1
+SCHEDULER_DISK_QUEUE = 'scrapy.squeue.PickleFifoDiskQueue'
+SCHEDULER_MEMORY_QUEUE = 'scrapy.squeue.FifoMemoryQueue'
+</code></pre>
+
+<ul>
+  <li>Q: 为什么Scrapy下载了英文的页面，而不是我的本国语言？</li>
+</ul>
+
+<p>尝试通过覆盖 DEFAULT_REQUEST_HEADERS 设置来修改默认的 Accept-Language 请求头。</p>
+
+<ul>
+  <li>Q:将所有爬取到的item转存(dump)到JSON/CSV/XML文件的最简单的方法?</li>
+</ul>
+
+<pre><code class="language-BASH">scrapy crawl myspider -o items.json
+scrapy crawl myspider -o items.json
+scrapy crawl myspider -o items.xml
+
+</code></pre>
+
+<ul>
+  <li>Q:分析大XML/CSV数据源的最好方法是?</li>
+</ul>
+
+<p>使用XPath选择器来分析大数据源可能会有问题。选择器需要在内存中对数据建立完整的 DOM树，这过程速度很慢且消耗大量内存。</p>
+
+<p>为了避免一次性读取整个数据源，您可以使用 scrapy.utils.iterators 中的 xmliter 及 csviter 方法。 实际上，这也是feed spider(参考 Spiders)中的处理方法。</p>
+
+<ul>
+  <li>Scrapy自动管理cookies么？</li>
+</ul>
+
+<p>是的，Scrapy接收并保持服务器返回来的cookies，在之后的请求会发送回去，就像正常的网页浏览器做的那样。</p>
+
+<h3 id="避免被禁止ban">避免被禁止(ban)</h3>
+<p>下面是些处理这些站点的建议(tips):</p>
+<ul>
+  <li>使用user agent池，轮流选择之一来作为user agent。池中包含常见的浏览器的user agent(google一下一大堆)</li>
+  <li>禁止cookies(参考 COOKIES_ENABLED)，有些站点会使用cookies来发现爬虫的轨迹。</li>
+  <li>设置下载延迟(2或更高)。参考 DOWNLOAD_DELAY 设置。</li>
+  <li>如果可行，使用 Google cache 来爬取数据，而不是直接访问站点。</li>
+  <li>使用IP池。例如免费的 Tor项目 或付费服务(ProxyMesh)。</li>
+  <li>使用高度分布式的下载器(downloader)来绕过禁止(ban)，您就只需要专注分析处理页面。这样的例子有: Crawlera
+http://crawlera.com/</li>
+</ul>
+
+<h3 id="性能测试">性能测试</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scrapy bench
+</code></pre></div></div>
+
+            </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    <footer class="footer" role="contentinfo">
+	<div class="container">
+		<p class="copyright">Copyright &copy; 2014-2018 <a href=""><code>Kaiz</code></a>.</p>
+		<p>Powered by <a href="http://jekyllrb.com">Jekyll</a>, themed from <a href="http://lesscss.cn/">Less</a>, refactored by <a href="http://www.hifreud.com/">Freud Kang</a></p>
+	</div>
+</footer>
+
+<script src="/styles/js/jquery.min.js"></script>
+<script src="/styles/js/bootstrap.min.js"></script>
+<script src="/styles/js/holder.min.js"></script>
+<script src="/styles/js/lessismore.js"></script>
+<script src="/styles/js/application.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </body>
+</html>

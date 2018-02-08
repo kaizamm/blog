@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>numpy pandas科学计算 - Think Deep,Work Lean</title>
+
+	<link rel="shortcut icon" href="/styles/images/favicon.jpg">
+	<link rel="icon" href="/styles/images/favicon.jpg">
+
+	<link rel="stylesheet" href="/styles/css/index.css">
+	<link rel="stylesheet" href="/styles/css/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/styles/css/syntax.css">
+	<link rel="canonical" href="/2017/07/04/numpy&pandas/">
+	<link rel="alternate" type="application/rss+xml" title="Think Deep,Work Lean" href="/feed.xml">
+	
+	<meta name="keywords" content="numpy pandas科学计算, Think Deep,Work Lean, 张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+	<meta name="description" content="张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+
+	<script src="/styles/js/jquery.min.js"></script>
+	<!--[if lt IE 9]>
+    	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+  	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?a81273dded286ab83c533a4184e6ae8c";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+  	<style type="text/css">
+	  	.docs-content{
+	  		margin-bottom: 10px;
+	  	}
+  	</style>
+</head>
+
+  <body class="index">
+
+    <header class="navbar navbar-inverse navbar-fixed-top docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="/styles/images/logo.jpg">
+      </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">    
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/categories/">大类分解</a>
+        </li>
+        <li>
+          <a href="/tag">小类内聚</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></a>
+        </li>
+        <li>
+          <a href="/donate/"><strong>打赏</strong></a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a rel="nofollow" target="_blank" href="https://github.com/kaizamm">Github</a></li>
+            <li><a rel="nofollow" target="_blank" href="">关于作者</a></li>
+            <li><a rel="nofollow" href="/books">我的书单</a></li>
+            <li><a rel="nofollow" href="http://www.hifreud.com/domains/">域名管理</a></li>
+            <li><a rel="nofollow" href="/reference">推荐博客</a></li>
+            <li><a href="/feed.xml">RSS订阅</a></li>
+            <li class="divider"></li>
+            <li><a rel="nofollow" target="_blank" href="https://github.com/luoyan35714/LessOrMore.git">本项目</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    <div class="docs-header" id="content">
+  <div class="container">
+  	
+  		<!--
+		    <h1>numpy pandas科学计算</h1>
+		    <p>Post on Jul 04, 2017 by <a href="/about">Kaiz</a></p>
+		-->
+		    <h1>不向静中参妙理,纵然颖悟也虚浮 立乎其大 和而不同 古之成大事者，不惟有超世之才，亦必有坚韧不拔之志</h1>
+    
+  </div>
+</div>
+    
+      
+<div class="banner">
+  <div class="container">
+  	
+    	<a href="/categories/#document-ref">document</a>	/
+    	<a href="/tag/#python-ref">python</a>
+    
+  </div>
+</div>
+
+    
+
+    <div class="container docs-container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="sidebar hidden-print" role="complementary">
+        <div id="navigation">
+  <h1>目录</h1>
+  <ul class="nav sidenav">
+  </ul>
+  <div style="height: 200px;width: 200px;">
+    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=5ytn1ssq6za&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"> 
+    </script>
+  </div>
+</div>
+
+ 
+      </div>
+    </div>
+    <div class="col-md-9" role="main">
+      <div class="panel docs-content">
+        <div class="wrapper">
+            <header class="post-header">
+              <h1 class="post-title">numpy pandas科学计算</h1>
+              <!--
+                <p class="post-meta">Jul 4, 2017</p>
+              -->
+              <div class="meta">Posted on <span class="postdate">Jul 04, 2017</span> By <a target="_blank" href="https://kaizamm.github.com">Kaiz</a></div>
+              <br />
+            </header>
+            <article class="post-content">
+              <h3 id="numpy属性">numpy属性</h3>
+<ul>
+  <li>ndim：维度</li>
+  <li>shape: 行数和列数</li>
+  <li>元素个数</li>
+</ul>
+
+<p>使用numpy先要导入模块</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import numpy as np
+</code></pre></div></div>
+<p>列表转化为矩阵</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import numpy as np
+array = np.array([[1,2,3,4],[5,6,7,8]])
+print(type(array))
+print(array)
+</code></pre></div></div>
+<p>结果</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;class 'numpy.ndarray'&gt;
+[[1 2 3 4]
+ [5 6 7 8]]
+</code></pre></div></div>
+
+<h4 id="numpy的几种属性">numpy的几种属性</h4>
+<p>接下来我们看下几种属性的结果</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>print('num of dim:',array.ndim) # 维度
+print('shape:',array.shape) # 行数和列数
+print('size:',array.size) # 元素个数
+</code></pre></div></div>
+
+<h3 id="numpy的创建array">numpy的创建array’</h3>
+<p>创建array有很多种形式</p>
+<h4 id="关键字">关键字</h4>
+<ul>
+  <li>array:创建数据</li>
+  <li>dtype: 指定数据类型</li>
+  <li>zeros: 创建数据全为0</li>
+  <li>ones: 创建数据全为1</li>
+  <li>empty: 创建数据接近0</li>
+  <li>arrange: 按指定范围创建数据</li>
+  <li>linspace: 创建线段</li>
+</ul>
+
+<h4 id="创建数组">创建数组</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a = np.array([1,2,3,4]) #list 1d
+print(a)
+#[1,2,3,4]
+</code></pre></div></div>
+<h4 id="指定数据dtype">指定数据dtype</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a = np.array([2,23,4],dtype=np.int)
+print(a.dtype)
+#int64
+a = np.array([2,23,4],dtype=np.int32)
+print(a.dtype)
+#int32
+a = np.array([2,23,4],dtype=np.float)
+print(a.dtype)
+# float64
+a = np.array([2,23,4],dtype=np.float32)
+print(a.dtype)
+# float32
+</code></pre></div></div>
+<h4 id="创建特定数据">创建特定数据</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a = np.array([[2,23,4],[2,32,4]])  # 2d 矩阵 2行3列
+print(a)
+"""
+[[ 2 23  4]
+ [ 2 32  4]]
+"""
+</code></pre></div></div>
+<p>创建全零数组</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a = np.zeros((3,4)) # 数据全为0，3行4列
+"""
+array([[ 0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.]])
+"""
+</code></pre></div></div>
+<p>创建全一数组, 同时也能指定这些特定数据的 dtype:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a = np.ones((3,4),dtype = np.int)   # 数据为1，3行4列
+"""
+array([[1, 1, 1, 1],
+       [1, 1, 1, 1],
+       [1, 1, 1, 1]])
+"""
+</code></pre></div></div>
+<p>创建全空数组, 其实每个值都是接近于零的数:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a = np.empty((3,4)) # 数据为empty，3行4列
+"""
+array([[  0.00000000e+000,   4.94065646e-324,   9.88131292e-324,
+          1.48219694e-323],
+       [  1.97626258e-323,   2.47032823e-323,   2.96439388e-323,
+          3.45845952e-323],
+       [  3.95252517e-323,   4.44659081e-323,   4.94065646e-323,
+          5.43472210e-323]])
+"""
+</code></pre></div></div>
+<p>用 arange 创建连续数组:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a = np.arange(10,20,2) # 10-19 的数据，2步长
+"""
+array([10, 12, 14, 16, 18])
+"""
+</code></pre></div></div>
+<p>使用 reshape 改变数据的形状</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a = np.arange(12).reshape((3,4))    # 3行4列，0到11
+"""
+array([[ 0,  1,  2,  3],
+       [ 4,  5,  6,  7],
+       [ 8,  9, 10, 11]])
+"""
+</code></pre></div></div>
+<p>用 linspace 创建线段型数据:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a = np.linspace(1,10,20)    # 开始端1，结束端10，且分割成20个数据，生成线段
+"""
+array([  1.        ,   1.47368421,   1.94736842,   2.42105263,
+         2.89473684,   3.36842105,   3.84210526,   4.31578947,
+         4.78947368,   5.26315789,   5.73684211,   6.21052632,
+         6.68421053,   7.15789474,   7.63157895,   8.10526316,
+         8.57894737,   9.05263158,   9.52631579,  10.        ])
+"""
+</code></pre></div></div>
+<p>同样也能进行 reshape 工作:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a = np.linspace(1,10,20).reshape((5,4)) # 更改shape
+"""
+array([[  1.        ,   1.47368421,   1.94736842,   2.42105263],
+       [  2.89473684,   3.36842105,   3.84210526,   4.31578947],
+       [  4.78947368,   5.26315789,   5.73684211,   6.21052632],
+       [  6.68421053,   7.15789474,   7.63157895,   8.10526316],
+       [  8.57894737,   9.05263158,   9.52631579,  10.        ]])
+"""
+</code></pre></div></div>
+
+<h3 id="pandas">pandas</h3>
+<p>最重要的两个模块Series、 DataFrame；可以很方便的将csv文件相互转化，以后再补充。</p>
+
+            </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    <footer class="footer" role="contentinfo">
+	<div class="container">
+		<p class="copyright">Copyright &copy; 2014-2018 <a href=""><code>Kaiz</code></a>.</p>
+		<p>Powered by <a href="http://jekyllrb.com">Jekyll</a>, themed from <a href="http://lesscss.cn/">Less</a>, refactored by <a href="http://www.hifreud.com/">Freud Kang</a></p>
+	</div>
+</footer>
+
+<script src="/styles/js/jquery.min.js"></script>
+<script src="/styles/js/bootstrap.min.js"></script>
+<script src="/styles/js/holder.min.js"></script>
+<script src="/styles/js/lessismore.js"></script>
+<script src="/styles/js/application.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </body>
+</html>

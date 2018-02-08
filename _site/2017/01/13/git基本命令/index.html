@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>git知识 - Think Deep,Work Lean</title>
+
+	<link rel="shortcut icon" href="/styles/images/favicon.jpg">
+	<link rel="icon" href="/styles/images/favicon.jpg">
+
+	<link rel="stylesheet" href="/styles/css/index.css">
+	<link rel="stylesheet" href="/styles/css/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/styles/css/syntax.css">
+	<link rel="canonical" href="/2017/01/13/git%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/">
+	<link rel="alternate" type="application/rss+xml" title="Think Deep,Work Lean" href="/feed.xml">
+	
+	<meta name="keywords" content="git知识, Think Deep,Work Lean, 张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+	<meta name="description" content="张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+
+	<script src="/styles/js/jquery.min.js"></script>
+	<!--[if lt IE 9]>
+    	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+  	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?a81273dded286ab83c533a4184e6ae8c";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+  	<style type="text/css">
+	  	.docs-content{
+	  		margin-bottom: 10px;
+	  	}
+  	</style>
+</head>
+
+  <body class="index">
+
+    <header class="navbar navbar-inverse navbar-fixed-top docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="/styles/images/logo.jpg">
+      </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">    
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/categories/">大类分解</a>
+        </li>
+        <li>
+          <a href="/tag">小类内聚</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></a>
+        </li>
+        <li>
+          <a href="/donate/"><strong>打赏</strong></a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a rel="nofollow" target="_blank" href="https://github.com/kaizamm">Github</a></li>
+            <li><a rel="nofollow" target="_blank" href="">关于作者</a></li>
+            <li><a rel="nofollow" href="/books">我的书单</a></li>
+            <li><a rel="nofollow" href="http://www.hifreud.com/domains/">域名管理</a></li>
+            <li><a rel="nofollow" href="/reference">推荐博客</a></li>
+            <li><a href="/feed.xml">RSS订阅</a></li>
+            <li class="divider"></li>
+            <li><a rel="nofollow" target="_blank" href="https://github.com/luoyan35714/LessOrMore.git">本项目</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    <div class="docs-header" id="content">
+  <div class="container">
+  	
+  		<!--
+		    <h1>git知识</h1>
+		    <p>Post on Jan 13, 2017 by <a href="/about">Kaiz</a></p>
+		-->
+		    <h1>不向静中参妙理,纵然颖悟也虚浮 立乎其大 和而不同 古之成大事者，不惟有超世之才，亦必有坚韧不拔之志</h1>
+    
+  </div>
+</div>
+    
+      
+<div class="banner">
+  <div class="container">
+  	
+    	<a href="/categories/#git-ref">git</a>	/
+    	<a href="/tag/#document-ref">document</a>
+    
+  </div>
+</div>
+
+    
+
+    <div class="container docs-container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="sidebar hidden-print" role="complementary">
+        <div id="navigation">
+  <h1>目录</h1>
+  <ul class="nav sidenav">
+  </ul>
+  <div style="height: 200px;width: 200px;">
+    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=5ytn1ssq6za&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"> 
+    </script>
+  </div>
+</div>
+
+ 
+      </div>
+    </div>
+    <div class="col-md-9" role="main">
+      <div class="panel docs-content">
+        <div class="wrapper">
+            <header class="post-header">
+              <h1 class="post-title">git知识</h1>
+              <!--
+                <p class="post-meta">Jan 13, 2017</p>
+              -->
+              <div class="meta">Posted on <span class="postdate">Jan 13, 2017</span> By <a target="_blank" href="https://kaizamm.github.com">Kaiz</a></div>
+              <br />
+            </header>
+            <article class="post-content">
+              <h3 id="概述">概述</h3>
+<h4 id="git三大区">git三大区</h4>
+<ul>
+  <li>工作区、暂存区(stage)、版本库；</li>
+</ul>
+
+<h4 id="文件状态">文件状态</h4>
+<ul>
+  <li>untracked:未加入版本控制的文件</li>
+  <li>tracker:已纳入版本控制管理的文件</li>
+  <li>unmodified:未做过修改，并且已经在版本控制管理中的文件</li>
+  <li>modified：做过修改的受版本控制管理的文件</li>
+  <li>staged:已放入暂存区的文件。untracked或者modified的文件，执行过git add后，就进入了暂存区。</li>
+</ul>
+
+<blockquote>
+  <p>输入gitk 打开图形化工具</p>
+</blockquote>
+
+<h3 id="提交至本地版本库">提交至本地版本库</h3>
+<ul>
+  <li>makdir project &amp;&amp; cd project &amp;&amp; git init project为工作区，.git为版本库</li>
+  <li>git add file.txt 把文件添加到暂存区；.gitignore文件里可用正则写被git忽略的文件</li>
+  <li>git rm –cached file.txt 删除已经git add 到暂存区的文件；git rm -f file.txt 删除暂存区及工作区文件</li>
+  <li>git commit -m “first commit” 提交更改到版本库，可多次git add file后，再git commit;git commit -a Git会自动把所有已经跟踪过的文件暂存起来一并提交，从而跳过git add步骤。<a href="http://askcuix.github.io/blog/2013/05/27/the-git-command/">更多</a></li>
+  <li>git checkout – file.txt 可从版本库里把文件checkout出来</li>
+  <li>git status 查看工作区状态，可看到暂存区中是否有git add后未commit的文件</li>
+</ul>
+
+<h3 id="版本回退">版本回退</h3>
+<ul>
+  <li>git log 可查看3次历史提交日志，此时能看到版本库ID
+    <h4 id="删除错误提交的commit">删除错误提交的commit</h4>
+    <p>git rm 删除暂存区的文件，而错误提交到了版本库则需用git reset; 错误提交到版本库，此时工作区、暂存区、版本库都是一样的。git reset有三个选项， –hard 、 –mixed、 –soft。</p>
+    <h5 id="git-reset">git reset</h5>
+  </li>
+  <li>git reset –soft 版本库ID: 只将版本库里的内容回滚至上个版本，即撤消已提交的版本库，不影响工作区及暂存区。</li>
+  <li>git reset –mixed 版本库ID： 撤消已提交的版本库和暂存区，不影响工作区</li>
+  <li>git reset –hard HEAD^  git中HEAD表示当版本，上一个版本是HEAD^，上上个版本是HEAD^^，也可写成HEAD~100，这个表示向上100个版本。该命令将版本库、暂存区、工作区全部恢复至指定版本。</li>
+  <li>git reset 仅仅从暂存区移除所有的没有提交的修改。
+    <h5 id="git-revert">git revert</h5>
+  </li>
+  <li>
+    <p>git revert 可以撤销某个之前的提交，但非删除那个提交，只是恢复那次提交的改动。改命令其实是产生一个新的提交。不会像git reset后，会提示版本落后的情况。</p>
+  </li>
+  <li>git reflog 可以用来记录你操作的每次命令，如当你回退到上上个版本后，又不知道最开始那个commit id，则可通过这个命令查看。</li>
+</ul>
+
+<h4 id="修改最后一次提交">修改最后一次提交</h4>
+<p>git commit –amend ,该参数可以直接修改最后的一次提交，若仅是修改注释，则无需修改暂存区。</p>
+<blockquote>
+  <p>注意，请不要修改已经发布的提交。</p>
+</blockquote>
+
+<h4 id="撤消本地改动">撤消本地改动</h4>
+<ul>
+  <li>未被提交的文件，如工作区的文件有修改，发现修改有错误，想恢复到以前，则直接用git checkout -- file</li>
+  <li>放弃工作区所有本地改动，让你的本地恢复到上次提交之后的版本，可以用git reset –hard HEAD ，或者用git checkout <SHA>
+</SHA>    <blockquote>
+      <p>指针脱离(detached），如果想在在这种情况下提交，可通过创建新的分支来实现，即 git checkout -b <SHA></SHA></p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="远程仓库">远程仓库</h3>
+<p>在<a href="https://github.com/">github</a>注册并创建一个private reposity</p>
+
+<h4 id="提交至远程仓库">提交至远程仓库</h4>
+<ul>
+  <li>HTTPS
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/kaizamm/git.git #将远程主机命名为origin
+git push -u origin master
+</code></pre></div>    </div>
+  </li>
+  <li>SSH
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:kaizamm/git.git
+git push -u origin master
+</code></pre></div>    </div>
+    <h4 id="git-remote">git remote</h4>
+  </li>
+  <li>git remote 列出远程主机；git remote -v 列出远程主机时带上网址</li>
+  <li>git remote show origin #查看远程主机的详细信息</li>
+  <li>git remote add：主机名 添加远程主机，删除:git remote rm，重命名:git remote rename</li>
+</ul>
+
+<h4 id="git-fetch">git Fetch</h4>
+<p>一旦远程主机版本库有了更新，需要将这些更新取回本地，则需要用到git fetch; git fetch命令通常用来查看其他人的进程，因为它取回的代码对你的本地开发代码没有影响。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git fetch origin master
+git branch -a #查看所有分支，git brach -r 查看远程分支
+git checkout -b newbranch origin/master #表示在origin/master的基础上，创建一个新的分支；或者用git merge命令或git rebase命令，在本地分支上合并远程分支。
+</code></pre></div></div>
+<h4 id="git-pull">git Pull</h4>
+<p>该命令是取回远程主机的某个分支的更新，再与本地指定分支合并</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;
+git pull origin next:master #若远程分支是与当前分支合并，则冒号后的部分可以省略 git pull origin next #取回origin/next分支后，再与当前分支合并，等同于先做git fetch,再做git merge
+git fetch origin
+git merge/rebase origin/next
+
+git merge --allow-unrelated-histories a b (http://stackoverflow.com/questions/27641380/git-merge-commits-into-an-orphan-branch/36528527#36528527)
+</code></pre></div></div>
+
+<h4 id="git-checkout">git checkout</h4>
+<h5 id="git-checkout-常用来创建分支和切换分支">git checkout 常用来创建分支和切换分支</h5>
+<ul>
+  <li>创建一个新分支，git branch newbranch;</li>
+  <li>切换到新的分支，git checkout newbranch;
+这两个命令可以合并成一个命令，git checkout -b newbranch;</li>
+</ul>
+
+<h5 id="从本地版本库检出文件">从本地版本库检出文件</h5>
+<ul>
+  <li>git checkout -- file</li>
+</ul>
+
+<h4 id="指针-head">指针 HEAD</h4>
+<h4 id="git-branch">git branch</h4>
+<ul>
+  <li>git branch -d <branchname> 删了一个分支</branchname></li>
+  <li>git merge/rebase <branchname>把该分支合并到当前分支，只能合并新增的文件，当该分支中有与主分支中有文件同名时会有冲突，若有冲突需要手动处理完该冲突后，才能继续合并
+[更多](https://git-scm.com/book/zh/v1/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6)</branchname></li>
+</ul>
+
+<h4 id="git-pull-1">git pull</h4>
+<p>如果当前分支与远程分支存在追踪关系，git pull 就可以省略远程分支名，即可以直接git pull origin，同理git push，<a href="http://www.ruanyifeng.com/blog/2014/06/git_remote.html">更多详见</a></p>
+<h4 id="从远程仓克隆">从远程仓克隆</h4>
+
+<p>git clone git@github.com:kaizamm/git.git</p>
+
+<h3 id="git-config">git config</h3>
+<ul>
+  <li>git config –global –list 列出当前的全局环境变量</li>
+  <li>git config –config user.name “kaiz” 设置git用户名</li>
+  <li>git config –config user.email “xxx@email.com” 设置邮箱</li>
+</ul>
+
+<h3 id="配置github-ssh-keys">配置github ssh keys</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ssh-keygen -t rsa #三个回车
+拷备id_rsa.pub内容，粘贴至github/setting/SSH and GPG keys
+$ssh -T git@github.com
+提示 Hi kaizamm! You've successfully authenticated, but GitHub does not provide shell access.则成功
+</code></pre></div></div>
+<h3 id="git-工作流程">git 工作流程</h3>
+<p>git支持很多种工作流程，我们采用的一般是这样，远程创建一个主分支，本地每人创建功能分支，日常工作流程如下：</p>
+
+<p>去自己的工作分支</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout work
+
+工作
+....
+
+提交工作分支的修改
+$ git commit -a
+
+回到主分支
+$ git checkout master
+
+获取远程最新的修改，此时不会产生冲突
+$ git pull
+
+回到工作分支
+$ git checkout work
+
+用rebase合并主干的修改，如果有冲突在此时解决
+$ git rebase master
+
+回到主分支
+$ git checkout master
+
+合并工作分支的修改，此时不会产生冲突。
+$ git merge work
+
+提交到远程主干
+$ git push
+</code></pre></div></div>
+<p>这样做的好处是，远程主干上的历史永远是线性的。每个人在本地分支解决冲突，不会在主干上产生冲突。</p>
+
+<blockquote>
+  <p>当出现history-not-related时，git merge –allow-unrelated-histories a b</p>
+</blockquote>
+
+            </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    <footer class="footer" role="contentinfo">
+	<div class="container">
+		<p class="copyright">Copyright &copy; 2014-2018 <a href=""><code>Kaiz</code></a>.</p>
+		<p>Powered by <a href="http://jekyllrb.com">Jekyll</a>, themed from <a href="http://lesscss.cn/">Less</a>, refactored by <a href="http://www.hifreud.com/">Freud Kang</a></p>
+	</div>
+</footer>
+
+<script src="/styles/js/jquery.min.js"></script>
+<script src="/styles/js/bootstrap.min.js"></script>
+<script src="/styles/js/holder.min.js"></script>
+<script src="/styles/js/lessismore.js"></script>
+<script src="/styles/js/application.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </body>
+</html>

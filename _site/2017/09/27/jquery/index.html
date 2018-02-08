@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>jquery - Think Deep,Work Lean</title>
+
+	<link rel="shortcut icon" href="/styles/images/favicon.jpg">
+	<link rel="icon" href="/styles/images/favicon.jpg">
+
+	<link rel="stylesheet" href="/styles/css/index.css">
+	<link rel="stylesheet" href="/styles/css/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/styles/css/syntax.css">
+	<link rel="canonical" href="/2017/09/27/jquery/">
+	<link rel="alternate" type="application/rss+xml" title="Think Deep,Work Lean" href="/feed.xml">
+	
+	<meta name="keywords" content="jquery, Think Deep,Work Lean, 张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+	<meta name="description" content="张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+
+	<script src="/styles/js/jquery.min.js"></script>
+	<!--[if lt IE 9]>
+    	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+  	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?a81273dded286ab83c533a4184e6ae8c";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+  	<style type="text/css">
+	  	.docs-content{
+	  		margin-bottom: 10px;
+	  	}
+  	</style>
+</head>
+
+  <body class="index">
+
+    <header class="navbar navbar-inverse navbar-fixed-top docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="/styles/images/logo.jpg">
+      </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">    
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/categories/">大类分解</a>
+        </li>
+        <li>
+          <a href="/tag">小类内聚</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></a>
+        </li>
+        <li>
+          <a href="/donate/"><strong>打赏</strong></a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a rel="nofollow" target="_blank" href="https://github.com/kaizamm">Github</a></li>
+            <li><a rel="nofollow" target="_blank" href="">关于作者</a></li>
+            <li><a rel="nofollow" href="/books">我的书单</a></li>
+            <li><a rel="nofollow" href="http://www.hifreud.com/domains/">域名管理</a></li>
+            <li><a rel="nofollow" href="/reference">推荐博客</a></li>
+            <li><a href="/feed.xml">RSS订阅</a></li>
+            <li class="divider"></li>
+            <li><a rel="nofollow" target="_blank" href="https://github.com/luoyan35714/LessOrMore.git">本项目</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    <div class="docs-header" id="content">
+  <div class="container">
+  	
+  		<!--
+		    <h1>jquery</h1>
+		    <p>Post on Sep 27, 2017 by <a href="/about">Kaiz</a></p>
+		-->
+		    <h1>不向静中参妙理,纵然颖悟也虚浮 立乎其大 和而不同 古之成大事者，不惟有超世之才，亦必有坚韧不拔之志</h1>
+    
+  </div>
+</div>
+    
+      
+<div class="banner">
+  <div class="container">
+  	
+    	<a href="/categories/#python-ref">python</a>	/
+    	<a href="/tag/#document-ref">document</a>
+    
+  </div>
+</div>
+
+    
+
+    <div class="container docs-container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="sidebar hidden-print" role="complementary">
+        <div id="navigation">
+  <h1>目录</h1>
+  <ul class="nav sidenav">
+  </ul>
+  <div style="height: 200px;width: 200px;">
+    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=5ytn1ssq6za&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"> 
+    </script>
+  </div>
+</div>
+
+ 
+      </div>
+    </div>
+    <div class="col-md-9" role="main">
+      <div class="panel docs-content">
+        <div class="wrapper">
+            <header class="post-header">
+              <h1 class="post-title">jquery</h1>
+              <!--
+                <p class="post-meta">Sep 27, 2017</p>
+              -->
+              <div class="meta">Posted on <span class="postdate">Sep 27, 2017</span> By <a target="_blank" href="https://kaizamm.github.com">Kaiz</a></div>
+              <br />
+            </header>
+            <article class="post-content">
+              <h3 id="jquery语法">jquery语法</h3>
+<p>通过jquery，可以选取（查询，query）HTML元素，并对它们执行“操作”actions；
+$(selector).action():美元符号定义jquery,选择符selector查询和查找HTML元素；jquery的action()执行对元素的操作</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$(this).hide() 隐藏当前元素
+$("p").hide() 隐藏所有&lt;p&gt;元素
+$("p.test").hide()  隐藏所有 class="test"的&lt;p&gt;元素
+$("#test").hide() 隐藏所有id="test"的元素
+</code></pre></div></div>
+
+<h3 id="文档就绪事件">文档就绪事件</h3>
+<p>也许你会发现在很多实例中所有的jQuery函数位于一个document ready函数中</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$(document).ready(function(){
+  //开始写jQuery代码..  
+  })
+</code></pre></div></div>
+<p>这是为了防止在文档完全加载之前运行jQuery代码，即在DOM加载完成后才可以对DOM进行操作。因为如果在文档未加载完全之前运行有可能失败。简介写法，与上面完全等效：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$(function(){
+  //开始写jQuery代码
+  })
+</code></pre></div></div>
+<h3 id="jquery选择器">jQuery选择器</h3>
+<p>jQuery选择器允许你对HTML元素组或单个元素进行操作。选择器基于元素的id、类、类型、属性、属性值等查找选择HTML元素。jQuery中所有的选择器都以$()开头。</p>
+<ul>
+  <li>基于元素名选取元素
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># $("p")
+$(document).ready(function(){
+$("button").click(function(){
+  $("p").hide();
+  })
+})
+</code></pre></div>    </div>
+  </li>
+  <li>基于id
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># $("#test")
+$(document).ready(function(){
+$("button").click(function(){
+  $("#test").hide();
+  })
+})
+</code></pre></div>    </div>
+  </li>
+  <li>.class
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># $(".test")
+$(document).ready(function(){
+$("button").click(function(){
+  $(".test").hide();
+  })
+})
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="jquery事件">jQuery事件</h3>
+<p>页面对不同访问者的响应叫做事件。事件处理程序是当HTML中发生某些事件时所调用的方法。如实例“在元素上移动鼠标、选取单选按钮、点击元素”，在事件中经常用的术“触发、激发”，如“当您按键时触发keypress事件”
+常见的DOM事件：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>鼠标事件</th>
+      <th>键盘事件</th>
+      <th>表单事件</th>
+      <th>文档/窗口事件</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>click</td>
+      <td>keypress</td>
+      <td>submit</td>
+      <td>load</td>
+    </tr>
+    <tr>
+      <td>dblclick</td>
+      <td>keydown</td>
+      <td>change</td>
+      <td>resize</td>
+    </tr>
+    <tr>
+      <td>mouseenter</td>
+      <td>keyup</td>
+      <td>focus</td>
+      <td>scroll</td>
+    </tr>
+    <tr>
+      <td>mouseleave</td>
+      <td> </td>
+      <td>blur</td>
+      <td>upload</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="语法">语法</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#页面中指定一个点击事件
+$("p").click;
+#下一步定义什么时间触发事件，通过事件函数实现
+$("p").click(function(){
+  //动作触发后执行的代码
+  })
+</code></pre></div></div>
+<h3 id="jquery捕获">jQuery捕获</h3>
+<p>获取内容和属性。DOM操作（文档对象模型，定义访问HTML和XML文档的标准）</p>
+<h4 id="获取内容">获取内容</h4>
+<ul>
+  <li>text() : 设置或返回选取元素的文本内容</li>
+  <li>html() ： 元素内容，包括HTML标记</li>
+  <li>val() ： 表单字段的值
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$("#btn1").click(function(){
+alert("Text: " + $("#test").text());
+});
+$("#btn2").click(function(){
+alert("HTML: " + $("#test").html());
+});
+</code></pre></div>    </div>
+    <h4 id="获取元素">获取元素</h4>
+  </li>
+  <li>attr()</li>
+</ul>
+
+<h3 id="设置内容和属性">设置内容和属性</h3>
+<h4 id="设置内容">设置内容</h4>
+<ul>
+  <li>text() : 设置或返回选取元素的文本内容</li>
+  <li>html() ： 元素内容，包括HTML标记</li>
+  <li>val() ： 表单字段的值
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$("#btn1").click(function(){
+  $("#test1").text("Hello world!");
+});
+$("#btn2").click(function(){
+  $("#test2").html("&lt;b&gt;Hello world!&lt;/b&gt;");
+});
+$("#btn3").click(function(){
+  $("#test3").val("RUNOOB");
+});
+</code></pre></div>    </div>
+    <h4 id="设置属性">设置属性</h4>
+  </li>
+  <li>attr()
+    <h3 id="jquery--ajax">jQuery  Ajax</h3>
+    <p>ajax是与服务器交换数据的技术，它在不重载全部页面的情况下，实现了对部份网页的更新</p>
+    <h4 id="语法-1">语法</h4>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$.ajax({name:value, name:value, ... })
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th>值/描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>async</td>
+      <td>布尔值，表示请求是否异步处理。默认是 true。</td>
+    </tr>
+    <tr>
+      <td>beforeSend(xhr)</td>
+      <td>发送请求前运行的函数。</td>
+    </tr>
+    <tr>
+      <td>cache</td>
+      <td>布尔值，表示浏览器是否缓存被请求页面。默认是 true。</td>
+    </tr>
+    <tr>
+      <td>complete(xhr,status)</td>
+      <td>请求完成时运行的函数（在请求成功或失败之后均调用，即在 success 和 error 函数之后）。</td>
+    </tr>
+    <tr>
+      <td>contentType</td>
+      <td>发送数据到服务器时所使用的内容类型。默认是：”application/x-www-form-urlencoded”。</td>
+    </tr>
+    <tr>
+      <td>context</td>
+      <td>为所有 AJAX 相关的回调函数规定 “this” 值。</td>
+    </tr>
+    <tr>
+      <td>data</td>
+      <td>规定要发送到服务器的数据。</td>
+    </tr>
+    <tr>
+      <td>dataFilter(data,type)</td>
+      <td>用于处理 XMLHttpRequest 原始响应数据的函数。</td>
+    </tr>
+    <tr>
+      <td>dataType</td>
+      <td>预期的服务器响应的数据类型。</td>
+    </tr>
+    <tr>
+      <td>error(xhr,status,error)</td>
+      <td>如果请求失败要运行的函数。</td>
+    </tr>
+    <tr>
+      <td>global</td>
+      <td>布尔值，规定是否为请求触发全局 AJAX 事件处理程序。默认是 true。</td>
+    </tr>
+    <tr>
+      <td>ifModified</td>
+      <td>布尔值，规定是否仅在最后一次请求以来响应发生改变时才请求成功。默认是 false。</td>
+    </tr>
+    <tr>
+      <td>jsonp</td>
+      <td>在一个 jsonp 中重写回调函数的字符串。</td>
+    </tr>
+    <tr>
+      <td>jsonpCallback</td>
+      <td>在一个 jsonp 中规定回调函数的名称。</td>
+    </tr>
+    <tr>
+      <td>password</td>
+      <td>规定在 HTTP 访问认证请求中使用的密码。</td>
+    </tr>
+    <tr>
+      <td>processData</td>
+      <td>布尔值，规定通过请求发送的数据是否转换为查询字符串。默认是 true。</td>
+    </tr>
+    <tr>
+      <td>scriptCharset</td>
+      <td>规定请求的字符集。</td>
+    </tr>
+    <tr>
+      <td>success(result,status,xhr)</td>
+      <td>当请求成功时运行的函数。</td>
+    </tr>
+    <tr>
+      <td>timeout</td>
+      <td>设置本地的请求超时时间（以毫秒计）。</td>
+    </tr>
+    <tr>
+      <td>traditional</td>
+      <td>布尔值，规定是否使用参数序列化的传统样式。</td>
+    </tr>
+    <tr>
+      <td>type</td>
+      <td>规定请求的类型（GET 或 POST）。</td>
+    </tr>
+    <tr>
+      <td>url</td>
+      <td>规定发送请求的 URL。默认是当前页面。</td>
+    </tr>
+    <tr>
+      <td>username</td>
+      <td>规定在 HTTP 访问认证请求中使用的用户名。</td>
+    </tr>
+    <tr>
+      <td>xhr</td>
+      <td>用于创建 XMLHttpRequest 对象的函数。</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;title&gt;</span>菜鸟教程(runoob.com)<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+	<span class="nx">$</span><span class="p">(</span><span class="s2">"button"</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+		<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span><span class="na">url</span><span class="p">:</span><span class="s2">"demo_test.txt"</span><span class="p">,</span><span class="na">success</span><span class="p">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">){</span>
+			<span class="nx">$</span><span class="p">(</span><span class="s2">"#div1"</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+		<span class="p">}});</span>
+	<span class="p">});</span>
+<span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"div1"</span><span class="nt">&gt;&lt;h2&gt;</span>使用 jQuery AJAX 修改文本内容<span class="nt">&lt;/h2&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;button&gt;</span>获取其他内容<span class="nt">&lt;/button&gt;</span>
+
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<h4 id="load">load()</h4>
+<p>load()方法从服务器加载数据并把返回的数据放入被选的元素中。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#语法
+$(selector).load(URL,data,callback);
+#URL希望加载的URL;可选的data与请求一同发送的查询字符串键值对集合；可选的callback参数是load()完成后所执行的函数。
+#可选的 callback 参数规定当 load() 方法完成后所要允许的回调函数。回调函数可以设置不同的参数：
+#    responseTxt - 包含调用成功时的结果内容
+#    statusTXT - 包含调用的状态
+#    xhr - 包含 XMLHttpRequest 对象
+
+</code></pre></div></div>
+<p>如：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$("#div1").load("demo_test.txt");
+</code></pre></div></div>
+<p>如：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$("button").click(function(){
+  $("#div1").load("demo_test.txt",function(responseTxt,statusTxt,xhr){
+    if(statusTxt=="success")
+      alert("外部内容加载成功!");
+    if(statusTxt=="error")
+      alert("Error: "+xhr.status+": "+xhr.statusText);
+  });
+});
+</code></pre></div></div>
+<h4 id="get-post">GET POST</h4>
+<ul>
+  <li>$.get() 方法通过 HTTP GET 请求从服务器上请求数据。
+语法：
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$.get(URL,callback);
+</code></pre></div>    </div>
+    <p>如：
+```
+&lt;!DOCTYPE html&gt;</p>
+  </li>
+</ul>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>菜鸟教程(runoob.com)</title>
+<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+	$("button").click(function(){
+		$.get("/try/ajax/demo_test.php",function(data,status){
+			alert("数据: " + data + "\n状态: " + status);
+		});
+	});
+});
+</script>
+</head>
+<body>
+
+<button>发送一个 HTTP GET 请求并获取返回结果</button>
+
+</body>
+</html>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
++ $.post() 方法通过 HTTP POST 请求从服务器上请求数据。
+语法
+</code></pre></div></div>
+<p>$.post(URL,data,callback);
+#必需的 URL 参数规定您希望请求的 URL。
+#可选的 data 参数规定连同请求发送的数据。
+#可选的 callback 参数是请求成功后所执行的函数名</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>如：
+</code></pre></div></div>
+<p>&lt;!DOCTYPE html&gt;</p>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>菜鸟教程(runoob.com)</title>
+<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+	$("button").click(function(){
+		$.post("/try/ajax/demo_test_post.php",{
+			name:"菜鸟教程",
+			url:"http://www.runoob.com"
+		},
+		function(data,status){
+			alert("数据: \n" + data + "\n状态: " + status);
+		});
+	});
+});
+</script>
+</head>
+<body>
+
+<button>发送一个 HTTP POST 请求页面并获取返回内容</button>
+
+</body>
+</html>
+<p>```</p>
+
+            </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    <footer class="footer" role="contentinfo">
+	<div class="container">
+		<p class="copyright">Copyright &copy; 2014-2018 <a href=""><code>Kaiz</code></a>.</p>
+		<p>Powered by <a href="http://jekyllrb.com">Jekyll</a>, themed from <a href="http://lesscss.cn/">Less</a>, refactored by <a href="http://www.hifreud.com/">Freud Kang</a></p>
+	</div>
+</footer>
+
+<script src="/styles/js/jquery.min.js"></script>
+<script src="/styles/js/bootstrap.min.js"></script>
+<script src="/styles/js/holder.min.js"></script>
+<script src="/styles/js/lessismore.js"></script>
+<script src="/styles/js/application.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </body>
+</html>

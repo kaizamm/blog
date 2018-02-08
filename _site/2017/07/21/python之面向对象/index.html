@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>python之面向对象 - Think Deep,Work Lean</title>
+
+	<link rel="shortcut icon" href="/styles/images/favicon.jpg">
+	<link rel="icon" href="/styles/images/favicon.jpg">
+
+	<link rel="stylesheet" href="/styles/css/index.css">
+	<link rel="stylesheet" href="/styles/css/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/styles/css/syntax.css">
+	<link rel="canonical" href="/2017/07/21/python%E4%B9%8B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">
+	<link rel="alternate" type="application/rss+xml" title="Think Deep,Work Lean" href="/feed.xml">
+	
+	<meta name="keywords" content="python之面向对象, Think Deep,Work Lean, 张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+	<meta name="description" content="张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+
+	<script src="/styles/js/jquery.min.js"></script>
+	<!--[if lt IE 9]>
+    	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+  	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?a81273dded286ab83c533a4184e6ae8c";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+  	<style type="text/css">
+	  	.docs-content{
+	  		margin-bottom: 10px;
+	  	}
+  	</style>
+</head>
+
+  <body class="index">
+
+    <header class="navbar navbar-inverse navbar-fixed-top docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="/styles/images/logo.jpg">
+      </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">    
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/categories/">大类分解</a>
+        </li>
+        <li>
+          <a href="/tag">小类内聚</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></a>
+        </li>
+        <li>
+          <a href="/donate/"><strong>打赏</strong></a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a rel="nofollow" target="_blank" href="https://github.com/kaizamm">Github</a></li>
+            <li><a rel="nofollow" target="_blank" href="">关于作者</a></li>
+            <li><a rel="nofollow" href="/books">我的书单</a></li>
+            <li><a rel="nofollow" href="http://www.hifreud.com/domains/">域名管理</a></li>
+            <li><a rel="nofollow" href="/reference">推荐博客</a></li>
+            <li><a href="/feed.xml">RSS订阅</a></li>
+            <li class="divider"></li>
+            <li><a rel="nofollow" target="_blank" href="https://github.com/luoyan35714/LessOrMore.git">本项目</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    <div class="docs-header" id="content">
+  <div class="container">
+  	
+  		<!--
+		    <h1>python之面向对象</h1>
+		    <p>Post on Jul 21, 2017 by <a href="/about">Kaiz</a></p>
+		-->
+		    <h1>不向静中参妙理,纵然颖悟也虚浮 立乎其大 和而不同 古之成大事者，不惟有超世之才，亦必有坚韧不拔之志</h1>
+    
+  </div>
+</div>
+    
+      
+<div class="banner">
+  <div class="container">
+  	
+    	<a href="/categories/#python-ref">python</a>	/
+    	<a href="/tag/#project-ref">project</a>
+    
+  </div>
+</div>
+
+    
+
+    <div class="container docs-container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="sidebar hidden-print" role="complementary">
+        <div id="navigation">
+  <h1>目录</h1>
+  <ul class="nav sidenav">
+  </ul>
+  <div style="height: 200px;width: 200px;">
+    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=5ytn1ssq6za&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"> 
+    </script>
+  </div>
+</div>
+
+ 
+      </div>
+    </div>
+    <div class="col-md-9" role="main">
+      <div class="panel docs-content">
+        <div class="wrapper">
+            <header class="post-header">
+              <h1 class="post-title">python之面向对象</h1>
+              <!--
+                <p class="post-meta">Jul 21, 2017</p>
+              -->
+              <div class="meta">Posted on <span class="postdate">Jul 21, 2017</span> By <a target="_blank" href="https://kaizamm.github.com">Kaiz</a></div>
+              <br />
+            </header>
+            <article class="post-content">
+              <h3 id="概述">概述</h3>
+<ul>
+  <li>面向过程：根据业务逻辑从上到下写垒代码</li>
+  <li>函数式： 将某功能代码封装到函数中，日后便无需重复编写，仅调用函数即可</li>
+  <li>面向对象： 对函数进行分类和封装，让开发“更快更好更强”
+    <h3 id="创建类和对象">创建类和对象</h3>
+    <p>面向对象其实就是对类和对象的使用，类就是一个模版，模版里包含多个函数，函数里实现一些功能；对象则是根据模版创建实例，通过实例对象可以执行类中的函数。</p>
+  </li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Foo:  
+  #创建类中的函数
+  def Bar(self):
+    #do something
+
+#根据类Foo创建对象obj
+obj = Foo()
+</code></pre></div></div>
+
+<h3 id="面向对象的三大特性">面向对象的三大特性</h3>
+<h4 id="封装">封装</h4>
+<p>封装故名思义就是将内容封装到某个地方，以后再去调用被封装在某处的内容。所以在使用面向对象的封装特性时，需要：</p>
+<h5 id="将内容封装到某处">将内容封装到某处</h5>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Foo:
+  def __init__(self,name,age):
+    self.name = name
+    self.age = age
+
+#根据类Foo创建对象
+#创建对象时，会自动执行类的__init__方法
+obj1 = Foo('kaiz',18)
+obj2 = Foo('amm',28)
+#如上，即是将kaiz,18分别封装到obj1/self的name和age属性中
+#self是一个形式参数，当执行obj1 = Foo('kaiz',18)时，self等于obj1
+</code></pre></div></div>
+<h5 id="从某处调用被封装的内容">从某处调用被封装的内容</h5>
+<p>调用被封装的内容时，有两种情况：</p>
+<h6 id="通过对象直接调用">通过对象直接调用</h6>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Foo:
+  def __init__(slef,name,age):
+    self.name = name
+    self.age = age
+obj1 =Foo('kaiz',18)
+print obj1.name
+print obj1.age
+</code></pre></div></div>
+<h6 id="通过self间接调用">通过self间接调用</h6>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Foo:
+  def __init__(slef,name,age):
+    self.name = name
+    self.age = age
+
+  def detail(self):
+    print self.name
+    print self.age
+</code></pre></div></div>
+
+<h3 id="继承">继承</h3>
+<p>继承，子类继承父类（派生类继承基类）</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Father:
+  def __init__(self,name,age):
+    self.name = name
+    self.age = age
+
+  def bad_hobby:
+    print "smoke,drink"
+
+class Son(Father):
+  def __init__(self,name,age):
+    self.name = name
+    self.age = age
+#创建Son类的对象
+obj = Son('amm',18)
+#由于是继承，因此obj具由Father类的方法
+obj.bad_hobby
+&gt; smoke,drink
+</code></pre></div></div>
+
+<p>同时继承后，子类可以改良父类的方法。另：类分经典类和新式类，如果父类继承了object类，那么该类就是新式类，否则便是经典类。在多继承中，当类是经典类时，会按照深度优先方式查找；当类是新式类时，会按照广度优先试查找。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#多继承
+class A(B,C)
+</code></pre></div></div>
+
+<h3 id="多态">多态</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class F1:
+    pass
+
+
+class S1(F1):
+
+    def show(self):
+        print 'S1.show'
+
+
+class S2(F1):
+
+    def show(self):
+        print 'S2.show'
+
+def Func(obj):
+    print obj.show()
+
+s1_obj = S1()
+Func(s1_obj)
+
+s2_obj = S2()
+Func(s2_obj)
+</code></pre></div></div>
+
+<h3 id="类的成员">类的成员</h3>
+<p>类的成员可以分为三大类：</p>
+<ul>
+  <li>字段：普通字段、静态字段</li>
+  <li>方法：普通方法、类方法、静态方法</li>
+  <li>属性： 普通属性</li>
+</ul>
+
+<h4 id="字段">字段</h4>
+<p>普通字段和静态字段在定义和使用中有所区别，本质区别是内存中保存位置不同；普通字段属于类对象，静态字段属于类</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Province:
+  #静态字段
+  country = '中国'
+
+  def __ini__(self,name):
+    #普通字段
+    self.name = name
+
+ #直接访问普通字段
+obj = Province('河北省')
+print obj.name
+
+ #直接访问静态字段
+Provice.country
+</code></pre></div></div>
+<p>由上述代码可以看出普通字段需要创建对象来访问，静态字段通过类来访问。</p>
+
+<h4 id="方法">方法</h4>
+<ul>
+  <li>普通方法：由对象调用，至少一个self参数，执行普通方法时，自动将调用该方法的对象赋值给self</li>
+  <li>类方法：由类调用，至少一个cls参数，执行类方法时，自动将调用该方法的类复制给cls</li>
+  <li>静态方法：由类调用，无默认参数</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Foo:
+  def __init__(self,name):
+    self.name = name
+
+  def ord_func(self):
+    """定义普通方法，至少一个self参数"""
+    #print self.name
+    print 普通方法
+
+  @classmethod
+  def class_func(cls):
+    """定义类方法，至少有一个cls参数"""
+    print "类方法"
+
+  @staticmethod
+  def static_func():
+    """定义静态方法，无默认参数"""
+    print '静态方法'
+
+#调用普通方法
+f = Foo()
+f.ord_func()
+
+#调用类方法
+Foo.class_func()
+
+#调用静态方法
+Foo.static_func()
+
+</code></pre></div></div>
+
+<h4 id="属性">属性</h4>
+<p>属性就是普通方法的变种，在定义时，在普通方法的基础上添加@property装饰器，属性仅有一个self参数，调用时无需括号；方法： foo_obj.func()，属性： foo_obj.prop; 属性两种定义方式，一种是用装饰器的形式，一种是静态字段</p>
+<ul>
+  <li>属性的基本使用
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>###########定义#########
+class Foo:
+
+def Func(self):
+  pass
+
+#定义属性
+@property
+def prop(self):
+  return "kaiz"
+  pass
+###########调用##########
+foo_obj = Foo()
+foo_obj.func()
+foo_obj.prop      
+#调用属性
+result = foo_obj.prop
+</code></pre></div>    </div>
+    <h4 id="类成员的修饰符">类成员的修饰符</h4>
+    <p>类成员的修饰符</p>
+  </li>
+  <li>私有成员：私有成员在命名时，前两个字符是下划线，特殊成员除外如： _<em>init_</em>、_<em>call_</em>、__dict__等</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class C:
+  def __init__(self):
+    self.name = '公有字段'
+    self.__foo = '私有字段'
+</code></pre></div></div>
+
+<ul>
+  <li>公有成员：公有静态字段类可可以访问，类内部也可以访问，派生类中也可以访问；私有静态字段，仅类内部可以访问</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class C:
+  name = '公有静态字段'
+  def func(self):
+    print C.name
+
+class D(C):
+  def show(self):
+    print C.name
+
+C.name #类访问
+
+obj = C()
+obj.func() #类内部可以访问
+
+obj_son = D()
+obj_son.show() #派生类中可以访问
+
+</code></pre></div></div>
+<p>对照如下</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class C:
+  __name = "公有静态字段"
+  def func(self):
+    print C.__name
+
+class D:
+  def show(self):
+    print C.__name
+
+C.__name  #类访问  --&gt; 错误
+
+obj = C()
+obj.func()  #类内部可以访问  --&gt;正确
+
+obj_son = D()
+obj_son.show() #派生类中可以访问  --&gt;错误
+</code></pre></div></div>
+
+<h4 id="类的特殊成员">类的特殊成员</h4>
+<ul>
+  <li><strong>doc</strong>
+表示类的描述信息
+```
+class Foo:
+“"”描述类信息”””
+def func(self):
+  pass</li>
+</ul>
+
+<p>print Foo.__doc
+#输入类的描述信息
+```</p>
+<ul>
+  <li>_<em>module_</em>:表示当前操作的对象在哪个模块</li>
+  <li>__class__表示操作的对象的类是什么</li>
+  <li>_<em>init_</em></li>
+  <li>_<em>del_</em>:析构方法，对对象在内存在被释放时，自动触发执行，最后一次呐喊</li>
+  <li>_<em>call_</em>:对象后面加括号触发执行</li>
+  <li>_<em>dict_</em>:类或对象中的所有成员</li>
+  <li>_<em>str_</em>:如果一个类中定义了__str__方法，那就在打印对象时，默认输入该方法的返回值</li>
+  <li>_<em>getitem_</em>、_<em>setitem_</em>、_<em>delitem_</em>:用于索引操作，如字典。以上分别表示获取、设置、删除数据</li>
+  <li>_<em>getslice_</em>、_<em>setslice_</em>、_<em>delslice_</em>
+该三个方法用于分片操作</li>
+  <li>_<em>iter_</em>
+用于迭代器，之所以列表、字典、元组可以进行for循环，是因为类型内部定义了 _<em>iter_</em></li>
+</ul>
+
+<p>参考 http://www.cnblogs.com/wupeiqi/p/4766801.html</p>
+
+            </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    <footer class="footer" role="contentinfo">
+	<div class="container">
+		<p class="copyright">Copyright &copy; 2014-2018 <a href=""><code>Kaiz</code></a>.</p>
+		<p>Powered by <a href="http://jekyllrb.com">Jekyll</a>, themed from <a href="http://lesscss.cn/">Less</a>, refactored by <a href="http://www.hifreud.com/">Freud Kang</a></p>
+	</div>
+</footer>
+
+<script src="/styles/js/jquery.min.js"></script>
+<script src="/styles/js/bootstrap.min.js"></script>
+<script src="/styles/js/holder.min.js"></script>
+<script src="/styles/js/lessismore.js"></script>
+<script src="/styles/js/application.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </body>
+</html>

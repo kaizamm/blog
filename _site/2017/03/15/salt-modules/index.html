@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>salt-modules - Think Deep,Work Lean</title>
+
+	<link rel="shortcut icon" href="/styles/images/favicon.jpg">
+	<link rel="icon" href="/styles/images/favicon.jpg">
+
+	<link rel="stylesheet" href="/styles/css/index.css">
+	<link rel="stylesheet" href="/styles/css/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/styles/css/syntax.css">
+	<link rel="canonical" href="/2017/03/15/salt-modules/">
+	<link rel="alternate" type="application/rss+xml" title="Think Deep,Work Lean" href="/feed.xml">
+	
+	<meta name="keywords" content="salt-modules, Think Deep,Work Lean, 张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+	<meta name="description" content="张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+
+	<script src="/styles/js/jquery.min.js"></script>
+	<!--[if lt IE 9]>
+    	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+  	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?a81273dded286ab83c533a4184e6ae8c";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+  	<style type="text/css">
+	  	.docs-content{
+	  		margin-bottom: 10px;
+	  	}
+  	</style>
+</head>
+
+  <body class="index">
+
+    <header class="navbar navbar-inverse navbar-fixed-top docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="/styles/images/logo.jpg">
+      </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">    
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/categories/">大类分解</a>
+        </li>
+        <li>
+          <a href="/tag">小类内聚</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></a>
+        </li>
+        <li>
+          <a href="/donate/"><strong>打赏</strong></a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a rel="nofollow" target="_blank" href="https://github.com/kaizamm">Github</a></li>
+            <li><a rel="nofollow" target="_blank" href="">关于作者</a></li>
+            <li><a rel="nofollow" href="/books">我的书单</a></li>
+            <li><a rel="nofollow" href="http://www.hifreud.com/domains/">域名管理</a></li>
+            <li><a rel="nofollow" href="/reference">推荐博客</a></li>
+            <li><a href="/feed.xml">RSS订阅</a></li>
+            <li class="divider"></li>
+            <li><a rel="nofollow" target="_blank" href="https://github.com/luoyan35714/LessOrMore.git">本项目</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    <div class="docs-header" id="content">
+  <div class="container">
+  	
+  		<!--
+		    <h1>salt-modules</h1>
+		    <p>Post on Mar 15, 2017 by <a href="/about">Kaiz</a></p>
+		-->
+		    <h1>不向静中参妙理,纵然颖悟也虚浮 立乎其大 和而不同 古之成大事者，不惟有超世之才，亦必有坚韧不拔之志</h1>
+    
+  </div>
+</div>
+    
+      
+<div class="banner">
+  <div class="container">
+  	
+    	<a href="/categories/#document-ref">document</a>	/
+    	<a href="/tag/#salt-ref">salt</a>
+    
+  </div>
+</div>
+
+    
+
+    <div class="container docs-container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="sidebar hidden-print" role="complementary">
+        <div id="navigation">
+  <h1>目录</h1>
+  <ul class="nav sidenav">
+  </ul>
+  <div style="height: 200px;width: 200px;">
+    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=5ytn1ssq6za&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"> 
+    </script>
+  </div>
+</div>
+
+ 
+      </div>
+    </div>
+    <div class="col-md-9" role="main">
+      <div class="panel docs-content">
+        <div class="wrapper">
+            <header class="post-header">
+              <h1 class="post-title">salt-modules</h1>
+              <!--
+                <p class="post-meta">Mar 15, 2017</p>
+              -->
+              <div class="meta">Posted on <span class="postdate">Mar 15, 2017</span> By <a target="_blank" href="https://kaizamm.github.com">Kaiz</a></div>
+              <br />
+            </header>
+            <article class="post-content">
+              <p>更多参考 https://docs.saltstack.com/en/latest/ref/modules/all/salt.modules.status.html</p>
+<h3 id="cp模块">cp模块</h3>
+<p>cp模块实现远程文件、目录的复制，以及下载url文件等操作，参数：cache_local、get_file、get_dir、get_url</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 将主服务器file_roots指定位置下的目录复制到被控主机
+salt '*' cp.get_dir salt://files/ /data
+
+# 将主服务器file_roots指定位置下的文件复制到被控主机
+salt '*' cp.get_dir salt://files/test.txt /data
+
+# 下载指定url内容到主机指定位置
+salt '*' cp.get_url http://www.xyz.com/download /root/files.tgz
+
+API调用：client.cmd（'*'，'cp.get_dir'，['salt://path/to/dir'，'/minion/dest']）
+</code></pre></div></div>
+
+<h3 id="cmd模块">cmd模块</h3>
+<p>默认是root权限，实现远程命令调用执行</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>salt '*' cmd.run 'uname -a'
+
+API调用：client.cmd（'*'，'cmd.run'，['命令']）
+</code></pre></div></div>
+<h3 id="cron模块">cron模块</h3>
+<p>实现被控主机的crontab操作，增：cron.set_job；查：raw_cron; 删：rm_job</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#为指定的被控主机、root用户添加crontab信息
+salt '*' cron.set_job root '*/5' '*' '*' '*' '*' 'date &gt; /dev/null 2&gt;&amp;1'
+salt '*' cron.raw_cron root
+
+# 删除指定的被控主机，root用户crontab信息
+salt '*' cron.rm_job root 'date &gt;/dev/null 2&gt;&amp;1'
+
+API调用：client.cmd（'*'，'cron.rm_job'，['root'，'命令']
+</code></pre></div></div>
+
+<h3 id="dnsutil模块">dnsutil模块</h3>
+<p>实现被控主机的通用dns配置</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#为被控主机添加指定hosts主机配置项
+salt '*' dnsutil.hosts_append /etc/hosts 127.0.0.1 test.com
+API调用：client.cmd（'*'，'dnsutil.hosts_remove'，['/etc/hosts'，'域名']
+</code></pre></div></div>
+<h3 id="file模块">file模块</h3>
+<p>在系统层面实现压缩包的调用，gzip/gunzip/tar/unzip等</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>salt '*' archive.gzip /tmp/abc.txt
+API调用：client.cmd（'*'，'archive.gunzip '，['/tmp/qq.gz']）
+</code></pre></div></div>
+<h3 id="network模块">network模块</h3>
+<p>返回被控主机网络信息,参数有 dig/ping/traceroute 跟域名、hwaddr跟网卡、in_subnet 跟网段、interfaces、interfaces、ip_addrs、subnet无字段</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>salt '*' network.ip_addrs
+salt '*' network.interfaces
+API调用：client.cmd（'*'，'network.in_subnet'，'网段'）
+</code></pre></div></div>
+<h3 id="pkg包管理">pkg包管理</h3>
+<p>被控主机程序包管理，yum及apt-get等，参数有install、remove跟软件包，upgrade升级所有</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>salt '*' pkg.install httpd
+salt '*' pkg.file_list httpd
+</code></pre></div></div>
+<h3 id="service包管理模块">service包管理模块</h3>
+<p>被控主机程序包服务管理，参数有enable/disable/reload/restart/start/stop/status</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>salt '*' service.enable crond
+salt '*' service.reload crond
+API调用：client.cmd（'*'，'service.stop' 'httpd'）
+</code></pre></div></div>
+
+            </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    <footer class="footer" role="contentinfo">
+	<div class="container">
+		<p class="copyright">Copyright &copy; 2014-2018 <a href=""><code>Kaiz</code></a>.</p>
+		<p>Powered by <a href="http://jekyllrb.com">Jekyll</a>, themed from <a href="http://lesscss.cn/">Less</a>, refactored by <a href="http://www.hifreud.com/">Freud Kang</a></p>
+	</div>
+</footer>
+
+<script src="/styles/js/jquery.min.js"></script>
+<script src="/styles/js/bootstrap.min.js"></script>
+<script src="/styles/js/holder.min.js"></script>
+<script src="/styles/js/lessismore.js"></script>
+<script src="/styles/js/application.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </body>
+</html>

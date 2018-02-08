@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dockerfile reference - Think Deep,Work Lean</title>
+
+	<link rel="shortcut icon" href="/styles/images/favicon.jpg">
+	<link rel="icon" href="/styles/images/favicon.jpg">
+
+	<link rel="stylesheet" href="/styles/css/index.css">
+	<link rel="stylesheet" href="/styles/css/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/styles/css/syntax.css">
+	<link rel="canonical" href="/2016/12/20/Dockerfile_reference/">
+	<link rel="alternate" type="application/rss+xml" title="Think Deep,Work Lean" href="/feed.xml">
+	
+	<meta name="keywords" content="Dockerfile reference, Think Deep,Work Lean, 张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+	<meta name="description" content="张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+
+	<script src="/styles/js/jquery.min.js"></script>
+	<!--[if lt IE 9]>
+    	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+  	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?a81273dded286ab83c533a4184e6ae8c";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+  	<style type="text/css">
+	  	.docs-content{
+	  		margin-bottom: 10px;
+	  	}
+  	</style>
+</head>
+
+  <body class="index">
+
+    <header class="navbar navbar-inverse navbar-fixed-top docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="/styles/images/logo.jpg">
+      </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">    
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/categories/">大类分解</a>
+        </li>
+        <li>
+          <a href="/tag">小类内聚</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></a>
+        </li>
+        <li>
+          <a href="/donate/"><strong>打赏</strong></a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a rel="nofollow" target="_blank" href="https://github.com/kaizamm">Github</a></li>
+            <li><a rel="nofollow" target="_blank" href="">关于作者</a></li>
+            <li><a rel="nofollow" href="/books">我的书单</a></li>
+            <li><a rel="nofollow" href="http://www.hifreud.com/domains/">域名管理</a></li>
+            <li><a rel="nofollow" href="/reference">推荐博客</a></li>
+            <li><a href="/feed.xml">RSS订阅</a></li>
+            <li class="divider"></li>
+            <li><a rel="nofollow" target="_blank" href="https://github.com/luoyan35714/LessOrMore.git">本项目</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    <div class="docs-header" id="content">
+  <div class="container">
+  	
+  		<!--
+		    <h1>Dockerfile reference</h1>
+		    <p>Post on Dec 20, 2016 by <a href="/about">Kaiz</a></p>
+		-->
+		    <h1>不向静中参妙理,纵然颖悟也虚浮 立乎其大 和而不同 古之成大事者，不惟有超世之才，亦必有坚韧不拔之志</h1>
+    
+  </div>
+</div>
+    
+      
+<div class="banner">
+  <div class="container">
+  	
+    	<a href="/categories/#document-ref">document</a>	/
+    	<a href="/tag/#docker-ref">docker</a>
+    
+  </div>
+</div>
+
+    
+
+    <div class="container docs-container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="sidebar hidden-print" role="complementary">
+        <div id="navigation">
+  <h1>目录</h1>
+  <ul class="nav sidenav">
+  </ul>
+  <div style="height: 200px;width: 200px;">
+    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=5ytn1ssq6za&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"> 
+    </script>
+  </div>
+</div>
+
+ 
+      </div>
+    </div>
+    <div class="col-md-9" role="main">
+      <div class="panel docs-content">
+        <div class="wrapper">
+            <header class="post-header">
+              <h1 class="post-title">Dockerfile reference</h1>
+              <!--
+                <p class="post-meta">Dec 20, 2016</p>
+              -->
+              <div class="meta">Posted on <span class="postdate">Dec 20, 2016</span> By <a target="_blank" href="https://kaizamm.github.com">Kaiz</a></div>
+              <br />
+            </header>
+            <article class="post-content">
+              <h1 id="dockerfile-reference">Dockerfile reference</h1>
+<p>参考<a href="https://docs.docker.com/engine/reference/builder/">官方文档</a></p>
+
+<p>Docker 能通过Dockerfile文件自动创建镜像。一个dockerfile是由命令行执行创建镜像的所有命令的文本文档。用户可以通过docker build来在命令框执行命令来达到自动创建的目的。
+本页面列出了能在Dockerfile里使用的命令。</p>
+
+<h3 id="用法">用法</h3>
+<ul>
+  <li>
+    <p>一般Dockerfile位于context目录。你可以使用 -f 参数 配合docker build来指定Dockerfile的位置，指定dockerfile的路径，docker build PATH context，path为dockerfile的路径，context为工作目录，build时会把context里的内容加进来，若不想将有些文件或目录加进来，则需要写在.ignoredockerfile里 <code class="highlighter-rouge">docker build -f /dockerfile/path .</code></p>
+  </li>
+  <li>
+    <p>对build success的image做标签 <code class="highlighter-rouge">docker build -t kaiz/myapp .</code></p>
+    <h3 id="解析指令">解析指令</h3>
+  </li>
+</ul>
+
+<h3 id="escape">escape</h3>
+<p>转义字符，默认为\</p>
+<h3 id="environment-replacement">Environment replacement</h3>
+
+<p>${variable:-word} 当variable变量赋值后，该变量的值即为新赋的值；若未被赋值，则word为其初始值</p>
+
+<p>${variable:+word} 当variable变量赋值后，该变量的值即为新赋的值，若未被赋值，则为空字符串</p>
+
+<h3 id="from">FROM</h3>
+<p>FROM image
+或者</p>
+<ul>
+  <li>FROM image:tag</li>
+  <li>FROM image@digest</li>
+</ul>
+
+<p>若省掉tag或者digest，则认为latest
+Dockerfile的第一条指令必须是FROM ，以此来指定你将选择的基础镜像</p>
+<h3 id="run">RUN</h3>
+<p>两种格式：</p>
+<ul>
+  <li>RUN command</li>
+  <li>RUN [“executable”, “param1”, “param2”]</li>
+</ul>
+
+<p>RUN将会在当前image的最上面新建一个layer并提交，新提交的image将会被下一个step使用</p>
+<h3 id="cmd">CMD</h3>
+<p>三种格式：</p>
+<ul>
+  <li>CMD [“executable”,”param1”,”param2”]  首选，exec form</li>
+  <li>CMD [“param1”,”param2”]   ENTRYPOINT的默认参数</li>
+  <li>CMD command param1 param2   shell form</li>
+</ul>
+
+<p>一个dockerfile只能有一个CMD，若有多个CMD，则最后一个生效，<strong>CMD的主要作用是为容器提供一个默认项</strong>，这些默认项可以被执行，但在使用ENTRYPOINT时则也可以被忽略。</p>
+<blockquote>
+  <p>注意:若CMD用于为ENTRYPOINT提供默认参数，则CMD和ENTRYPOINT指令需要使用JSON格式，即 单词两边加双引号 “”  ;与shell form不同，exec form不会去调用 command shell，即
+CMD [ “echo”, “$HOME” ] 不会执行，需改成CMD[ “sh”, “-c”, “echo $HOME” ]</p>
+</blockquote>
+
+<p>在使用exec 和 shell form时，CMD的命令将在容器开始run时执行。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM centos
+CMD ["/usr/bin/wc","--help"]
+</code></pre></div></div>
+<h3 id="label">LABEL</h3>
+<p>LABEL指令以键值对的形式出现，给镜像加了很多标签，一个image可以有很多lable，每个LABLE指令会产新建一个layer，因此建议，只用一个LABLE指令包含所有的lables；</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LABEL version="1.0" author="kaiz" date="2016.12.20"
+</code></pre></div></div>
+<h3 id="expose">EXPOSE</h3>
+<p>格式：EXPOSE <port> [<port>...]
+该指令让container在运行时监听特定的端口，但不暴露容器端口给宿主机，若要暴露端口，需加上-p来暴露一系列端口，或者用-P来暴露所有的端口。[更多](https://docs.docker.com/engine/reference/run/#expose-incoming-ports)</port></port></p>
+<h3 id="add">ADD</h3>
+<p>两种格式：</p>
+<ul>
+  <li><code class="highlighter-rouge">ADD src... dest</code></li>
+  <li><code class="highlighter-rouge">ADD ["src",..."dest"]</code>
+ADD指令从src复制了新文件、目录、或远程文件URLs 并把他们加进image 的<dest>
+</dest>    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ADD a.txt TESTDIR/    #在workdir下面须有一个TESTDIR的目录
+ADD a.txt /data/
+</code></pre></div>    </div>
+    <blockquote>
+      <p>注意：若<src> 是一个tar/gzip/zip/bzip/xz，则被解压成一个目录。一个文件是否被认为是压缩格式，是根据文件内容来识别的，并非由其命名来决定。</src></p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="copy">COPY</h3>
+<p>两种格式：</p>
+<ul>
+  <li>COPY src… dest</li>
+  <li>COPY [“src”,… “dest”]
+若src为一个目录，则其本身目录不会被复制，仅仅是它下面的内容会被复制。
+    <blockquote>
+      <p>ADD 与 COPY 的区别在于ADD可解压压缩文件，且ADD的src可为URL</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="env">ENV</h3>
+<p>两种格式：</p>
+<ul>
+  <li>EVN key value</li>
+  <li>EVN key=value …
+第一种只能设置一个变量，第二种能同时设置很多变量。每个ENV新建一个层，因此尽量用第二种。
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ENV myName="John Doe" myDog=Rex\ The\ Dog \
+  myCat=fluffy
+</code></pre></div>    </div>
+    <p>Rex后的\为转义符</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入 ENV abc=hello
+输入 ENV abc=bye def=$abc
+输入 ENV ghi=$abc
+结果 def=hello,ghi=bye
+</code></pre></div>    </div>
+    <p>可以通过 docker inspect 查看变量，也可以通过 docker run –env key=value来设置。</p>
+    <blockquote>
+      <p>注意：evn设置的变量在下行生效</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="entrypoint">ENTRYPOINT</h3>
+<p>两种格式：</p>
+<ul>
+  <li>ENTRYPOINT [“executable”, “param1”, “param2”]   exec form, 偏好此种</li>
+  <li>ENTRYPOINT command param1 param2   shell form
+可利用此命令设置默认的命令和参数 ，利用CMD设置另外可以改变的参数</li>
+</ul>
+
+<blockquote>
+  <p>CMD 和 ENTRYPOINT的区别：</p>
+</blockquote>
+
+<blockquote>
+  <p>一个dockerfile中至少要有一个CMD或ENTRYPOINT命令;</p>
+</blockquote>
+
+<blockquote>
+  <p>CMD可做为ENTRYPOINT的参数，CMD在启动container的时候可以被替代。</p>
+</blockquote>
+
+<h3 id="dockerignore-file">.dockerignore file</h3>
+<p>不加进context的文件或目录，可用正则，<a href="https://docs.docker.com/engine/reference/builder/#dockerignore-file">更多详情</a></p>
+
+<h3 id="user">USER</h3>
+<h3 id="workdir">WORKDIR</h3>
+<p>格式：WORKDIR /path/to/workdir</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入：WORKDIR /a
+输入：WORKDIR b
+输入：WORKDIR c
+输入：RUN pwd
+输出：/a/b/c
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ENV DIRPATH /path
+WORKDIR $DIRPATH/$DIRNAME
+RUN pwd
+</code></pre></div></div>
+<h3 id="arg">ARG</h3>
+<p>格式： ARG name[=default-value]</p>
+<ul>
+  <li>FROM ubuntu</li>
+  <li>ARG CONT_IMG_VER</li>
+  <li>ENV CONT_IMG_VER v1.0.0</li>
+  <li>RUN echo $CONT_IMG_VER</li>
+</ul>
+
+<p><code class="highlighter-rouge">docker build --build-arg CONT_IMG_VER=V2.0 .</code>
+CONT_IMG_VER为v1.0.0，原因为ENV的变量全局变量在IMAGE中一直存在。
+command-line用法
+<code class="highlighter-rouge">--build-arg varname=value</code>，前提ARG 定义的变量需要一个初始值。</p>
+
+<p>ARG定义的变量与ENV不同，ENV全局变量在IMAGE中一直存在，ARG类似于shell里的local定义变量，在cache中存在。</p>
+
+<h3 id="volume">VOLUME</h3>
+<p>格式：VOLUME [“/data”]</p>
+
+<p><code class="highlighter-rouge">
+FROM centos
+RUN mkdir /myvol
+RUN echo "hello world" &gt; /myvol/greeting
+</code></p>
+
+<p>创建一个挂载点</p>
+
+<h3 id="onbuild">ONBUILD</h3>
+<p>格式：ONBUILD [INSTRUCTION]</p>
+
+<p>ONBUILD 指令给image加了一个trigger 指令，当这个image被下一个镜像构建当做基础镜像时，这个指令会在下一个镜像构建时执行。即当前镜像不生产，下一个镜像FROM 当前镜像构建时，ONBUILD里的指令会被执行。</p>
+
+<h3 id="stopsignal">STOPSIGNAL</h3>
+<p>STOPSIGNAL signal</p>
+
+<h3 id="healthcheck">HEALTHCHECK</h3>
+<p>两种格式：</p>
+<ul>
+  <li>HEALTHCHECK [OPTIONS] CMD command (通过在container里运行命令来健康检查)</li>
+  <li>HEALTHCHECK NONE (禁止健康检查)
+一般是检查WEB server</li>
+</ul>
+
+<p>在CMD前的[OPTIONS]可以为以下几个：</p>
+<ul>
+  <li>–interval=DURATION (default: 30s)</li>
+  <li>–timeout=DURATION (default: 30s)</li>
+  <li>–retries=N (default: 3)</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HEALTHCHECK --interval=5m --timeout=3s  CMD curl -f http://localhost/ || exit 1
+</code></pre></div></div>
+
+            </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    <footer class="footer" role="contentinfo">
+	<div class="container">
+		<p class="copyright">Copyright &copy; 2014-2018 <a href=""><code>Kaiz</code></a>.</p>
+		<p>Powered by <a href="http://jekyllrb.com">Jekyll</a>, themed from <a href="http://lesscss.cn/">Less</a>, refactored by <a href="http://www.hifreud.com/">Freud Kang</a></p>
+	</div>
+</footer>
+
+<script src="/styles/js/jquery.min.js"></script>
+<script src="/styles/js/bootstrap.min.js"></script>
+<script src="/styles/js/holder.min.js"></script>
+<script src="/styles/js/lessismore.js"></script>
+<script src="/styles/js/application.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </body>
+</html>

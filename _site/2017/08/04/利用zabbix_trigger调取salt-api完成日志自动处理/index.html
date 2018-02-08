@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Zabbix trigger salt-api to logorotate - Think Deep,Work Lean</title>
+
+	<link rel="shortcut icon" href="/styles/images/favicon.jpg">
+	<link rel="icon" href="/styles/images/favicon.jpg">
+
+	<link rel="stylesheet" href="/styles/css/index.css">
+	<link rel="stylesheet" href="/styles/css/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/styles/css/syntax.css">
+	<link rel="canonical" href="/2017/08/04/%E5%88%A9%E7%94%A8zabbix_trigger%E8%B0%83%E5%8F%96salt-api%E5%AE%8C%E6%88%90%E6%97%A5%E5%BF%97%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86/">
+	<link rel="alternate" type="application/rss+xml" title="Think Deep,Work Lean" href="/feed.xml">
+	
+	<meta name="keywords" content="Zabbix trigger salt-api to logorotate, Think Deep,Work Lean, 张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+	<meta name="description" content="张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+
+	<script src="/styles/js/jquery.min.js"></script>
+	<!--[if lt IE 9]>
+    	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+  	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?a81273dded286ab83c533a4184e6ae8c";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+  	<style type="text/css">
+	  	.docs-content{
+	  		margin-bottom: 10px;
+	  	}
+  	</style>
+</head>
+
+  <body class="index">
+
+    <header class="navbar navbar-inverse navbar-fixed-top docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="/styles/images/logo.jpg">
+      </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">    
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/categories/">大类分解</a>
+        </li>
+        <li>
+          <a href="/tag">小类内聚</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></a>
+        </li>
+        <li>
+          <a href="/donate/"><strong>打赏</strong></a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a rel="nofollow" target="_blank" href="https://github.com/kaizamm">Github</a></li>
+            <li><a rel="nofollow" target="_blank" href="">关于作者</a></li>
+            <li><a rel="nofollow" href="/books">我的书单</a></li>
+            <li><a rel="nofollow" href="http://www.hifreud.com/domains/">域名管理</a></li>
+            <li><a rel="nofollow" href="/reference">推荐博客</a></li>
+            <li><a href="/feed.xml">RSS订阅</a></li>
+            <li class="divider"></li>
+            <li><a rel="nofollow" target="_blank" href="https://github.com/luoyan35714/LessOrMore.git">本项目</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    <div class="docs-header" id="content">
+  <div class="container">
+  	
+  		<!--
+		    <h1>Zabbix trigger salt-api to logorotate</h1>
+		    <p>Post on Aug 04, 2017 by <a href="/about">Kaiz</a></p>
+		-->
+		    <h1>不向静中参妙理,纵然颖悟也虚浮 立乎其大 和而不同 古之成大事者，不惟有超世之才，亦必有坚韧不拔之志</h1>
+    
+  </div>
+</div>
+    
+      
+<div class="banner">
+  <div class="container">
+  	
+    	<a href="/categories/#document-ref">document</a>	/
+    	<a href="/tag/#saltstack-ref">saltstack</a>
+    
+  </div>
+</div>
+
+    
+
+    <div class="container docs-container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="sidebar hidden-print" role="complementary">
+        <div id="navigation">
+  <h1>目录</h1>
+  <ul class="nav sidenav">
+  </ul>
+  <div style="height: 200px;width: 200px;">
+    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=5ytn1ssq6za&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"> 
+    </script>
+  </div>
+</div>
+
+ 
+      </div>
+    </div>
+    <div class="col-md-9" role="main">
+      <div class="panel docs-content">
+        <div class="wrapper">
+            <header class="post-header">
+              <h1 class="post-title">Zabbix trigger salt-api to logorotate</h1>
+              <!--
+                <p class="post-meta">Aug 4, 2017</p>
+              -->
+              <div class="meta">Posted on <span class="postdate">Aug 04, 2017</span> By <a target="_blank" href="https://kaizamm.github.com">Kaiz</a></div>
+              <br />
+            </header>
+            <article class="post-content">
+              <hr />
+<h3 id="准备工作">准备工作</h3>
+<p>安装好对应zabbix server/agent，salt-master、salt-minion、salt-api</p>
+
+<h3 id="对应zabbix添加scriptaction">对应zabbix添加script,action</h3>
+<p>![1.png][1.png]
+[1.png]: ./利用zabbix_trigger调取salt-api完成日志自动处理/1.png</p>
+<h3 id="对应zabbix添加scriptaction-1">对应zabbix添加script,action</h3>
+<p>![2.png][2.png]
+[2.png]: ./利用zabbix_trigger调取salt-api完成日志自动处理/2.png
+![3.png][3.png]
+[3.png]: ./利用zabbix_trigger调取salt-api完成日志自动处理/3.png
+![4.png][4.png]
+[4.png]: ./利用zabbix_trigger调取salt-api完成日志自动处理/4.png
+![5.png][5.png]
+[5.png]: ./利用zabbix_trigger调取salt-api完成日志自动处理/5.png</p>
+
+<h3 id="zabbix-传参">ZABBIX 传参</h3>
+<p>![6.png][6.png]
+[6.png]: ./利用zabbix_trigger调取salt-api完成日志自动处理/6.png</p>
+
+<h3 id="zabbix执行脚本">ZABBIX执行脚本</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env python</span>
+<span class="c"># _*_ coding: UTF-8 _*_</span>
+<span class="c">#BGP-NETAM-01</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">"kaiz"</span>
+
+<span class="kn">import</span> <span class="nn">sys</span><span class="p">,</span><span class="n">os</span><span class="p">,</span><span class="n">requests</span><span class="p">,</span><span class="n">time</span><span class="p">,</span><span class="n">re</span>
+<span class="n">cur_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">'</span><span class="si">%</span><span class="s">Y-</span><span class="si">%</span><span class="s">m-</span><span class="si">%</span><span class="s">d-</span><span class="si">%</span><span class="s">H:</span><span class="si">%</span><span class="s">M'</span><span class="p">,</span><span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()))</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+  <span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+  <span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'http://172.30.33.183:7991/login'</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span>
+    <span class="s">'username'</span><span class="p">:</span> <span class="s">'Lsaltapiuser'</span><span class="p">,</span>
+    <span class="s">'password'</span><span class="p">:</span> <span class="s">'&amp;87YuApi$'</span><span class="p">,</span>
+    <span class="s">'eauth'</span><span class="p">:</span> <span class="s">'pam'</span><span class="p">,</span>
+  <span class="p">})</span>
+  <span class="k">try</span><span class="p">:</span>
+    <span class="n">hostname</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">log_path</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">bak_path_</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">save_days</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'http://172.30.33.183:7991'</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">[{</span>
+      <span class="s">'client'</span><span class="p">:</span> <span class="s">'local'</span><span class="p">,</span>
+      <span class="s">'tgt'</span><span class="p">:</span> <span class="n">hostname</span><span class="p">,</span>
+      <span class="s">'fun'</span><span class="p">:</span> <span class="s">'state.sls'</span><span class="p">,</span>
+      <span class="s">'arg'</span><span class="p">:</span> <span class="p">[</span><span class="s">'logrotate'</span><span class="p">],</span>
+      <span class="s">'kwarg'</span><span class="p">:</span> <span class="p">{</span><span class="s">"pillar"</span><span class="p">:{</span><span class="s">"log_path"</span><span class="p">:</span><span class="n">log_path</span><span class="p">,</span><span class="s">"bak_path_"</span><span class="p">:</span><span class="n">bak_path_</span><span class="p">,</span><span class="s">"save_days"</span><span class="p">:</span><span class="n">save_days</span><span class="p">}},</span>
+    <span class="p">}])</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+    <span class="k">print</span> <span class="s">"INFO:"</span> <span class="o">+</span> <span class="n">a</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">"The function </span><span class="se">\"</span><span class="s">state.sls</span><span class="se">\"</span><span class="s"> is running as PID"</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">m</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+      <span class="c">#若能匹配到The function \"state.sls\" is running as PID这个，则取出jid</span>
+      <span class="nb">list</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+      <span class="n">index</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s">"jid"</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
+      <span class="n">jid</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">"</span><span class="err">\</span><span class="s">d+"</span><span class="p">,</span><span class="nb">list</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+      <span class="n">jid</span> <span class="o">=</span> <span class="n">jid</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
+      <span class="c">#取出jid后执行类似salt '*' saltutil.signal_job 20140211102239075243 15</span>
+      <span class="n">resp</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'http://172.30.33.183:7991'</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">[{</span>
+      <span class="s">'client'</span><span class="p">:</span> <span class="s">'local'</span><span class="p">,</span>
+      <span class="s">'tgt'</span><span class="p">:</span> <span class="n">hostname</span><span class="p">,</span>
+      <span class="s">'fun'</span><span class="p">:</span> <span class="s">'saltutil.signal_job'</span><span class="p">,</span>
+      <span class="s">'arg'</span><span class="p">:</span> <span class="p">[</span> <span class="n">jid</span><span class="p">,</span><span class="s">'15'</span><span class="p">],</span>
+    <span class="p">}])</span>
+      <span class="n">aa</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span>
+      <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">"/tmp/logrotate.log"</span><span class="p">,</span><span class="s">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cur_time</span><span class="o">+</span><span class="s">':'</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">aa</span><span class="p">)</span><span class="o">+</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+      <span class="k">print</span> <span class="s">"INFO:"</span><span class="o">+</span><span class="s">"saltutil.signal_job jid 15"</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">aa</span><span class="p">)</span>
+  <span class="k">except</span> <span class="nb">Exception</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">err</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="n">err</span> <span class="o">=</span> <span class="s">"EROR"</span><span class="o">+</span><span class="s">":"</span><span class="o">+</span><span class="n">cur_time</span><span class="o">+</span><span class="s">":"</span><span class="o">+</span><span class="n">err</span>
+    <span class="k">print</span> <span class="n">err</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">"/tmp/logrotate_err.log"</span><span class="p">,</span><span class="s">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+      <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+
+
+</code></pre></div></div>
+<h3 id="saltsls">salt.sls</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/opt/logrotate.py:
+  file.managed:
+    - source: salt://logrotate_files/files/logrotate.py
+    - user: root
+    - group: root
+    - mode: 755
+  cmd.run:
+    - name: python /opt/logrotate.py   
+    - require:
+      - file: /opt/logrotate.py
+</code></pre></div></div>
+
+<h3 id="salt-模块调用logrotatepy">SALT 模块调用logrotate.py</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env python</span>
+<span class="c"># _*_ encoding: UTF-8 _*_</span>
+<span class="n">__author__</span><span class="o">=</span><span class="s">"kaiz"</span>
+
+<span class="kn">import</span> <span class="nn">os</span><span class="p">,</span><span class="n">sys</span><span class="p">,</span><span class="n">time</span>
+
+<span class="c">#处理日志</span>
+<span class="k">class</span> <span class="nc">anaysislog</span><span class="p">:</span>
+    <span class="c">#两个变量，备份目录及目录名，初始化</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">bak_path</span><span class="p">,</span><span class="n">log_path</span><span class="p">,</span><span class="n">save_days</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bak_path</span> <span class="o">=</span> <span class="n">bak_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_path</span> <span class="o">=</span> <span class="n">log_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_days</span> <span class="o">=</span> <span class="n">save_days</span>
+
+    <span class="c">#压缩日志文件</span>
+    <span class="k">def</span> <span class="nf">logrotate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c">#开始压缩</span>
+        <span class="k">print</span> <span class="s">"[info]start logrotate,wait..."</span>
+        <span class="c">#文件压缩信号</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">bak_path</span><span class="p">):</span> <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">bak_path</span><span class="p">)</span>
+        <span class="n">logrotate_file_flag1</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s">'find </span><span class="si">%</span><span class="s">s -mtime +</span><span class="si">%</span><span class="s">s -name "*txt" '</span> <span class="o">%</span> <span class="p">(</span><span class="n">log_path</span><span class="p">,</span><span class="n">save_days</span><span class="p">))</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="n">logrotate_file_flag2</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s">'find </span><span class="si">%</span><span class="s">s -mtime +</span><span class="si">%</span><span class="s">s -name "*log" '</span> <span class="o">%</span> <span class="p">(</span><span class="n">log_path</span><span class="p">,</span><span class="n">save_days</span><span class="p">))</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="n">logrotate_file_flag3</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s">'find </span><span class="si">%</span><span class="s">s -mtime +</span><span class="si">%</span><span class="s">s -name "*gz" '</span> <span class="o">%</span> <span class="p">(</span><span class="n">log_path</span><span class="p">,</span><span class="n">save_days</span><span class="p">))</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="n">logrotate_file_flag4</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s">'find </span><span class="si">%</span><span class="s">s -mtime +</span><span class="si">%</span><span class="s">s -name "*bz2" '</span> <span class="o">%</span> <span class="p">(</span><span class="n">log_path</span><span class="p">,</span><span class="n">save_days</span><span class="p">))</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="n">log_path_</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">log_path</span><span class="p">))</span>
+        <span class="n">logrotate_file_flag5</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s">'find </span><span class="si">%</span><span class="s">s -name "catalina.out" '</span> <span class="o">%</span> <span class="n">log_path_</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="n">logrotate_file_flag6</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s">'find </span><span class="si">%</span><span class="s">s -mtime +30 '</span> <span class="o">%</span> <span class="n">bak_path</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="c">#开始移动日志到备份目录</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s">'find </span><span class="si">%</span><span class="s">s -mtime +</span><span class="si">%</span><span class="s">s -name "*txt" -exec mv {} </span><span class="si">%</span><span class="s">s </span><span class="err">\</span><span class="s">;'</span> <span class="o">%</span> <span class="p">(</span><span class="n">log_path</span><span class="p">,</span><span class="n">save_days</span><span class="p">,</span><span class="n">bak_path</span><span class="p">))</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s">'find </span><span class="si">%</span><span class="s">s -mtime +</span><span class="si">%</span><span class="s">s -name "*log" -exec mv {} </span><span class="si">%</span><span class="s">s </span><span class="err">\</span><span class="s">;'</span> <span class="o">%</span> <span class="p">(</span><span class="n">log_path</span><span class="p">,</span><span class="n">save_days</span><span class="p">,</span><span class="n">bak_path</span><span class="p">))</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s">'find </span><span class="si">%</span><span class="s">s -name "*gz" -exec mv {} </span><span class="si">%</span><span class="s">s </span><span class="err">\</span><span class="s">;'</span> <span class="o">%</span> <span class="p">(</span><span class="n">log_path</span><span class="p">,</span><span class="n">bak_path</span><span class="p">))</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s">'find </span><span class="si">%</span><span class="s">s -name "*bz2" -exec mv {} </span><span class="si">%</span><span class="s">s </span><span class="err">\</span><span class="s">;'</span> <span class="o">%</span> <span class="p">(</span><span class="n">log_path</span><span class="p">,</span><span class="n">bak_path</span><span class="p">))</span>
+        <span class="c">#删除bak_path的一个月以前的压缩文件</span>
+        <span class="k">if</span> <span class="n">logrotate_file_flag6</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s">'find </span><span class="si">%</span><span class="s">s -mtime +30 -exec rm {} -rf </span><span class="err">\</span><span class="s">;'</span> <span class="o">%</span> <span class="n">bak_path</span><span class="p">)</span>
+            <span class="k">print</span> <span class="s">"del files before 30 days under </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">bak_path</span>
+        <span class="c">#将备份目录里的日志压缩打包</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s">'find </span><span class="si">%</span><span class="s">s  -name "*log" -exec bzip2 {} </span><span class="err">\</span><span class="s">;'</span> <span class="o">%</span> <span class="n">bak_path</span><span class="p">)</span>
+        <span class="c">#是否有文件被移动或catalina.out是否被清空</span>
+        <span class="k">if</span> <span class="n">logrotate_file_flag1</span> <span class="ow">or</span> <span class="n">logrotate_file_flag2</span> <span class="ow">or</span> <span class="n">logrotate_file_flag3</span> <span class="ow">or</span> <span class="n">logrotate_file_flag4</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">"[info]logrotate success"</span>
+        <span class="k">elif</span> <span class="n">logrotate_file_flag5</span><span class="p">:</span>
+            <span class="c">#清空catalina.out</span>
+            <span class="k">with</span> <span class="nb">open</span> <span class="p">(</span><span class="n">logrotate_file_flag5</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span><span class="s">"r+"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">truncate</span><span class="p">()</span>
+            <span class="k">print</span> <span class="s">"[info]just truncate catalina.out"</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">"[info]logrotate nothing"</span>
+
+<span class="c">#主程序从这开始</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="c">#实例化</span>
+    <span class="k">try</span><span class="p">:</span>
+    <span class="c">#源日志目录</span>
+        <span class="n">log_path</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="c">#备份目录，取当前时间</span>
+        <span class="n">cur_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">'</span><span class="si">%</span><span class="s">Y-</span><span class="si">%</span><span class="s">m-</span><span class="si">%</span><span class="s">d-</span><span class="si">%</span><span class="s">H:</span><span class="si">%</span><span class="s">M'</span><span class="p">)</span>
+        <span class="n">bak_path_</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">bak_path</span> <span class="o">=</span> <span class="n">bak_path_</span><span class="o">+</span><span class="s">'/'</span><span class="o">+</span><span class="n">cur_time</span>
+        <span class="c">#在源日志目录保留日志的天数</span>
+        <span class="n">save_days</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">anaysislog</span><span class="p">(</span><span class="n">log_path</span><span class="p">,</span><span class="n">bak_path_</span><span class="p">,</span><span class="n">log_path</span><span class="p">)</span>
+        <span class="c">#压缩</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">logrotate</span><span class="p">()</span>
+    <span class="k">except</span> <span class="nb">Exception</span><span class="p">,</span><span class="n">e</span><span class="p">:</span>
+        <span class="n">err</span> <span class="o">=</span> <span class="s">"[error]"</span><span class="o">+</span><span class="n">cur_time</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">+</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">"/tmp/lograte_err.log"</span><span class="p">,</span><span class="s">"a+"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+          <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+        <span class="k">print</span> <span class="n">err</span>
+
+</code></pre></div></div>
+
+            </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    <footer class="footer" role="contentinfo">
+	<div class="container">
+		<p class="copyright">Copyright &copy; 2014-2018 <a href=""><code>Kaiz</code></a>.</p>
+		<p>Powered by <a href="http://jekyllrb.com">Jekyll</a>, themed from <a href="http://lesscss.cn/">Less</a>, refactored by <a href="http://www.hifreud.com/">Freud Kang</a></p>
+	</div>
+</footer>
+
+<script src="/styles/js/jquery.min.js"></script>
+<script src="/styles/js/bootstrap.min.js"></script>
+<script src="/styles/js/holder.min.js"></script>
+<script src="/styles/js/lessismore.js"></script>
+<script src="/styles/js/application.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </body>
+</html>

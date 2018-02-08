@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>python几个常模块 - Think Deep,Work Lean</title>
+
+	<link rel="shortcut icon" href="/styles/images/favicon.jpg">
+	<link rel="icon" href="/styles/images/favicon.jpg">
+
+	<link rel="stylesheet" href="/styles/css/index.css">
+	<link rel="stylesheet" href="/styles/css/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/styles/css/syntax.css">
+	<link rel="canonical" href="/2017/07/26/python%E7%9A%84%E5%87%A0%E4%B8%AA%E5%B8%B8%E6%A8%A1%E5%9D%97/">
+	<link rel="alternate" type="application/rss+xml" title="Think Deep,Work Lean" href="/feed.xml">
+	
+	<meta name="keywords" content="python几个常模块, Think Deep,Work Lean, 张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+	<meta name="description" content="张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+
+	<script src="/styles/js/jquery.min.js"></script>
+	<!--[if lt IE 9]>
+    	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+  	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?a81273dded286ab83c533a4184e6ae8c";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+  	<style type="text/css">
+	  	.docs-content{
+	  		margin-bottom: 10px;
+	  	}
+  	</style>
+</head>
+
+  <body class="index">
+
+    <header class="navbar navbar-inverse navbar-fixed-top docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="/styles/images/logo.jpg">
+      </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">    
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/categories/">大类分解</a>
+        </li>
+        <li>
+          <a href="/tag">小类内聚</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></a>
+        </li>
+        <li>
+          <a href="/donate/"><strong>打赏</strong></a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a rel="nofollow" target="_blank" href="https://github.com/kaizamm">Github</a></li>
+            <li><a rel="nofollow" target="_blank" href="">关于作者</a></li>
+            <li><a rel="nofollow" href="/books">我的书单</a></li>
+            <li><a rel="nofollow" href="http://www.hifreud.com/domains/">域名管理</a></li>
+            <li><a rel="nofollow" href="/reference">推荐博客</a></li>
+            <li><a href="/feed.xml">RSS订阅</a></li>
+            <li class="divider"></li>
+            <li><a rel="nofollow" target="_blank" href="https://github.com/luoyan35714/LessOrMore.git">本项目</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    <div class="docs-header" id="content">
+  <div class="container">
+  	
+  		<!--
+		    <h1>python几个常模块</h1>
+		    <p>Post on Jul 26, 2017 by <a href="/about">Kaiz</a></p>
+		-->
+		    <h1>不向静中参妙理,纵然颖悟也虚浮 立乎其大 和而不同 古之成大事者，不惟有超世之才，亦必有坚韧不拔之志</h1>
+    
+  </div>
+</div>
+    
+      
+<div class="banner">
+  <div class="container">
+  	
+    	<a href="/categories/#document-ref">document</a>	/
+    	<a href="/tag/#python-ref">python</a>
+    
+  </div>
+</div>
+
+    
+
+    <div class="container docs-container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="sidebar hidden-print" role="complementary">
+        <div id="navigation">
+  <h1>目录</h1>
+  <ul class="nav sidenav">
+  </ul>
+  <div style="height: 200px;width: 200px;">
+    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=5ytn1ssq6za&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"> 
+    </script>
+  </div>
+</div>
+
+ 
+      </div>
+    </div>
+    <div class="col-md-9" role="main">
+      <div class="panel docs-content">
+        <div class="wrapper">
+            <header class="post-header">
+              <h1 class="post-title">python几个常模块</h1>
+              <!--
+                <p class="post-meta">Jul 26, 2017</p>
+              -->
+              <div class="meta">Posted on <span class="postdate">Jul 26, 2017</span> By <a target="_blank" href="https://kaizamm.github.com">Kaiz</a></div>
+              <br />
+            </header>
+            <article class="post-content">
+              <h3 id="os">os</h3>
+<p>操作系统相关</p>
+<ul>
+  <li>os.path  os.path.isdir</li>
+  <li>os.name</li>
+  <li>os.popen  该方法不但执行命令还返回执行后的信息对象</li>
+  <li>os.curdir</li>
+  <li>os.pardir</li>
+  <li>os.environ</li>
+  <li>os.chdir(dir) 切换目录</li>
+  <li>os.getcwd() 得到当前目录</li>
+  <li>os.getgid/os.getuid/os.getlogin</li>
+  <li>os.system(cmd)  运行cmd命令</li>
+  <li>os.listdir() 列出目录下的文件</li>
+  <li>os.makedirs() 若不存在这个目录则创建,递归</li>
+  <li>os.mkdir()  只创建一层</li>
+</ul>
+
+<h3 id="sys">sys</h3>
+<p>系统相关</p>
+<ul>
+  <li>sys.argv 是一个list，包含所有的命令行参数</li>
+  <li>sys.path  是一个list，指明所有modules查找的目录，path[0]是script的目录</li>
+  <li>sys.stdin 标准的输入对象，raw_input() OR input()</li>
+  <li>sys.stdout 标准的输出对象，print</li>
+  <li>sys.stderr 标准的错误输出，用于错误的消息</li>
+  <li>sys.exit(exit_code) 退出程序</li>
+  <li>sys.modules 是一个dictionary，表示系统中所有可用的modules</li>
+</ul>
+
+<h3 id="mysqldb">MySQLdb</h3>
+<h3 id="subprocess">subprocess</h3>
+<p>subprocess包主要是执行外部命令和程序</p>
+<h4 id="subprocesscall">subprocess.call()</h4>
+<p>父进程等待子进程完成，返回退出信息returncode</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import subprocess
+rc = subprocess.call("ls -l",shell=True)
+</code></pre></div></div>
+<p>shell=True表示这个命令只能通过shell来运行</p>
+<h4 id="subprocesspopen">subprocess.Popen()</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import subprocess
+child = subprocess.Popen(["ping","-c","5","www.baidu.com"])
+print("parent process")
+</code></pre></div></div>
+<p>从运行结果看，父进程在开启子进程之后并没有等待child的完成，而是直接运行print</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import subprocess
+child = subprocess.Popen(["ping","-c","5","www.baidu.com"])
+child.wait() #加上这句则需等待子进程执行完成，再执行下面语句
+print("parent process")
+</code></pre></div></div>
+<h5 id="子进程的文本的控制">子进程的文本的控制</h5>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import subprocess
+child1 = subprocess.Popen(["ls","-l"],stdout=subprocess.PIPE)
+#subprocess.PIPE实际为文本流提供一个缓存区，child1的stdout将文本输出到缓存区，随后child2的stdin从该PIPE中将文本取走
+child2 = subprocess.Popen(["wc"],stdin=child1.stdout,stdout=subprocess.PIPE)
+out = child2.communicate()
+#communicate()是Popen对象的一个方法，该方法会阻塞父进程，直到子进程完成
+print(out)
+</code></pre></div></div>
+<p>我们还可以利用communicate()方法来使用PIPE给子进程输入:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import subprocess
+child = subprocess.Popen(["cat"], stdin=subprocess.PIPE)
+child.communicate("vamei")
+</code></pre></div></div>
+
+<h4 id="另可以在父进程中对子进程操作例如上面的child对象">另可以在父进程中对子进程操作，例如上面的child对象</h4>
+<ul>
+  <li>child.poll() #检查子进程状态</li>
+  <li>child.kill() #终止子进程</li>
+  <li>child.send_signal() #向子进程发送信号</li>
+  <li>child.terminate() #终止子进程
+子进程的PID存储在child.pid</li>
+</ul>
+
+<h3 id="requests">requests</h3>
+<p>第三方库,安装 pip insstall requests
+参考官网http://python-requests.org</p>
+
+<h4 id="get">GET</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import requests
+r = requests.get("https://www.python.org")
+r.status_code
+&gt; 200
+
+</code></pre></div></div>
+<h4 id="post">POST</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>payload = dict(key1='value1',key2='')
+r = requests.post('http://httpbin.org/post'，data=payload)
+print r.text
+&gt;输出结果
+{
+  "args": {},
+  "data": "",
+  "files": {},
+  "form": {
+    "key1": "value1",
+    "key2": "value2"
+  },
+  "headers": {
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip, deflate",
+    "Connection": "close",
+    "Content-Length": "23",
+    "Content-Type": "application/x-www-form-urlencoded",
+    "Host": "httpbin.org",
+    "User-Agent": "python-requests/2.18.1"
+  },
+  "json": null,
+  "origin": "113.57.171.147",
+  "url": "http://httpbin.org/post"
+}
+</code></pre></div></div>
+<h4 id="put">PUT</h4>
+<h4 id="delete">DELETE</h4>
+<h4 id="head">HEAD</h4>
+<h4 id="options">OPTIONS</h4>
+
+<h3 id="socket">socket</h3>
+<h3 id="time">time</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cur_time = time.strftime('%Y-%m-%d-%H:%M',time.localtime(time.time()))
+</code></pre></div></div>
+<h3 id="json">json</h3>
+<p>python有许多内置或第三方模块可以将JSON字符转换成python字典对象。如下，使用json模块及及其loads函数逐行加载已经下载好的数据文件，json.loads即可将JSON字符转换成Python形式；json.dumps则将Python对象转换为JSON格式：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import json
+path = '/tmp/test.txt'
+records = [json.loads(line) for line in open(path)]
+</code></pre></div></div>
+<h3 id="urllib2">urllib2</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from urllib2 import urlopen
+</code></pre></div></div>
+<h3 id="python内置字符串方法">python内置字符串方法</h3>
+<ul>
+  <li>count 返回字符串中出现次数(非重叠)</li>
+  <li>endswith、startswith 如果字符串以某个后缀结尾(以某个前缀开关)，则返回True</li>
+  <li>join 将字符串用作连接其他字符序列的分隔符</li>
+  <li>index 如果在字符串中找到子串，则返回子串第一个字符所在的位置。如果没有找到，则引发ValueError。</li>
+  <li>find 如果在字符串中找到子串，则返回第一个发现的子串中的第一个字符所在的位置。如果没有找到，则返回-1</li>
+  <li>rfind 如果在字符串中找到子串，则返回最后一个发现的子串的第一个字符所在的位置。如果没有找到，则返回-1</li>
+  <li>replace 用另一个字符串替换指定子串</li>
+  <li>strip、rstrip、lstrip 去除空白符(包括换行符)。相当于对各个元素执行x.strip()(以及rstrip、lstrip)。</li>
+  <li>split 通过指定的分隔符将字符串拆分为一组子串</li>
+  <li>lower、upper 分别将字母字符转换为小写或大写</li>
+  <li>ljust、rjust 用空格(或其他字符)填充字符串的空白侧以返回符合最低宽度字符串</li>
+</ul>
+
+<h3 id="re">re</h3>
+<p>re模块的函数可以分为三个大类：模式匹配、替换以及拆分。当然，它们之间是相辅相成的。一个regex描述了需要在文本中定位一个模式，它可以用于许多目的。如下例子：拆分一个字符串，分隔符为数量不定的一组空白符(制表符，空格，换行符等)。描述一个或多个空白 符的regex是\s+:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>In [42]: import re
+In [43]: text = "foo bar\t baz \tqux"
+In [44]: re.split('\s+',text)
+Out[44]: ['foo', 'bar', 'baz', 'qux']
+</code></pre></div></div>
+<p>调用re.split(‘\s+’,text)时，正则表达式会先被编译，然后再在text上调用其split方法。你可以用re.compile自己编译regex以得到一个可重用的regex对象:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>In [50]: regex = re.compile('\s+')
+In [51]: regex.split(text)
+Out[51]: ['foo', 'bar', 'baz', 'qux']
+</code></pre></div></div>
+<p>如果只希望得到匹配regex的所有模式，则可以使用findall方法：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>In [52]: regex.findall(text)
+Out[52]: [' ', '\t ', ' \t']
+</code></pre></div></div>
+<blockquote>
+  <p>注意：如果想避免正则表达式中不需要的转义()，则可以使用原始字符串字面量如r’C:\x’(也可以编写其等价式’C:\x’)。
+如果打算对许多字符串用同一条正则表达式，强烈建议通过re.compile创建regex对象。这样可以节省大量的CPU时间。match和search跟findall功能类似。findall返回的是字符串中所有的匹配项，而search则只返回第一个匹配项。match更加严格，它只匹配字符串的首首部。如下例子：</p>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>In [53]: text = """Kaiz kaiz@quarkfinance.com
+   ....: zkai zkai@google.com
+   ....: Rob rob@gmail.com
+   ....: Ryan ryan@yahoo.com
+   ....: """
+In [54]: pattern = r'[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}'
+#re.IGNORECASE的作用是对大小写不敏感，对于regex,匹配对象只能告诉我们模式在原字符串中的起始和结束位置
+In [57]: regex = re.compile(pattern,flags=re.IGNORECASE)
+#findall返回是一个列表
+In [58]: regex.findall(text)
+Out[58]: ['kaiz@quarkfinance.com', 'zkai@google.com', 'rob@gmail.com', 'ryan@yahoo.com']
+</code></pre></div>  </div>
+  <p>search返回的是文本中的第一个电子邮件地址(以特殊的匹配项对象形式返回)</p>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>In [74]: m = regex.search(text)
+In [75]: m
+Out[75]: &lt;_sre.SRE_Match at 0x20e2a58&gt;
+In [81]: m.group()
+Out[81]: 'kaiz@quarkfinance.com'
+In [83]: text[m.start():m.end()]
+Out[83]: 'kaiz@quarkfinance.com'
+</code></pre></div>  </div>
+  <p>regex.match则将返回None，因为它只匹配出现在字符串开头的模式：</p>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>In [84]: m = regex.match(text)
+In [89]: print m
+None
+</code></pre></div>  </div>
+  <p>另外还有一个sub方法，它会将匹配到的模式替换为指定字符串，并返回所得到的新字符串：</p>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>In [90]: print regex.sub('REDACTED',text)
+Kaiz REDACTED
+zkai REDACTED
+Rob REDACTED
+Ryan REDACTED
+</code></pre></div>  </div>
+  <p>假设你不仅想要找出电子邮件地址，还想将各个地址分成3个部分：用户名、域名以及域后缀。要实现此功能，只需将分段的模式的各部分用圆括号包起来即可：</p>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>In [103]: regex =  re.compile(r'([A-Z0-9._%+-]+)@([a-z0-9.-]+)\.([A-Z]{2,4})', re.IGNORECASE)
+In [104]: m = regex.match('kaiz@quarkfinance.com')
+#由这种正则表达式所产生的匹配对象，可以通过其groups方法一个由模式各段组成的元组：
+In [105]: m.groups()
+Out[105]: ('kaiz', 'quarkfinance', 'com')
+</code></pre></div>  </div>
+  <p>findall则不需要groups()方法，可直接返回一个元组列表：</p>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>In [106]: regex.findall(text)
+Out[106]:
+[('kaiz', 'quarkfinance', 'com'),
+ ('zkai', 'google', 'com'),
+ ('rob', 'gmail', 'com'),
+ ('ryan', 'yahoo', 'com')]
+</code></pre></div>  </div>
+</blockquote>
+
+<h3 id="future"><strong>future</strong></h3>
+<p>Python的每个版本都会增加一些新的功能，或者对原来的功能作一些改动。有些改动是不兼容旧版本的，也就是在当前版本运行正常的的代码，到下一个版本就无法正常运行了。从Python2.7到Python3.x就有一些不兼容的一些改动，比如2.x里的字符串用’xxx’表示str，Unicode字符串用u’xxx’表示unicode，而在3.x中，所有字符串都被视为unicode，因此，要直接把代码升级到3.x是比较冒进的，因为有大量的改动需要测试。相反，可以在2.7版本中先在一部分代码中测试一些3.x的特性，如果没有问题，再移植到3.x不迟。
+Python提供的__future__模块，把下一个新版本的特性导入到当前版本，于是我们就可以在当前版本中测试一些新的版本的特性。举例说明如下：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>###still running on Python2.7
+from __future__ import unicode_literals
+
+print '\'xxx\' is unicode?', isinstance('xxx', unicode)
+print 'u\'xxx\' is unicode?', isinstance(u'xxx', unicode)
+print '\'xxx\' is str?', isinstance('xxx', str)
+print 'b\'xxx\' is str?', isinstance(b'xxx', str)
+
+#注意到上面的代码仍然在Python 2.7下运行，但结果显示去掉前缀u的'a string'仍是一个unicode，而加上前缀b的b'a string'才变成了str：
+
+$ python task.py
+'xxx' is unicode? True
+u'xxx' is unicode? True
+'xxx' is str? False
+b'xxx' is str? True
+</code></pre></div></div>
+
+            </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    <footer class="footer" role="contentinfo">
+	<div class="container">
+		<p class="copyright">Copyright &copy; 2014-2018 <a href=""><code>Kaiz</code></a>.</p>
+		<p>Powered by <a href="http://jekyllrb.com">Jekyll</a>, themed from <a href="http://lesscss.cn/">Less</a>, refactored by <a href="http://www.hifreud.com/">Freud Kang</a></p>
+	</div>
+</footer>
+
+<script src="/styles/js/jquery.min.js"></script>
+<script src="/styles/js/bootstrap.min.js"></script>
+<script src="/styles/js/holder.min.js"></script>
+<script src="/styles/js/lessismore.js"></script>
+<script src="/styles/js/application.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> docker 常用命令 - Think Deep,Work Lean</title>
+
+	<link rel="shortcut icon" href="/styles/images/favicon.jpg">
+	<link rel="icon" href="/styles/images/favicon.jpg">
+
+	<link rel="stylesheet" href="/styles/css/index.css">
+	<link rel="stylesheet" href="/styles/css/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/styles/css/syntax.css">
+	<link rel="canonical" href="/2017/01/04/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+	<link rel="alternate" type="application/rss+xml" title="Think Deep,Work Lean" href="/feed.xml">
+	
+	<meta name="keywords" content=" docker 常用命令, Think Deep,Work Lean, 张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+	<meta name="description" content="张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+
+	<script src="/styles/js/jquery.min.js"></script>
+	<!--[if lt IE 9]>
+    	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+  	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?a81273dded286ab83c533a4184e6ae8c";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+  	<style type="text/css">
+	  	.docs-content{
+	  		margin-bottom: 10px;
+	  	}
+  	</style>
+</head>
+
+  <body class="index">
+
+    <header class="navbar navbar-inverse navbar-fixed-top docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="/styles/images/logo.jpg">
+      </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">    
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/categories/">大类分解</a>
+        </li>
+        <li>
+          <a href="/tag">小类内聚</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></a>
+        </li>
+        <li>
+          <a href="/donate/"><strong>打赏</strong></a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a rel="nofollow" target="_blank" href="https://github.com/kaizamm">Github</a></li>
+            <li><a rel="nofollow" target="_blank" href="">关于作者</a></li>
+            <li><a rel="nofollow" href="/books">我的书单</a></li>
+            <li><a rel="nofollow" href="http://www.hifreud.com/domains/">域名管理</a></li>
+            <li><a rel="nofollow" href="/reference">推荐博客</a></li>
+            <li><a href="/feed.xml">RSS订阅</a></li>
+            <li class="divider"></li>
+            <li><a rel="nofollow" target="_blank" href="https://github.com/luoyan35714/LessOrMore.git">本项目</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    <div class="docs-header" id="content">
+  <div class="container">
+  	
+  		<!--
+		    <h1> docker 常用命令</h1>
+		    <p>Post on Jan 04, 2017 by <a href="/about">Kaiz</a></p>
+		-->
+		    <h1>不向静中参妙理,纵然颖悟也虚浮 立乎其大 和而不同 古之成大事者，不惟有超世之才，亦必有坚韧不拔之志</h1>
+    
+  </div>
+</div>
+    
+      
+<div class="banner">
+  <div class="container">
+  	
+    	<a href="/categories/#document-ref">document</a>	/
+    	<a href="/tag/#docker-ref">docker</a>
+    
+  </div>
+</div>
+
+    
+
+    <div class="container docs-container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="sidebar hidden-print" role="complementary">
+        <div id="navigation">
+  <h1>目录</h1>
+  <ul class="nav sidenav">
+  </ul>
+  <div style="height: 200px;width: 200px;">
+    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=5ytn1ssq6za&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"> 
+    </script>
+  </div>
+</div>
+
+ 
+      </div>
+    </div>
+    <div class="col-md-9" role="main">
+      <div class="panel docs-content">
+        <div class="wrapper">
+            <header class="post-header">
+              <h1 class="post-title"> docker 常用命令</h1>
+              <!--
+                <p class="post-meta">Jan 4, 2017</p>
+              -->
+              <div class="meta">Posted on <span class="postdate">Jan 04, 2017</span> By <a target="_blank" href="https://kaizamm.github.com">Kaiz</a></div>
+              <br />
+            </header>
+            <article class="post-content">
+              <h3 id="docker-image的导出有两种方法">docker image的导出有两种方法：</h3>
+<ul>
+  <li>方法一：docker save -o 导出的镜像名.tar 本地镜像名。后期使用该镜像，docker load -i 导出的镜像名.tar
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$docker save -o centos.tar centos:latest #导出，用repository:tag可以导出镜像的元数据，若用images id则会丢失元数据，即在REPOSITORY和TAG的地方显示none。
+$ls
+centos.tar
+$docker load -i centos.tar  #导入镜像
+$docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+centos              latest              dcb7b7451a2b        3 months ago        196.7 MB
+</code></pre></div>    </div>
+  </li>
+  <li>方法二：docker push 镜像名</li>
+</ul>
+
+<h3 id="容器导出导入">容器导出导入</h3>
+<ol>
+  <li>容器导出为tar包
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$docker export -o container.tar db49ebf163ec
+  $ls
+  container.tar
+</code></pre></div>    </div>
+  </li>
+  <li>从容器导出的tar包导入成镜像，由于是导入的镜像，故需自己定义元数据，即镜像名和tag需自已定义。
+ 语法： cat 导出的tar包 | docker import - 镜像名：tag
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  $cat container.tar | docker import - myimage/kaiz:1.0
+  $docker images
+  REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+  myimage/kaiz        1.0                 2169ac7d4e01        28 seconds ago      196.7 MB
+</code></pre></div>    </div>
+  </li>
+  <li>从导入的镜像启动容器
+<code class="highlighter-rouge">$docker run -d 2169ac7d4e01 /bin/bash</code></li>
+</ol>
+
+<h3 id="宿主机与容器之间的文件复制">宿主机与容器之间的文件复制</h3>
+<p>从宿主机文件到容器</p>
+<ul>
+  <li>通过docker inspect 查看挂载的路径，后从宿主机复制</li>
+  <li>$docker cp /root/bb db49ebf163ec:/</li>
+</ul>
+
+<p>从容器到宿主机</p>
+<ul>
+  <li>$docker cp db49ebf163ec:/root/file.txt .</li>
+</ul>
+
+<blockquote>
+  <p>查看不同layers的命令是docker history 不是docker inspect</p>
+</blockquote>
+
+<h2 id="docker-help">docker –help</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Usage: docker <span class="o">[</span>OPTIONS] COMMAND <span class="o">[</span>arg...]
+Commands:
+
+    attach    Attach to a running container
+    build     Build an image from a Dockerfile
+    commit    Create a new image from a containers changes
+    <span class="nb">cp        </span>Copy files/folders between a container and the <span class="nb">local </span>filesystem
+    create    Create a new container
+    diff      Inspect changes on a containers filesystem
+    events    Get real <span class="nb">time </span>events from the server
+    <span class="nb">exec      </span>Run a <span class="nb">command </span><span class="k">in </span>a running container
+    <span class="nb">export    </span>Export a containers filesystem as a <span class="nb">tar </span>archive
+    <span class="nb">history   </span>Show the <span class="nb">history </span>of an image
+    images    List images
+    import    Import the contents from a tarball to create a filesystem image
+    info      Display system-wide information
+    inspect   Return low-level information on a container or image
+    <span class="nb">kill      </span>Kill a running container
+    load      Load an image from a <span class="nb">tar </span>archive or STDIN
+    login     Register or log <span class="k">in </span>to a Docker registry
+    <span class="nb">logout    </span>Log out from a Docker registry
+    logs      Fetch the logs of a container
+    network   Manage Docker networks
+    pause     Pause all processes within a container
+    port      List port mappings or a specific mapping <span class="k">for </span>the CONTAINER
+    ps        List containers
+    pull      Pull an image or a repository from a registry
+    push      Push an image or a repository to a registry
+    rename    Rename a container
+    restart   Restart a container
+    <span class="nb">rm        </span>Remove one or more containers
+    rmi       Remove one or more images
+    run       Run a <span class="nb">command </span><span class="k">in </span>a new container
+    save      Save an image<span class="o">(</span>s<span class="o">)</span> to a <span class="nb">tar </span>archive
+    search    Search the Docker Hub <span class="k">for </span>images
+    start     Start one or more stopped containers
+    stats     Display a live stream of container<span class="o">(</span>s<span class="o">)</span> resource usage statistics
+    stop      Stop a running container
+    tag       Tag an image into a repository
+    top       Display the running processes of a container
+    unpause   Unpause all processes within a container
+    version   Show the Docker version information
+    volume    Manage Docker volumes
+    <span class="nb">wait      </span>Block <span class="k">until </span>a container stops, <span class="k">then </span>print its <span class="nb">exit </span>code
+</code></pre></div></div>
+
+<h2 id="docker-run-help">docker run –help</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Commands:
+
+  <span class="nt">-a</span>, <span class="nt">--attach</span><span class="o">=[]</span>                 Attach to STDIN, STDOUT or STDERR
+  <span class="nt">--add-host</span><span class="o">=[]</span>                   Add a custom host-to-IP mapping <span class="o">(</span>host:ip<span class="o">)</span>
+  <span class="nt">--blkio-weight</span><span class="o">=</span>0                Block IO <span class="o">(</span>relative weight<span class="o">)</span>, between 10 and 1000
+  <span class="nt">--cpu-shares</span><span class="o">=</span>0                  CPU shares <span class="o">(</span>relative weight<span class="o">)</span>
+  <span class="nt">--cap-add</span><span class="o">=[]</span>                    Add Linux capabilities
+  <span class="nt">--cap-drop</span><span class="o">=[]</span>                   Drop Linux capabilities
+  <span class="nt">--cgroup-parent</span><span class="o">=</span>                Optional parent cgroup <span class="k">for </span>the container
+  <span class="nt">--cidfile</span><span class="o">=</span>                      Write the container ID to the file
+  <span class="nt">--cpu-period</span><span class="o">=</span>0                  Limit CPU CFS <span class="o">(</span>Completely Fair Scheduler<span class="o">)</span> period
+  <span class="nt">--cpu-quota</span><span class="o">=</span>0                   Limit CPU CFS <span class="o">(</span>Completely Fair Scheduler<span class="o">)</span> quota
+  <span class="nt">--cpuset-cpus</span><span class="o">=</span>                  CPUs <span class="k">in </span>which to allow execution <span class="o">(</span>0-3, 0,1<span class="o">)</span>
+  <span class="nt">--cpuset-mems</span><span class="o">=</span>                  MEMs <span class="k">in </span>which to allow execution <span class="o">(</span>0-3, 0,1<span class="o">)</span>
+  <span class="nt">-d</span>, <span class="nt">--detach</span><span class="o">=</span><span class="nb">false              </span>Run container <span class="k">in </span>background and print container ID
+  <span class="nt">--device</span><span class="o">=[]</span>                     Add a host device to the container
+  <span class="nt">--disable-content-trust</span><span class="o">=</span><span class="nb">true    </span>Skip image verification
+  <span class="nt">--dns</span><span class="o">=[]</span>                        Set custom DNS servers
+  <span class="nt">--dns-opt</span><span class="o">=[]</span>                    Set DNS options
+  <span class="nt">--dns-search</span><span class="o">=[]</span>                 Set custom DNS search domains
+  <span class="nt">-e</span>, <span class="nt">--env</span><span class="o">=[]</span>                    Set environment variables
+  <span class="nt">--entrypoint</span><span class="o">=</span>                   Overwrite the default ENTRYPOINT of the image
+  <span class="nt">--env-file</span><span class="o">=[]</span>                   Read <span class="k">in </span>a file of environment variables
+  <span class="nt">--expose</span><span class="o">=[]</span>                     Expose a port or a range of ports
+  <span class="nt">--group-add</span><span class="o">=[]</span>                  Add additional <span class="nb">groups </span>to <span class="nb">join</span>
+  <span class="nt">-h</span>, <span class="nt">--hostname</span><span class="o">=</span>                 Container host name
+  <span class="nt">--help</span><span class="o">=</span><span class="nb">false                    </span>Print usage
+  <span class="nt">-i</span>, <span class="nt">--interactive</span><span class="o">=</span><span class="nb">false         </span>Keep STDIN open even <span class="k">if </span>not attached
+  <span class="nt">--ipc</span><span class="o">=</span>                          IPC namespace to use
+  <span class="nt">--kernel-memory</span><span class="o">=</span>                Kernel memory limit
+  <span class="nt">-l</span>, <span class="nt">--label</span><span class="o">=[]</span>                  Set meta data on a container
+  <span class="nt">--label-file</span><span class="o">=[]</span>                 Read <span class="k">in </span>a line delimited file of labels
+  <span class="nt">--link</span><span class="o">=[]</span>                       Add <span class="nb">link </span>to another container
+  <span class="nt">--log-driver</span><span class="o">=</span>                   Logging driver <span class="k">for </span>container
+  <span class="nt">--log-opt</span><span class="o">=[]</span>                    Log driver options
+  <span class="nt">--lxc-conf</span><span class="o">=[]</span>                   Add custom lxc options
+  <span class="nt">-m</span>, <span class="nt">--memory</span><span class="o">=</span>                   Memory limit
+  <span class="nt">--mac-address</span><span class="o">=</span>                  Container MAC address <span class="o">(</span>e.g. 92:d0:c6:0a:29:33<span class="o">)</span>
+  <span class="nt">--memory-reservation</span><span class="o">=</span>           Memory soft limit
+  <span class="nt">--memory-swap</span><span class="o">=</span>                  Total memory <span class="o">(</span>memory + swap<span class="o">)</span>, <span class="s1">'-1'</span> to disable swap
+  <span class="nt">--memory-swappiness</span><span class="o">=</span><span class="nt">-1</span>          Tuning container memory swappiness <span class="o">(</span>0 to 100<span class="o">)</span>
+  <span class="nt">--name</span><span class="o">=</span>                         Assign a name to the container
+  <span class="nt">--net</span><span class="o">=</span>default                   Set the Network <span class="k">for </span>the container
+  <span class="nt">--oom-kill-disable</span><span class="o">=</span><span class="nb">false        </span>Disable OOM Killer
+  <span class="nt">-P</span>, <span class="nt">--publish-all</span><span class="o">=</span><span class="nb">false         </span>Publish all exposed ports to random ports
+  <span class="nt">-p</span>, <span class="nt">--publish</span><span class="o">=[]</span>                Publish a container<span class="s1">'s port(s) to the host
+  --pid=                          PID namespace to use
+  --privileged=false              Give extended privileges to this container
+  --read-only=false               Mount the container'</span>s root filesystem as <span class="nb">read </span>only
+  <span class="nt">--restart</span><span class="o">=</span>no                    Restart policy to apply when a container exits
+  <span class="nt">--rm</span><span class="o">=</span><span class="nb">false                      </span>Automatically remove the container when it exits
+  <span class="nt">--security-opt</span><span class="o">=[]</span>               Security Options
+  <span class="nt">--sig-proxy</span><span class="o">=</span><span class="nb">true                </span>Proxy received signals to the process
+  <span class="nt">--stop-signal</span><span class="o">=</span>SIGTERM           Signal to stop a container, SIGTERM by default
+  <span class="nt">-t</span>, <span class="nt">--tty</span><span class="o">=</span><span class="nb">false                 </span>Allocate a pseudo-TTY
+  <span class="nt">-u</span>, <span class="nt">--user</span><span class="o">=</span>                     Username or UID <span class="o">(</span>format: &lt;name|uid&gt;[:&lt;group|gid&gt;]<span class="o">)</span>
+  <span class="nt">--ulimit</span><span class="o">=[]</span>                     Ulimit options
+  <span class="nt">--uts</span><span class="o">=</span>                          UTS namespace to use
+  <span class="nt">-v</span>, <span class="nt">--volume</span><span class="o">=[]</span>                 Bind mount a volume
+  <span class="nt">--volume-driver</span><span class="o">=</span>                Optional volume driver <span class="k">for </span>the container
+  <span class="nt">--volumes-from</span><span class="o">=[]</span>               Mount volumes from the specified container<span class="o">(</span>s<span class="o">)</span>
+  <span class="nt">-w</span>, <span class="nt">--workdir</span><span class="o">=</span>                  Working directory inside the container
+</code></pre></div></div>
+
+            </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    <footer class="footer" role="contentinfo">
+	<div class="container">
+		<p class="copyright">Copyright &copy; 2014-2018 <a href=""><code>Kaiz</code></a>.</p>
+		<p>Powered by <a href="http://jekyllrb.com">Jekyll</a>, themed from <a href="http://lesscss.cn/">Less</a>, refactored by <a href="http://www.hifreud.com/">Freud Kang</a></p>
+	</div>
+</footer>
+
+<script src="/styles/js/jquery.min.js"></script>
+<script src="/styles/js/bootstrap.min.js"></script>
+<script src="/styles/js/holder.min.js"></script>
+<script src="/styles/js/lessismore.js"></script>
+<script src="/styles/js/application.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </body>
+</html>

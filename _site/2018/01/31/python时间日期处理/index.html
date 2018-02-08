@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>python时间日期处理 - Think Deep,Work Lean</title>
+
+	<link rel="shortcut icon" href="/styles/images/favicon.jpg">
+	<link rel="icon" href="/styles/images/favicon.jpg">
+
+	<link rel="stylesheet" href="/styles/css/index.css">
+	<link rel="stylesheet" href="/styles/css/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/styles/css/syntax.css">
+	<link rel="canonical" href="/2018/01/31/python%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E5%A4%84%E7%90%86/">
+	<link rel="alternate" type="application/rss+xml" title="Think Deep,Work Lean" href="/feed.xml">
+	
+	<meta name="keywords" content="python时间日期处理, Think Deep,Work Lean, 张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+	<meta name="description" content="张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+
+	<script src="/styles/js/jquery.min.js"></script>
+	<!--[if lt IE 9]>
+    	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+  	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?a81273dded286ab83c533a4184e6ae8c";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+  	<style type="text/css">
+	  	.docs-content{
+	  		margin-bottom: 10px;
+	  	}
+  	</style>
+</head>
+
+  <body class="index">
+
+    <header class="navbar navbar-inverse navbar-fixed-top docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="/styles/images/logo.jpg">
+      </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">    
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/categories/">大类分解</a>
+        </li>
+        <li>
+          <a href="/tag">小类内聚</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></a>
+        </li>
+        <li>
+          <a href="/donate/"><strong>打赏</strong></a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a rel="nofollow" target="_blank" href="https://github.com/kaizamm">Github</a></li>
+            <li><a rel="nofollow" target="_blank" href="">关于作者</a></li>
+            <li><a rel="nofollow" href="/books">我的书单</a></li>
+            <li><a rel="nofollow" href="http://www.hifreud.com/domains/">域名管理</a></li>
+            <li><a rel="nofollow" href="/reference">推荐博客</a></li>
+            <li><a href="/feed.xml">RSS订阅</a></li>
+            <li class="divider"></li>
+            <li><a rel="nofollow" target="_blank" href="https://github.com/luoyan35714/LessOrMore.git">本项目</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    <div class="docs-header" id="content">
+  <div class="container">
+  	
+  		<!--
+		    <h1>python时间日期处理</h1>
+		    <p>Post on Jan 31, 2018 by <a href="/about">Kaiz</a></p>
+		-->
+		    <h1>不向静中参妙理,纵然颖悟也虚浮 立乎其大 和而不同 古之成大事者，不惟有超世之才，亦必有坚韧不拔之志</h1>
+    
+  </div>
+</div>
+    
+      
+<div class="banner">
+  <div class="container">
+  	
+    	<a href="/categories/#document-ref">document</a>	/
+    	<a href="/tag/#python-ref">python</a>
+    
+  </div>
+</div>
+
+    
+
+    <div class="container docs-container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="sidebar hidden-print" role="complementary">
+        <div id="navigation">
+  <h1>目录</h1>
+  <ul class="nav sidenav">
+  </ul>
+  <div style="height: 200px;width: 200px;">
+    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=5ytn1ssq6za&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"> 
+    </script>
+  </div>
+</div>
+
+ 
+      </div>
+    </div>
+    <div class="col-md-9" role="main">
+      <div class="panel docs-content">
+        <div class="wrapper">
+            <header class="post-header">
+              <h1 class="post-title">python时间日期处理</h1>
+              <!--
+                <p class="post-meta">Jan 31, 2018</p>
+              -->
+              <div class="meta">Posted on <span class="postdate">Jan 31, 2018</span> By <a target="_blank" href="https://kaizamm.github.com">Kaiz</a></div>
+              <br />
+            </header>
+            <article class="post-content">
+              <h3 id="datetime模块">datetime模块</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="n">i</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"当前的日期和时间是 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">i</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"ISO格式的日期和时间是 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">i</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span> <span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"当前的年份是 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span><span class="n">i</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"当前的月份是 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span><span class="n">i</span><span class="o">.</span><span class="n">month</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"当前的日期是  </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span><span class="n">i</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"dd/mm/yyyy 格式是  </span><span class="si">%</span><span class="s">s/</span><span class="si">%</span><span class="s">s/</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">year</span><span class="p">)</span> <span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"当前小时是 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span><span class="n">i</span><span class="o">.</span><span class="n">hour</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"当前分钟是 </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span><span class="n">i</span><span class="o">.</span><span class="n">minute</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s">"当前秒是  </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span><span class="n">i</span><span class="o">.</span><span class="n">second</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="time模块">time模块</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c"># 格式化成2016-03-20 11:45:39形式</span>
+<span class="k">print</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">"</span><span class="si">%</span><span class="s">Y-</span><span class="si">%</span><span class="s">m-</span><span class="si">%</span><span class="s">d </span><span class="si">%</span><span class="s">H:</span><span class="si">%</span><span class="s">M:</span><span class="si">%</span><span class="s">S"</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">())</span>
+
+<span class="c"># 格式化成Sat Mar 28 22:24:24 2016形式</span>
+<span class="k">print</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">"</span><span class="si">%</span><span class="s">a </span><span class="si">%</span><span class="s">b </span><span class="si">%</span><span class="s">d </span><span class="si">%</span><span class="s">H:</span><span class="si">%</span><span class="s">M:</span><span class="si">%</span><span class="s">S </span><span class="si">%</span><span class="s">Y"</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">())</span>
+
+<span class="c"># 将格式字符串转换为时间戳</span>
+<span class="n">a</span> <span class="o">=</span> <span class="s">"Sat Mar 28 22:24:24 2016"</span>
+<span class="k">print</span> <span class="n">time</span><span class="o">.</span><span class="n">mktime</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="s">"</span><span class="si">%</span><span class="s">a </span><span class="si">%</span><span class="s">b </span><span class="si">%</span><span class="s">d </span><span class="si">%</span><span class="s">H:</span><span class="si">%</span><span class="s">M:</span><span class="si">%</span><span class="s">S </span><span class="si">%</span><span class="s">Y"</span><span class="p">))</span>
+<span class="s">'''
+2016-04-07 10:25:09
+Thu Apr 07 10:25:09 2016
+1459175064.0
+'''</span>
+</code></pre></div></div>
+
+<h3 id="calendar日历模块">calendar日历模块</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">calendar</span>
+<span class="k">print</span> <span class="n">calendar</span><span class="o">.</span><span class="n">month</span><span class="p">(</span><span class="mi">2016</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="s">'''
+January 2016
+Mo Tu We Th Fr Sa Su
+         1  2  3
+4  5  6  7  8  9 10
+11 12 13 14 15 16 17
+18 19 20 21 22 23 24
+25 26 27 28 29 30 31
+'''</span>
+</code></pre></div></div>
+
+            </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    <footer class="footer" role="contentinfo">
+	<div class="container">
+		<p class="copyright">Copyright &copy; 2014-2018 <a href=""><code>Kaiz</code></a>.</p>
+		<p>Powered by <a href="http://jekyllrb.com">Jekyll</a>, themed from <a href="http://lesscss.cn/">Less</a>, refactored by <a href="http://www.hifreud.com/">Freud Kang</a></p>
+	</div>
+</footer>
+
+<script src="/styles/js/jquery.min.js"></script>
+<script src="/styles/js/bootstrap.min.js"></script>
+<script src="/styles/js/holder.min.js"></script>
+<script src="/styles/js/lessismore.js"></script>
+<script src="/styles/js/application.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </body>
+</html>

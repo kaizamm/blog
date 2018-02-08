@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>chapter9-web客户端和服务端 - Think Deep,Work Lean</title>
+
+	<link rel="shortcut icon" href="/styles/images/favicon.jpg">
+	<link rel="icon" href="/styles/images/favicon.jpg">
+
+	<link rel="stylesheet" href="/styles/css/index.css">
+	<link rel="stylesheet" href="/styles/css/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/styles/css/syntax.css">
+	<link rel="canonical" href="/2017/08/11/chapter9-web%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E7%AB%AF/">
+	<link rel="alternate" type="application/rss+xml" title="Think Deep,Work Lean" href="/feed.xml">
+	
+	<meta name="keywords" content="chapter9-web客户端和服务端, Think Deep,Work Lean, 张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+	<meta name="description" content="张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+
+	<script src="/styles/js/jquery.min.js"></script>
+	<!--[if lt IE 9]>
+    	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+  	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?a81273dded286ab83c533a4184e6ae8c";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+  	<style type="text/css">
+	  	.docs-content{
+	  		margin-bottom: 10px;
+	  	}
+  	</style>
+</head>
+
+  <body class="index">
+
+    <header class="navbar navbar-inverse navbar-fixed-top docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="/styles/images/logo.jpg">
+      </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">    
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/categories/">大类分解</a>
+        </li>
+        <li>
+          <a href="/tag">小类内聚</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></a>
+        </li>
+        <li>
+          <a href="/donate/"><strong>打赏</strong></a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a rel="nofollow" target="_blank" href="https://github.com/kaizamm">Github</a></li>
+            <li><a rel="nofollow" target="_blank" href="">关于作者</a></li>
+            <li><a rel="nofollow" href="/books">我的书单</a></li>
+            <li><a rel="nofollow" href="http://www.hifreud.com/domains/">域名管理</a></li>
+            <li><a rel="nofollow" href="/reference">推荐博客</a></li>
+            <li><a href="/feed.xml">RSS订阅</a></li>
+            <li class="divider"></li>
+            <li><a rel="nofollow" target="_blank" href="https://github.com/luoyan35714/LessOrMore.git">本项目</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    <div class="docs-header" id="content">
+  <div class="container">
+  	
+  		<!--
+		    <h1>chapter9-web客户端和服务端</h1>
+		    <p>Post on Aug 11, 2017 by <a href="/about">Kaiz</a></p>
+		-->
+		    <h1>不向静中参妙理,纵然颖悟也虚浮 立乎其大 和而不同 古之成大事者，不惟有超世之才，亦必有坚韧不拔之志</h1>
+    
+  </div>
+</div>
+    
+      
+<div class="banner">
+  <div class="container">
+  	
+    	<a href="/categories/#document-ref">document</a>	/
+    	<a href="/tag/#python-ref">python</a>
+    
+  </div>
+</div>
+
+    
+
+    <div class="container docs-container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="sidebar hidden-print" role="complementary">
+        <div id="navigation">
+  <h1>目录</h1>
+  <ul class="nav sidenav">
+  </ul>
+  <div style="height: 200px;width: 200px;">
+    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=5ytn1ssq6za&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"> 
+    </script>
+  </div>
+</div>
+
+ 
+      </div>
+    </div>
+    <div class="col-md-9" role="main">
+      <div class="panel docs-content">
+        <div class="wrapper">
+            <header class="post-header">
+              <h1 class="post-title">chapter9-web客户端和服务端</h1>
+              <!--
+                <p class="post-meta">Aug 11, 2017</p>
+              -->
+              <div class="meta">Posted on <span class="postdate">Aug 11, 2017</span> By <a target="_blank" href="https://kaizamm.github.com">Kaiz</a></div>
+              <br />
+            </header>
+            <article class="post-content">
+              <h3 id="简介">简介</h3>
+<p>web应用遵循客户端/服务器架构，web客户端是浏览器，即允许用户在万维网上查询文档的应用程序。另一边是web服务器端，指的是运行在信息提供商的主机上的进程。这些服务器等待客户端及其文档的请求，进行相应的处理，并返回相关的数据。服务器持续运行，客户端的活动以单个事件划分，一旦完成一个客户请求，这个服务事件就停止了。web客户端可以向服务器发出各种不同的请求。这些请求可能包括获得一个用于查看的网页视图，或者提交一个包含待处理数据的表单。web服务器端首先处理请求，然后会以特定的格式HTML等返回给客户端浏览。web客户端和服务器端端交互需要用特定的语言，即web交互需要用到的标准协议，称为HTTP(超文本传输)。HTTP是TCP/IP的上层协议，这意味着HTTP协议依靠TCP/IP来进行低层的交流工作。它的职责不是发送或者传递消息(TCP/IP协议来处理这些)，而是通过发送、接受HTTP消息来处理客户端的请求。客户端可以随时发送新的请求，但是新的请求会处理成独立的服务请求。由于每个请求缺乏上下文，因此你可能注意到有些URL中含有很长的变量和值，这些将作为请求的一部分，以提供一些状态信息。另一种方式是使用“cookie”，即保存在客户端的客户状态信息。值得一提的是，在因特网上传输的数据当中，其中一部份会比较敏感。而在传输过程中，默认没有加密服务，所以标准协议直接将应用程序发送过来的数据传输出去。为了对传输数据进行加密，需要在普通的套接字上添加一个额外的安全层，称为安全套接字层secure socketlayer，简称SSL，用来创建一个套接字，加密通过该套接字传输的数据。开发者可以决定是否使用这个额外的安全层。</p>
+<h3 id="python-web客户端工具">Python web客户端工具</h3>
+<p>有一点需要记清楚，浏览器只是web客户端的一种。 任何一个web服务端发送请求来获得数据的应用程序都是“客户端”。使用urllib模块下载或者访问web上信息的应用程序(urllib.urlopen()或者urllib.urlretrieve()就是简单的web客户端</p>
+<h4 id="url统一资源定位符">URL统一资源定位符</h4>
+<p>简单的网页浏览需要用到URL(统一资源定位符)的web地址。这个地址用来在web上定位一个文档，或者调用一个CGI程序来为客户端生成一个文档。URL是URI(统一资源标识符)的一部分。一个URL是一个简单的URI,它使用已有的协议方案，如HTTP、ftp等作为地址的一部分。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#URL的格式：
+prot_sch://net_loc/path;params?query#frag
+</code></pre></div></div>
+<ul>
+  <li>prot_sch 网络协议或下载方案</li>
+  <li>net_loc 服务器所在地(也许含有用户信息)，可进一步拆分成 user:passwd@host:port,用户名和密码只有在使用ftp连接时才有可能用到，而即使是使用FTP，大多数的连接都是匿名的，这时不需要用户名和密码</li>
+  <li>path 使用斜杠/分割的文件或CGI应用的路径</li>
+  <li>params 可选参数</li>
+  <li>query 连接符&amp;分割的一系列键值对</li>
+  <li>frag 指定文档内特定锚的部分</li>
+</ul>
+
+<p>python支持两种不同的模块，两者分别以不同的功能和兼容性来处理URL。</p>
+<h4 id="urlparse模块">urlparse模块</h4>
+<ul>
+  <li>urlparse.urlparse()
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#语法
+(urlstr,defProtSch=None,allowFrag=None)
+</code></pre></div>    </div>
+    <p>urlparse()将urlstr解析成一个6元组(pro_sch,net_loc,path,params,query,frag),前面已经描述了这每个组件。如果urlstr中没有提供默认的网络协议或下载方案，defProtSch会指定一个默认的网络协议。allowFrag标识一个URL是否允许使用片段。下面是一个给定URL经urlparse()后的输出。</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>In [25]: urlparse.urlparse('https://www.python.org/doc/FAQ.html')
+Out[25]: ParseResult(scheme='https', netloc='www.python.org', path='/doc/FAQ.html', params='', query='', fragment='')
+</code></pre></div>    </div>
+  </li>
+  <li>urlparse.urlunparse()
+与urlparse()恰好相反，其将经urlparse()处理的URL生成urltup这个6元组拼接成URL并返回。因此
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>urlunparse(urlparse(urlstr)) == urlstr
+</code></pre></div>    </div>
+  </li>
+  <li>urlparse.urljoin()
+在需要处理多个相关的URL时我们就需要使用urljoin()的功能了，例如，一个Web页中可能会产生一系列页面URL。</li>
+</ul>
+
+<h4 id="urllib模块包">urllib模块/包</h4>
+<p>python2中有urllib、urlparse、urllib2。python3中全部整合进urllib单一包中。urllib和urlib2中的内容整合进了urllib.request模块中，urlparse整合进了urllib.parse中。python3中的urllib包还包括response、error和robotparse这些子模块。</p>
+<ul>
+  <li>urllib.urlopen()，打开一个给定的URL字符串表示的Web连接，并返回文件类型的对象。
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>urlopen(urlstr,postQueryData=None)
+</code></pre></div>    </div>
+    <p>urlopen()打开urlstr所指向的url，如果没有给定协议或者下载方案scheme，或者传入了一个file方案，urlopen()会打开一个本地文件。一旦连接成功，urlopen()将会返回一个文件类型对象，就像在目标路径下打开一个可读文件。如果文件对象是f，那么句柄会支持一些读取内容的方法，如f.read()，f.readline(),f.readlines(),f.close()，f.fileno()</p>
+  </li>
+</ul>
+
+            </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    <footer class="footer" role="contentinfo">
+	<div class="container">
+		<p class="copyright">Copyright &copy; 2014-2018 <a href=""><code>Kaiz</code></a>.</p>
+		<p>Powered by <a href="http://jekyllrb.com">Jekyll</a>, themed from <a href="http://lesscss.cn/">Less</a>, refactored by <a href="http://www.hifreud.com/">Freud Kang</a></p>
+	</div>
+</footer>
+
+<script src="/styles/js/jquery.min.js"></script>
+<script src="/styles/js/bootstrap.min.js"></script>
+<script src="/styles/js/holder.min.js"></script>
+<script src="/styles/js/lessismore.js"></script>
+<script src="/styles/js/application.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </body>
+</html>

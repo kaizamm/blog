@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>chapter2-socket网络编程 - Think Deep,Work Lean</title>
+
+	<link rel="shortcut icon" href="/styles/images/favicon.jpg">
+	<link rel="icon" href="/styles/images/favicon.jpg">
+
+	<link rel="stylesheet" href="/styles/css/index.css">
+	<link rel="stylesheet" href="/styles/css/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/styles/css/syntax.css">
+	<link rel="canonical" href="/2017/07/07/chapter2-socket%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
+	<link rel="alternate" type="application/rss+xml" title="Think Deep,Work Lean" href="/feed.xml">
+	
+	<meta name="keywords" content="chapter2-socket网络编程, Think Deep,Work Lean, 张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+	<meta name="description" content="张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+
+	<script src="/styles/js/jquery.min.js"></script>
+	<!--[if lt IE 9]>
+    	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+  	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?a81273dded286ab83c533a4184e6ae8c";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+  	<style type="text/css">
+	  	.docs-content{
+	  		margin-bottom: 10px;
+	  	}
+  	</style>
+</head>
+
+  <body class="index">
+
+    <header class="navbar navbar-inverse navbar-fixed-top docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="/styles/images/logo.jpg">
+      </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">    
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/categories/">大类分解</a>
+        </li>
+        <li>
+          <a href="/tag">小类内聚</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></a>
+        </li>
+        <li>
+          <a href="/donate/"><strong>打赏</strong></a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a rel="nofollow" target="_blank" href="https://github.com/kaizamm">Github</a></li>
+            <li><a rel="nofollow" target="_blank" href="">关于作者</a></li>
+            <li><a rel="nofollow" href="/books">我的书单</a></li>
+            <li><a rel="nofollow" href="http://www.hifreud.com/domains/">域名管理</a></li>
+            <li><a rel="nofollow" href="/reference">推荐博客</a></li>
+            <li><a href="/feed.xml">RSS订阅</a></li>
+            <li class="divider"></li>
+            <li><a rel="nofollow" target="_blank" href="https://github.com/luoyan35714/LessOrMore.git">本项目</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    <div class="docs-header" id="content">
+  <div class="container">
+  	
+  		<!--
+		    <h1>chapter2-socket网络编程</h1>
+		    <p>Post on Jul 07, 2017 by <a href="/about">Kaiz</a></p>
+		-->
+		    <h1>不向静中参妙理,纵然颖悟也虚浮 立乎其大 和而不同 古之成大事者，不惟有超世之才，亦必有坚韧不拔之志</h1>
+    
+  </div>
+</div>
+    
+      
+<div class="banner">
+  <div class="container">
+  	
+    	<a href="/categories/#document-ref">document</a>	/
+    	<a href="/tag/#python-ref">python</a>
+    
+  </div>
+</div>
+
+    
+
+    <div class="container docs-container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="sidebar hidden-print" role="complementary">
+        <div id="navigation">
+  <h1>目录</h1>
+  <ul class="nav sidenav">
+  </ul>
+  <div style="height: 200px;width: 200px;">
+    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=5ytn1ssq6za&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"> 
+    </script>
+  </div>
+</div>
+
+ 
+      </div>
+    </div>
+    <div class="col-md-9" role="main">
+      <div class="panel docs-content">
+        <div class="wrapper">
+            <header class="post-header">
+              <h1 class="post-title">chapter2-socket网络编程</h1>
+              <!--
+                <p class="post-meta">Jul 7, 2017</p>
+              -->
+              <div class="meta">Posted on <span class="postdate">Jul 07, 2017</span> By <a target="_blank" href="https://kaizamm.github.com">Kaiz</a></div>
+              <br />
+            </header>
+            <article class="post-content">
+              <h3 id="套接字">套接字</h3>
+<p>套接字：通讯端点，网络化的应用在开始任何通讯之前都必需要创建套接字。就像电话的插口一样，没有它就没法通讯。一开始套接字被设计用在同一台主机上多个应用程序之间的通讯。这也被叫做进程间的通讯，或叫IPC。套按字有两种，分别是基于文件型和基于网络型的。Unix套接字是第一个套接字家族，家族名“AF_UNIX”也叫AF_LOCAL，表示地址家族：UNIX；python使用AF_UNIX。另一种套接字是基于网络的，它有自己的家族名：AF_INET，或叫地址家族：Internet。</p>
+<h3 id="套接字地址主机与端口">套接字地址：主机与端口</h3>
+<p>若把套接字比如电话插口–通讯的最底层结构，那主机与端口就像区号与电话号码的一对组合。有了能打电话的硬件还不够，你得知道打给谁，往哪打。一个Internet地址就是一个主机与端口组成。而且对方要有人听，才行。</p>
+<blockquote>
+  <p>合法的端口号范围为0到65535。其中小于1024的端口号为系统保留端口。Unix操作系统保留的端口号及其对应的服务/协议/套接字类型可以通过/etc/services文件获得</p>
+</blockquote>
+
+<h3 id="面向连接与无连接">面向连接与无连接</h3>
+<ul>
+  <li>面向连接
+无论你使用哪一种地址家庭，套接字的类型只有两种。一种是面向连接的套接字，即在通讯之前一定要建立一个连接，就像跟朋友打电话时那样。这种通讯方式也被称为“虚电路”或“流套接字”。面向连接的通讯方式提供了顺序的，可靠的，不会重复的数据传输，而且也不会被加上数据边界。这也意味着，每一个要发送的信息，可能会被拆分成多份，每一份都会不多光少地正确到达目的地。然后重新按顺序拼装起来，传给正在等待的应用程序。实现这种连接的主要协议就是传输控制协议TCP。要创建TCP套接字就得在创建的时候指定套接字类型为SOCK_STREAM。TCP套接字采用SOCK_STREAM这个名字，表达了它做为流套接字的特点。由于这些套接字使用Internet协议IP来查找网络中的主机，这样形成的整个系统，一般会由这两个协议来提及，即TCP/IP。</li>
+  <li>无连接
+与虚电路完全相反的是数据报型的无连接套接字。这意味着，无需建立建立连接就可以进行通讯。但这时，数据到达的顺序，可靠性及数据不重复就无法保证了。数据报会保留数据边界，这就表示，数据不会像面向连接的协议那样被拆分成小块。使用数据报来传输数据就像邮政服务一样。邮件和包裹不一定会按它们发送的顺序到达。事实上，它们还有可能根本到不了。而且由于网络的复杂性，数据还可能被重复传送。既然数据报有这么多缺点，为什么还要使用它呢，一定是有什么方面胜过流套接字。由于面向连接套接字要提供一些保证，以及要维持电路连接，这都是很重的额外负担。数据报没有这些负担，所以它更“便宜”。通常能提供更好的性能，更适合某些应用场合。实现这种连接的主要协议就是用户数据报协议UDP，要创建UDP套接字就得在创建的时候指定套接字类型为SOCK_DGRAM。SOCK_DGRAM来源于datagram(数据报)，同样在Internet中通过IP查找主机，即UDP/IP。</li>
+</ul>
+
+<h3 id="python中的网络编程">python中的网络编程</h3>
+<p>主要利用socket()模块，模块中的socket()函数被用来创建套接字。套接字也有自己的一套函数来提供基于套接字的网络通信。</p>
+<h4 id="socket模块">socket()模块</h4>
+<p>socket.socket()来创建套接字。语法</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>socket(socket_family,socket_type,protocol=0)
+</code></pre></div></div>
+<ul>
+  <li>socket_family: AF_UNIX 或 AF_INET</li>
+  <li>socket_type: SOCK_STREAM 或 SOCK_DGRAM</li>
+  <li>protocol: 一般不填，默认值0
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#创建一个TCP/IP的套接字，你要这样调用socket.socket():
+tcpSock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+#同样地，创建一个UDP/IP的套接字
+udpSock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+</code></pre></div>    </div>
+    <p>当我们创建套接字对象后，所有的交互都将通过对该套接字对象的方法调用进行。</p>
+    <h4 id="套接字对象内建方法">套接字对象(内建)方法</h4>
+  </li>
+  <li>s.blind() 绑定地址(主机，端口号对)到套接字</li>
+  <li>s.listen() 开始TCP监听</li>
+  <li>s.accept() 被动接受TCP客户的连接，(阻塞式)等待连接的到来客户端套接字函数</li>
+  <li>s.connect() 主动初始化TCP服务器连接</li>
+  <li>s.connetct_ex() connetct()函数的扩展版本，出错时返回出错码，而不是抛异常公共用途的套接字函数</li>
+  <li>s.recv() 接受TCP数据</li>
+  <li>s.send() 发送TCP数据</li>
+  <li>s.sendall() 完整发送TCP数据</li>
+  <li>s.recvfrom() 接收UDP数据</li>
+  <li>s.sendto() 发送UDP数据</li>
+  <li>s.getpeername() 连接到当前套接字的远端的地址</li>
+  <li>s.getsockname() 当前套接字地址</li>
+  <li>s.getsockopt() 返回指定套接字的参数</li>
+  <li>s.setsockopt() 设置指定套接字的参数</li>
+  <li>s.close() 关闭套接字
+    <blockquote>
+      <p>提示：在运行网络应用程序时，最好在不同的电脑上执行服务器和客户端的的程序</p>
+      <h4 id="创建一个tcp服务器">创建一个TCP服务器</h4>
+      <p>伪代码</p>
+      <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import socket
+ss = socket.socket()  #创建套接字
+ss.bind() #将地址绑定到套接字上
+ss.listen() #监听连接
+inf_loop: #服务器无限循环
+cs = ss.accept() #接受客户的连接，默认情况下，accept()函数是阻塞式的，即程序到来之前会处理挂起状态。
+comm_loop: #通讯循环
+cs.recv()/cs.send() #对话
+cs.close() #关闭客户套接字,服务器会继续等待下一个客户的连接
+ss.close() #关闭服务器套接字(可选)
+</code></pre></div>      </div>
+      <p>代码如下
+```
+#!/usr/bin/env python
+#<em>*_coding:UTF8</em>*_
+from socket import *
+from time import ctime</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p>#HOST为空表示bind()函数可以绑定在所有有效地址上。
+HOST = ‘’
+#随便一个未被占用的端口号
+PORT = 21567
+#缓冲大小设定为1k，根据实际网络情况和应用的需要来修改这个大小
+BUFSIZ = 1024
+ADDR = (HOST,PORT)
+#网络、tcp
+tcpSerSock = socket(AF_INET,SOCK_STREAM)
+tcpSerSock.bind(ADDR)
+#listen()函数的参数只是表示最多允许多少个连接同时连进来，后来的连接就会被拒绝掉
+tcpSerSock.listen(5)</p>
+
+<p>#无限循环
+while True:
+    print ‘waiting for connection…’
+    #被动等待连接的到来
+    tcpCliSock,addr = tcpSerSock.accept()
+    #开始会话
+    print ‘…connected from:’,addr
+    while True:
+        data = tcpCliSock.recv(BUFSIZ)
+        #如果消息为空，表示客户端已经退出，那就再去等待下一个客户的连接
+        if not data:
+            break
+        #得到消息后，加上时间戳后返回
+        tcpCliSock.send(‘%s:%s\n’ % (ctime(),data))
+        tcpCliSock.close
+    tcpSerSock.close()</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>通过 telnet就可以连接测试访问
+
+#### 创建一个TCP客户端
+伪代码
+</code></pre></div></div>
+<p>cs = socket() #创建客户套接字
+cs.connect() #尝试连接服务器
+comm_loop: #通讯循环
+cs.send()/cs.recv() #对话(发送/接收)
+cs.close() #关闭客户套接字</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>所有的套接字都可以由socket.socket()函数创建。在客户有了套接字后，马上就可以调用connect()函数去连接服务器。连接建立后，就可以与服务器开始对话了。对话结束后，客户就可以关闭套接字，结束连接。
+</code></pre></div></div>
+<p>#!/usr/bin/env python
+#<em>*_coding:UTF8</em>*_
+from socket import *
+from time import ctime</p>
+
+<p>#HOST为空表示bind()函数可以绑定在所有有效地址上。
+HOST = ‘127.0.0.1’
+#随便一个未被占用的端口号
+PORT = 21567
+#缓冲大小设定为1k，根据实际网络情况和应用的需要来修改这个大小
+BUFSIZ = 1024
+ADDR = (HOST,PORT)
+#网络、tcp
+tcpCliSock = socket(AF_INET,SOCK_STREAM)
+tcpCliSock.connect(ADDR)</p>
+
+<p>#无限循环
+while True:
+    data = raw_input(‘&gt;:’)
+    if not data:
+        break
+    #得到消息后，加上时间戳后返回
+    tcpCliSock.send(data)
+    data = tcpCliSock.recv(BUFSIZ)
+    if not data:
+        break
+    print data
+    tcpCliSock.close</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+### 通信python提供两种方法:socket对象及文件类对象
+#### socket对象
++ send()
++ sendto()
++ recv()
++ recvfrom()
+#### 文件类对象
++ read()
++ write()
++ readline()
+
+#### 异常
++ 与一般I/O和通信有关的: socket.error
++ 与查询地址信息有关的socket.gaierror
++ 与其他地址错误有关的socket.herror
++ 与在一个socket上调用settimeout()后，处理超时有关的socket.timeout
+在connetct(0)的调用时，如果程序可以解决把主机名转换成IP地址的问题，可能产生两种错误，如果主机名不对则会产生socket.gainerror，如果连接远程主机有问题则会产生socket.error
+
+### 必需的参数
++ port： 描述了端口号，或者定义在/etc/services的名字，这个端口号是服务器应该侦听的，例如 80,http
++ type: 若是tcp，则type是SOCK_STREAM;若是udp，则是dgram
++ protocol: tcp或者是udp
++ invocationtype: 对于tcp服务器，invocationtype应该是nowait;对于udp，如果服务器连接远程机器并为来自不同的机器的信息包请求一个新的进程来处理，那么使用nowait。如果UDP在它的端口上处理所有的信息包，直到它终止，那么应该使用wait。
++ username： username 指定了服务器应该在哪个用户下运行
++ path: path是指服务器的完整路径
++ programname: 表示程序的名字，就像在sys.argv[0]中传递的那样
++ arguments: 这个参数是可选的，如果有，则在服务器的脚本中以sys.argv[1:]显示
+
+&gt;  注意，因为socket在连接时，只能有一个进程来连接，若每每个socket开一个进程，势必则会将内存占满；故需要配置xinetd
+
+### syslog模块
+python提供了一个可以作为系统syslog程序接口的syslog模块。在开始记录信息之前，需调用openlog()函数来初始化syslog的接口，
+</code></pre></div></div>
+<p>openlog(ident[,logopt[,facility]])
+```</p>
+
+            </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    <footer class="footer" role="contentinfo">
+	<div class="container">
+		<p class="copyright">Copyright &copy; 2014-2018 <a href=""><code>Kaiz</code></a>.</p>
+		<p>Powered by <a href="http://jekyllrb.com">Jekyll</a>, themed from <a href="http://lesscss.cn/">Less</a>, refactored by <a href="http://www.hifreud.com/">Freud Kang</a></p>
+	</div>
+</footer>
+
+<script src="/styles/js/jquery.min.js"></script>
+<script src="/styles/js/bootstrap.min.js"></script>
+<script src="/styles/js/holder.min.js"></script>
+<script src="/styles/js/lessismore.js"></script>
+<script src="/styles/js/application.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </body>
+</html>

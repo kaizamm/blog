@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>django-practice（二） - Think Deep,Work Lean</title>
+
+	<link rel="shortcut icon" href="/styles/images/favicon.jpg">
+	<link rel="icon" href="/styles/images/favicon.jpg">
+
+	<link rel="stylesheet" href="/styles/css/index.css">
+	<link rel="stylesheet" href="/styles/css/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/styles/css/syntax.css">
+	<link rel="canonical" href="/2017/04/05/django-practice(%E4%BA%8C)/">
+	<link rel="alternate" type="application/rss+xml" title="Think Deep,Work Lean" href="/feed.xml">
+	
+	<meta name="keywords" content="django-practice（二）, Think Deep,Work Lean, 张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+	<meta name="description" content="张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+
+	<script src="/styles/js/jquery.min.js"></script>
+	<!--[if lt IE 9]>
+    	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+  	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?a81273dded286ab83c533a4184e6ae8c";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+  	<style type="text/css">
+	  	.docs-content{
+	  		margin-bottom: 10px;
+	  	}
+  	</style>
+</head>
+
+  <body class="index">
+
+    <header class="navbar navbar-inverse navbar-fixed-top docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="/styles/images/logo.jpg">
+      </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">    
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/categories/">大类分解</a>
+        </li>
+        <li>
+          <a href="/tag">小类内聚</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></a>
+        </li>
+        <li>
+          <a href="/donate/"><strong>打赏</strong></a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a rel="nofollow" target="_blank" href="https://github.com/kaizamm">Github</a></li>
+            <li><a rel="nofollow" target="_blank" href="">关于作者</a></li>
+            <li><a rel="nofollow" href="/books">我的书单</a></li>
+            <li><a rel="nofollow" href="http://www.hifreud.com/domains/">域名管理</a></li>
+            <li><a rel="nofollow" href="/reference">推荐博客</a></li>
+            <li><a href="/feed.xml">RSS订阅</a></li>
+            <li class="divider"></li>
+            <li><a rel="nofollow" target="_blank" href="https://github.com/luoyan35714/LessOrMore.git">本项目</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    <div class="docs-header" id="content">
+  <div class="container">
+  	
+  		<!--
+		    <h1>django-practice（二）</h1>
+		    <p>Post on Apr 05, 2017 by <a href="/about">Kaiz</a></p>
+		-->
+		    <h1>不向静中参妙理,纵然颖悟也虚浮 立乎其大 和而不同 古之成大事者，不惟有超世之才，亦必有坚韧不拔之志</h1>
+    
+  </div>
+</div>
+    
+      
+<div class="banner">
+  <div class="container">
+  	
+    	<a href="/categories/#python-ref">python</a>	/
+    	<a href="/tag/#django-ref">django</a>
+    
+  </div>
+</div>
+
+    
+
+    <div class="container docs-container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="sidebar hidden-print" role="complementary">
+        <div id="navigation">
+  <h1>目录</h1>
+  <ul class="nav sidenav">
+  </ul>
+  <div style="height: 200px;width: 200px;">
+    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=5ytn1ssq6za&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"> 
+    </script>
+  </div>
+</div>
+
+ 
+      </div>
+    </div>
+    <div class="col-md-9" role="main">
+      <div class="panel docs-content">
+        <div class="wrapper">
+            <header class="post-header">
+              <h1 class="post-title">django-practice（二）</h1>
+              <!--
+                <p class="post-meta">Apr 5, 2017</p>
+              -->
+              <div class="meta">Posted on <span class="postdate">Apr 05, 2017</span> By <a target="_blank" href="https://kaizamm.github.com">Kaiz</a></div>
+              <br />
+            </header>
+            <article class="post-content">
+              <h3 id="orm">ORM</h3>
+<p>一对一、多对多</p>
+<ul>
+  <li>一对一： 一般用于某张表的补充，比如用户基本信息是一张表，但并非每一个用户都需要有登陆的权限，不需要记录用户的用户名和密码，此时，合理的做法就是新建一张记录登录信息的表，与用户信息进行一对一的关联，可以方便的从不查询母表信息或反向查询。</li>
+  <li>外键： 有很多的应用场景，比如每一个员工归属于一个部门，那么就可以让员工表的部门字段与部门表进行一对多的关联，可以查询到一个员工属于哪个部门，也可反向查询某一部门有哪些员工</li>
+  <li>共同点： 在admin中添加数据的话，都会出现在一个select选框，但只能单选，因为不论一对一还是一对多，自己都是”一”</li>
+  <li>多对多： 比如有多个孩子，和多种颜色，每个孩子可以喜欢多种颜色，每个颜色可以有多个孩子喜欢，对于双向均是可以有多个选择</li>
+</ul>
+
+<h3 id="form表单验证和字段验证">form表单验证和字段验证</h3>
+<p>在调用is_valid()方法时执行</p>
+<ul>
+  <li>字段的to_python()方法是验证第一步。它将值强制转化为正确的数据类型，如果不能转换则引发validatiionError。 这个方法从Widget 接收原始的值并返回转换后的值。例如，FloatField 将数据转换为Python 的float 或引发ValidationError。</li>
+  <li>字段validate()方法处理字段特异性的验证，这种验证不适合位于validator口。它接收一个已经转换成正确的数据类型的值，并在发现错误时引发ValidationError。这个方法不返回任何东西且不应该改变任何值。</li>
+  <li>run_validators</li>
+  <li>field子类的clean（）方法。 这个方法可以返回一个完全不同的字典，该字典将用作cleaned_data。它负责以正确的顺序to_python、 validate、 run_validators并传播他们的错误。这个方法返回验证后的数据，这个数据在后面将插入到表单的clean_data字典中。</li>
+  <li>表单子类中的clean_<fieldname>() 方法 —— <fieldname> 通过表单中的字段名称替换。这个方法完成于特定属性相关的验证，这个验证与字段的类型无关。这个方法没有任何传入的参数。你需要查找self.cleaned_data 中该字段的值，记住此时它已经是一个Python 对象而不是表单中提交的原始字符串（它位于cleaned_data 中是因为字段的clean() 方法已经验证过一次数据）。例如，如果你想验证名为serialnumber 的CharField 的内容是否唯一， clean_serialnumber() 将是实现这个功能的理想之处。你需要的不是一个特别的字段（它只是一个CharField），而是一个特定于表单字段特定验证，并规整化数据。这个方法返回从cleaned_data 中获取的值，无论它是否修改过。</fieldname></fieldname></li>
+  <li>表单字类的clean()方法。这个方法可以实现需要同时访问表单多个字段的验证。这里你可以验证如果提供字段A，那么字段B 必须包含一个合法的邮件地址以及类似的功能。还要注意，覆盖ModelForm 子类的clean() 方法需要特殊的考虑。（更多信息参见ModelForm) [http://python.usyiyi.cn/translate/django_182/topics/forms/modelforms.html#overriding-modelform-clean-method]文档）。</li>
+</ul>
+
+<p>这些方法按以上给出的顺序执行，一次验证一个字段。也就是说，对于表单中的每个字段（按它们在表单定义中出现的顺序），先运行Field.clean() ，然后运行clean_<fieldname>()。每个字段的这两个方法都执行完之后，最后运行Form.clean() 方法，无论前面的方法是否抛出过异常。</fieldname></p>
+
+<h3 id="字段类型">字段类型</h3>
+
+<ul>
+  <li>Ip GenericIPAddressField</li>
+  <li>FileField</li>
+  <li>GenericIPAddressField</li>
+  <li>CharField</li>
+</ul>
+
+<h3 id="bootstrap-css">Bootstrap CSS</h3>
+<p>CSS:cascading style sheets:层叠样式表，用来描述使用标记语言写成的网站的外观和格式。</p>
+
+<h3 id="models">models</h3>
+<h3 id="表单">表单</h3>
+<p>Django表单要么是绑定的(bound)，要么是未绑定的，如果是绑定的，那么它能够验证数据，并渲染表单及其数据成html；若是未绑定的，那么它就不能够完成验证（因为没有可验证的数据），但是仍能渲染空白 的表单成html</p>
+<ul>
+  <li>创建未绑定的表单实例，只需简单的实例化该类 <code class="highlighter-rouge">f = ContactForm()</code></li>
+  <li>若要绑定数据到表单，可以将数据以字黄的形式传递给表单类的构造函数的第一个参数。
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>data={'subject':'hello','message':'hi,there','cc_myslf':'True'}
+f = ContactForm(data)
+</code></pre></div>    </div>
+    <p>在这个字典中，键为字段的名称，它们对应于表单类中的属性。值为需要验证的数据。它们通常是字符串，但是没有强制 要求必须是字符串。传递的数据类型取决于字段。</p>
+  </li>
+  <li>如果你要确认是否已绑定表单，可以检查下表单is_bound属性的值
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>f=ContactForm()
+f.is_bound
+&gt;&gt; False
+f=ContactForm('subject':'hello')
+&gt;&gt;True
+</code></pre></div>    </div>
+    <p>注意，传递一个空的字典将创建一个带有空数据的绑定的表单：</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>f=ContactForm({})
+f.is_bound
+&gt;&gt;True
+</code></pre></div>    </div>
+    <h4 id="使用表单来验证数据">使用表单来验证数据</h4>
+  </li>
+  <li>Form.clean()
+当你需要为相互依赖的字段添加自定义的验证时，你可以实现表单的clean()方法</li>
+  <li>Form.is_valid()
+表单对象的首要任务是验证数据。对于绑定的表单实例，可以调用is_valid()方法来执行验证并返回一个表示数据是否合法的布尔值。</li>
+  <li>处理常规的表单数据，应该使用HttpRequest.POST
+    <h3 id="request">request</h3>
+  </li>
+  <li>request.method
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if request.method == 'GET':
+  do_something()
+elif request.method == 'POST':
+  do_something_else()
+</code></pre></div>    </div>
+  </li>
+  <li>request.POST.get</li>
+  <li>request.FILES
+key-value形式，key为name 如<code class="highlighter-rouge">&lt;input type="file" name="" /&gt;</code> value为FIFLES里上传的uploadfile
+    <blockquote>
+      <blockquote>
+        <blockquote>
+          <p>注意，files 只有在method为POST且&lt;form&gt;里包含 <code class="highlighter-rouge">enctype="multipart/form-data"</code></p>
+        </blockquote>
+      </blockquote>
+    </blockquote>
+  </li>
+</ul>
+
+            </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    <footer class="footer" role="contentinfo">
+	<div class="container">
+		<p class="copyright">Copyright &copy; 2014-2018 <a href=""><code>Kaiz</code></a>.</p>
+		<p>Powered by <a href="http://jekyllrb.com">Jekyll</a>, themed from <a href="http://lesscss.cn/">Less</a>, refactored by <a href="http://www.hifreud.com/">Freud Kang</a></p>
+	</div>
+</footer>
+
+<script src="/styles/js/jquery.min.js"></script>
+<script src="/styles/js/bootstrap.min.js"></script>
+<script src="/styles/js/holder.min.js"></script>
+<script src="/styles/js/lessismore.js"></script>
+<script src="/styles/js/application.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </body>
+</html>

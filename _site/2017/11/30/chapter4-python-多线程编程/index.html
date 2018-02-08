@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>chapter4-python-多线程编程 - Think Deep,Work Lean</title>
+
+	<link rel="shortcut icon" href="/styles/images/favicon.jpg">
+	<link rel="icon" href="/styles/images/favicon.jpg">
+
+	<link rel="stylesheet" href="/styles/css/index.css">
+	<link rel="stylesheet" href="/styles/css/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/styles/css/syntax.css">
+	<link rel="canonical" href="/2017/11/30/chapter4-python-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%BC%96%E7%A8%8B/">
+	<link rel="alternate" type="application/rss+xml" title="Think Deep,Work Lean" href="/feed.xml">
+	
+	<meta name="keywords" content="chapter4-python-多线程编程, Think Deep,Work Lean, 张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+	<meta name="description" content="张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+
+	<script src="/styles/js/jquery.min.js"></script>
+	<!--[if lt IE 9]>
+    	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+  	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?a81273dded286ab83c533a4184e6ae8c";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+  	<style type="text/css">
+	  	.docs-content{
+	  		margin-bottom: 10px;
+	  	}
+  	</style>
+</head>
+
+  <body class="index">
+
+    <header class="navbar navbar-inverse navbar-fixed-top docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="/styles/images/logo.jpg">
+      </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">    
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/categories/">大类分解</a>
+        </li>
+        <li>
+          <a href="/tag">小类内聚</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></a>
+        </li>
+        <li>
+          <a href="/donate/"><strong>打赏</strong></a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a rel="nofollow" target="_blank" href="https://github.com/kaizamm">Github</a></li>
+            <li><a rel="nofollow" target="_blank" href="">关于作者</a></li>
+            <li><a rel="nofollow" href="/books">我的书单</a></li>
+            <li><a rel="nofollow" href="http://www.hifreud.com/domains/">域名管理</a></li>
+            <li><a rel="nofollow" href="/reference">推荐博客</a></li>
+            <li><a href="/feed.xml">RSS订阅</a></li>
+            <li class="divider"></li>
+            <li><a rel="nofollow" target="_blank" href="https://github.com/luoyan35714/LessOrMore.git">本项目</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    <div class="docs-header" id="content">
+  <div class="container">
+  	
+  		<!--
+		    <h1>chapter4-python-多线程编程</h1>
+		    <p>Post on Nov 30, 2017 by <a href="/about">Kaiz</a></p>
+		-->
+		    <h1>不向静中参妙理,纵然颖悟也虚浮 立乎其大 和而不同 古之成大事者，不惟有超世之才，亦必有坚韧不拔之志</h1>
+    
+  </div>
+</div>
+    
+      
+<div class="banner">
+  <div class="container">
+  	
+    	<a href="/categories/#document-ref">document</a>	/
+    	<a href="/tag/#python-ref">python</a>
+    
+  </div>
+</div>
+
+    
+
+    <div class="container docs-container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="sidebar hidden-print" role="complementary">
+        <div id="navigation">
+  <h1>目录</h1>
+  <ul class="nav sidenav">
+  </ul>
+  <div style="height: 200px;width: 200px;">
+    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=5ytn1ssq6za&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"> 
+    </script>
+  </div>
+</div>
+
+ 
+      </div>
+    </div>
+    <div class="col-md-9" role="main">
+      <div class="panel docs-content">
+        <div class="wrapper">
+            <header class="post-header">
+              <h1 class="post-title">chapter4-python-多线程编程</h1>
+              <!--
+                <p class="post-meta">Nov 30, 2017</p>
+              -->
+              <div class="meta">Posted on <span class="postdate">Nov 30, 2017</span> By <a target="_blank" href="https://kaizamm.github.com">Kaiz</a></div>
+              <br />
+            </header>
+            <article class="post-content">
+              <h3 id="threading模块">threading模块</h3>
+<p>thrading模块支持守护线程：守护线程一般是一个等待客户端请求的服务器。如果没有客户端的请求，守护线程就是空闲的。如果把一个线程设置成一个守护线程，就表示这个线程是不重要的，进程退出时不需要等待这个线程执行完成。要将一个线程设置为守护线程，需要在启动之前执行如下赋值语句 thread.daemon=True整个Python程序(可以解读为主线程)将在所有的非守护线程退出后才会退出，换句话说，就是没有剩下存活的非守护线程时。</p>
+<h4 id="thread类对象">Thread类对象</h4>
+<p>threading的Thread类是主要执行对象</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>thread对象数据属性</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>线程名</td>
+    </tr>
+    <tr>
+      <td>ident</td>
+      <td>线程的描述符</td>
+    </tr>
+    <tr>
+      <td>daemon</td>
+      <td>布尔标志，表示这个线程是否是守护线程</td>
+    </tr>
+    <tr>
+      <td>Thread对象方法</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><em>init</em>(group=None,target=None,name=None,args=(),kwargs={},verbose=None,daemon=None)</td>
+      <td>实例化一个线程对象，需要有一个可调用 的target，以及其参数args或kwargs。daemon的值将会设定thread.daemon属性/标志。</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>使用Thread类，可以有很多方法来创建线程。常规三种：</p>
+<ul>
+  <li>创建Thread的实例，传给他一个函数</li>
+  <li>创建Thread的实例，传给它一个可调用的类实例</li>
+  <li>派生Thread的子类，并创建子类的实例</li>
+</ul>
+
+<blockquote>
+  <p>倾向使用最后一种</p>
+</blockquote>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env python</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span><span class="p">,</span><span class="n">ctime</span>
+<span class="n">loops</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">loop</span><span class="p">(</span><span class="n">nloop</span><span class="p">,</span><span class="n">nsec</span><span class="p">):</span>
+  <span class="k">print</span> <span class="s">"start loop"</span><span class="p">,</span><span class="n">nloop</span><span class="p">,</span><span class="s">"at:"</span><span class="p">,</span><span class="n">ctime</span><span class="p">()</span>
+  <span class="n">sleep</span><span class="p">(</span><span class="n">nsec</span><span class="p">)</span>
+  <span class="k">print</span> <span class="s">"loop"</span><span class="p">,</span><span class="n">nloop</span><span class="p">,</span><span class="s">"done at:"</span><span class="p">,</span><span class="n">ctime</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+  <span class="k">print</span> <span class="s">"starting at:"</span><span class="p">,</span><span class="n">ctime</span><span class="p">()</span>
+  <span class="n">threads</span><span class="o">=</span><span class="p">[]</span>
+  <span class="n">nloops</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">loops</span><span class="p">))</span>
+
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">nloops</span><span class="p">:</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">loop</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">loops</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+    <span class="n">threads</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">nloops</span><span class="p">:</span>
+    <span class="n">threads</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>  <span class="c">#调用start()函数时，线程开始执行</span>
+
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">nloops</span><span class="p">:</span>
+    <span class="n">threads</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">join</span><span class="p">()</span><span class="c">#调用join()等待线程执行完成后退出</span>
+
+  <span class="k">print</span> <span class="s">"all DONE at:"</span><span class="p">,</span><span class="n">ctime</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+  <span class="n">main</span><span class="p">()</span>
+</code></pre></div></div>
+<p>执行结果</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[root@i612-devopsyw-1 tmp]# python mtsleepC.py
+starting at: Thu Nov 30 15:43:36 2017
+start loop 0 at: Thu Nov 30 15:43:36 2017
+start loop 1 at: Thu Nov 30 15:43:36 2017
+loop 1 done at: Thu Nov 30 15:43:38 2017
+loop 0 done at: Thu Nov 30 15:43:40 2017
+all DONE at: Thu Nov 30 15:43:40 2017
+</code></pre></div></div>
+
+            </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    <footer class="footer" role="contentinfo">
+	<div class="container">
+		<p class="copyright">Copyright &copy; 2014-2018 <a href=""><code>Kaiz</code></a>.</p>
+		<p>Powered by <a href="http://jekyllrb.com">Jekyll</a>, themed from <a href="http://lesscss.cn/">Less</a>, refactored by <a href="http://www.hifreud.com/">Freud Kang</a></p>
+	</div>
+</footer>
+
+<script src="/styles/js/jquery.min.js"></script>
+<script src="/styles/js/bootstrap.min.js"></script>
+<script src="/styles/js/holder.min.js"></script>
+<script src="/styles/js/lessismore.js"></script>
+<script src="/styles/js/application.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>python迭代器与可迭代 - Think Deep,Work Lean</title>
+
+	<link rel="shortcut icon" href="/styles/images/favicon.jpg">
+	<link rel="icon" href="/styles/images/favicon.jpg">
+
+	<link rel="stylesheet" href="/styles/css/index.css">
+	<link rel="stylesheet" href="/styles/css/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/styles/css/syntax.css">
+	<link rel="canonical" href="/2016/12/06/python%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%8F%AF%E8%BF%AD%E4%BB%A3/">
+	<link rel="alternate" type="application/rss+xml" title="Think Deep,Work Lean" href="/feed.xml">
+	
+	<meta name="keywords" content="python迭代器与可迭代, Think Deep,Work Lean, 张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+	<meta name="description" content="张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+
+	<script src="/styles/js/jquery.min.js"></script>
+	<!--[if lt IE 9]>
+    	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+  	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?a81273dded286ab83c533a4184e6ae8c";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+  	<style type="text/css">
+	  	.docs-content{
+	  		margin-bottom: 10px;
+	  	}
+  	</style>
+</head>
+
+  <body class="index">
+
+    <header class="navbar navbar-inverse navbar-fixed-top docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="/styles/images/logo.jpg">
+      </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">    
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/categories/">大类分解</a>
+        </li>
+        <li>
+          <a href="/tag">小类内聚</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></a>
+        </li>
+        <li>
+          <a href="/donate/"><strong>打赏</strong></a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a rel="nofollow" target="_blank" href="https://github.com/kaizamm">Github</a></li>
+            <li><a rel="nofollow" target="_blank" href="">关于作者</a></li>
+            <li><a rel="nofollow" href="/books">我的书单</a></li>
+            <li><a rel="nofollow" href="http://www.hifreud.com/domains/">域名管理</a></li>
+            <li><a rel="nofollow" href="/reference">推荐博客</a></li>
+            <li><a href="/feed.xml">RSS订阅</a></li>
+            <li class="divider"></li>
+            <li><a rel="nofollow" target="_blank" href="https://github.com/luoyan35714/LessOrMore.git">本项目</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    <div class="docs-header" id="content">
+  <div class="container">
+  	
+  		<!--
+		    <h1>python迭代器与可迭代</h1>
+		    <p>Post on Dec 06, 2016 by <a href="/about">Kaiz</a></p>
+		-->
+		    <h1>不向静中参妙理,纵然颖悟也虚浮 立乎其大 和而不同 古之成大事者，不惟有超世之才，亦必有坚韧不拔之志</h1>
+    
+  </div>
+</div>
+    
+      
+<div class="banner">
+  <div class="container">
+  	
+    	<a href="/categories/#document-ref">document</a>	/
+    	<a href="/tag/#python-ref">python</a>
+    
+  </div>
+</div>
+
+    
+
+    <div class="container docs-container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="sidebar hidden-print" role="complementary">
+        <div id="navigation">
+  <h1>目录</h1>
+  <ul class="nav sidenav">
+  </ul>
+  <div style="height: 200px;width: 200px;">
+    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=5ytn1ssq6za&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"> 
+    </script>
+  </div>
+</div>
+
+ 
+      </div>
+    </div>
+    <div class="col-md-9" role="main">
+      <div class="panel docs-content">
+        <div class="wrapper">
+            <header class="post-header">
+              <h1 class="post-title">python迭代器与可迭代</h1>
+              <!--
+                <p class="post-meta">Dec 6, 2016</p>
+              -->
+              <div class="meta">Posted on <span class="postdate">Dec 06, 2016</span> By <a target="_blank" href="https://kaizamm.github.com">Kaiz</a></div>
+              <br />
+            </header>
+            <article class="post-content">
+              <h3 id="1定义">1.定义</h3>
+<p>Iterators:一种遍历的容器对象
+Iteration:可以通过 for … in 循环来遍历一个字符串、列表、元组或字典等，这种遍历称为迭代。</p>
+<h3 id="2应用说明及应用场景">2.应用说明及应用场景</h3>
+<p>a.字符串的迭代</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; a = "asdfjl"
+&gt;&gt;&gt; for i in a:
+...   print i
+...
+a
+s
+d
+f
+j
+l
+</code></pre></div></div>
+<p>b.列表的迭代</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; a = ['aba',123]
+&gt;&gt;&gt; for i in a:
+...   print i
+...
+aba
+123
+</code></pre></div></div>
+<p>c.元组的迭代</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; for i in a:
+...   print i
+...
+z
+k
+c
+</code></pre></div></div>
+<p>d.字典的迭代</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; a = {'name':'kaiz','age':26,'sex':'M'}
+&gt;&gt;&gt; for i in a:
+...   print i
+...
+age
+name
+sex
+</code></pre></div></div>
+<p>说明：字典的迭代只能打印出key值，若要打印value，如下：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; a = {'name':'kaiz','age':26,'sex':'M'}
+&gt;&gt;&gt; for i in a.itervalues():
+...   print i
+...
+26
+kaiz
+M
+</code></pre></div></div>
+<p>若要打印key及value，如下:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; a = {'name':'kaiz','age':26,'sex':'M'}
+&gt;&gt;&gt; for key,value in a.iteritems():
+...   print key,value
+...
+age 26
+name kaiz
+sex M
+</code></pre></div></div>
+<p>说明:当我们使用for循环时，只要作用于一个可迭代的对象，for循环就可以正常运行，而我们不太关心该对象是字符串、列表、元组、字典还是其他数据类型。那么如何判断一个对象是可迭代对象呢？方法是通过collections模块的Iterable类型判断，如：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; from collections import Iterable
+&gt;&gt;&gt; isinstance('abc',Iterable) #str是否可迭代
+True
+&gt;&gt;&gt; isinstance([1,2,3],Iterable) #list是否可迭代
+True
+&gt;&gt;&gt; isinstance(121,Iterable)#整数是否可迭代
+</code></pre></div></div>
+<p>如何创建迭代器？
+对一个对象调用 iter() 就可以得到它的迭代器。如果你传递一个参数给 iter() , 它会检查你传递的是不是一个序列, 如果是, 那么很简单: 根据索引从 0 一直迭代到序列结束. 另一个创建迭代器的方法是使用类。
+关于迭代器Iterators,有两个基本方法：
+1）next方法：返回容器的下一个元素
+2）__iter__方法：返回迭代器本身，可使用内建的iter方法创建，如：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; a = iter('abc')#注意需要用iter()函数来创建迭代器
+&gt;&gt;&gt; a.next()
+'a'
+&gt;&gt;&gt; a.next()
+'b'
+&gt;&gt;&gt; a.next()
+'c'
+&gt;&gt;&gt; a.next()
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+StopIteration
+</code></pre></div></div>
+<blockquote>
+  <blockquote>
+    <blockquote>
+
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<h3 id="3特点">3.特点</h3>
+<p>迭代只能向前不能向后，只到异常
+Traceback (most recent call last):
+  File “<stdin>", line 1, in <module>
+StopIteration</module></stdin></p>
+
+            </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    <footer class="footer" role="contentinfo">
+	<div class="container">
+		<p class="copyright">Copyright &copy; 2014-2018 <a href=""><code>Kaiz</code></a>.</p>
+		<p>Powered by <a href="http://jekyllrb.com">Jekyll</a>, themed from <a href="http://lesscss.cn/">Less</a>, refactored by <a href="http://www.hifreud.com/">Freud Kang</a></p>
+	</div>
+</footer>
+
+<script src="/styles/js/jquery.min.js"></script>
+<script src="/styles/js/bootstrap.min.js"></script>
+<script src="/styles/js/holder.min.js"></script>
+<script src="/styles/js/lessismore.js"></script>
+<script src="/styles/js/application.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </body>
+</html>
