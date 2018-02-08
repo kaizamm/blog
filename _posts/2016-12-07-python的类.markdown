@@ -1,0 +1,51 @@
+---
+layout:       post
+title:        "python类介绍"
+date:         2016-12-07 12:00:00
+categories: document
+tag: python
+---
+
+### 1.类的定义、特点及示例
+定义：在面向对象编程时，由于一切皆对象，我们把具有一些公共属性的对象进行抽象，称之为类。python中类的声明用关键词class，需提供一个可选的父类或基类，如果没有合适的基类，则用object作基类。
+格式为：
+```
+ class 类名(object)
+   "类的说明文档"
+   属性
+   初始方法__init
+   其他方法
+```
+特点：与其他面向对象语言不一样：属性无公有和私有之分。无构造方法，初始方法只是在实例化时会执行的方法，且定义方法时必须带上self参数。
+示例：
+```
+>>> class User(object):
+...   "This is user class."
+...   name = "kaiz"
+...   age = 26
+...   def __init__(self,age=22):
+...     self.age = age
+...   def showAge(self):
+...     print self.age
+...   def showClassDoc(self):
+...     print self.__class__.__doc__
+...     print self.__class__.__name__
+...
+>>>
+>>> #实例化这个类：
+...
+KeyboardInterrupt
+>>> #实例化这个类
+... user = User()
+>>> #调用类里的属性name
+... print user.name
+kaiz
+>>> #调用类里的方法showAge()
+... user.showAge()
+22
+>>> user.showClassDoc()
+This is user class.
+User
+```
+### 2.类与函数的关系，为什么要使用类
+类中可以定义方法，这些方法用函数实现，形如__xxx__，这些双划线的函数有特殊用途，帮助我们定制类。创建完类后，需要实例化。实例后，我们可以给实例绑定任何属性和方法。
