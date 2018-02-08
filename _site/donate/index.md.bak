@@ -76,11 +76,10 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于<b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a rel="nofollow" target="_blank" href="https://github.com/kaizamm">Github</a></li>
-            <li><a rel="nofollow" target="_blank" href="">关于作者</a></li>
+            <li><a rel="nofollow" href="/author">关于作者</a></li>
             <li><a rel="nofollow" href="/books">我的书单</a></li>
         <!--    <li><a rel="nofollow" href="http://www.hifreud.com/domains/">域名管理</a></li>-->
-            <li><a rel="nofollow" href="/reference">推荐博客</a></li>
-            <li><a href="/feed.xml">RSS订阅</a></li>
+            <li><a rel="nofollow" href="/note">札记随录</a></li>
             <li class="divider"></li>
 <!--            <li><a rel="nofollow" target="_blank" href="https://github.com/luoyan35714/LessOrMore.git">本项目</a></li>-->
           </ul>
@@ -138,7 +137,7 @@
               <!--
                 <p class="post-meta"></p>
               -->
-              <div class="meta">Posted on <span class="postdate"></span> By <a target="_blank" href="https://kaizamm.github.com">Kaiz</a></div>
+              <div class="meta">Posted on <span class="postdate"></span> By <a target="_blank" href="https://kaizamm.github.io">Kaiz</a></div>
               <br />
             </header>
             <article class="post-content">
