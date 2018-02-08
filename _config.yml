@@ -20,3 +20,4 @@ github_username:  kaizamm
 # Build settings
 markdown: kramdown
 permalink: pretty
+theme: jekyll-theme-merlot
