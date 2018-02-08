@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Django-practice-网页上做加减法 - Think Deep,Work Lean</title>
+	<title>打赏 - Think Deep,Work Lean</title>
 
 	<link rel="shortcut icon" href="/styles/images/favicon.jpg">
 	<link rel="icon" href="/styles/images/favicon.jpg">
@@ -13,10 +13,10 @@
 	<link rel="stylesheet" href="/styles/css/index.css">
 	<link rel="stylesheet" href="/styles/css/fontawesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/styles/css/syntax.css">
-	<link rel="canonical" href="/2017/03/27/Django-practice-%E7%BD%91%E9%A1%B5%E4%B8%8A%E5%81%9A%E5%8A%A0%E5%87%8F%E6%B3%95/">
+	<link rel="canonical" href="/donate/index.md.bak">
 	<link rel="alternate" type="application/rss+xml" title="Think Deep,Work Lean" href="/feed.xml">
 	
-	<meta name="keywords" content="Django-practice-网页上做加减法, Think Deep,Work Lean, 张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+	<meta name="keywords" content="打赏, Think Deep,Work Lean, 张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
 	<meta name="description" content="张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
 
 	<script src="/styles/js/jquery.min.js"></script>
@@ -93,8 +93,8 @@
   <div class="container">
   	
   		<!--
-		    <h1>Django-practice-网页上做加减法</h1>
-		    <p>Post on Mar 27, 2017 by <a href="/about">Kaiz</a></p>
+		    <h1>打赏</h1>
+		    <p>Post on  by <a href="/about">Kaiz</a></p>
 		-->
 		    <h1>Talk is cheap, show me code.</h1>
     
@@ -105,8 +105,7 @@
 <div class="banner">
   <div class="container">
   	
-    	<a href="/categories/#python-ref">python</a>	/
-    	<a href="/tag/#project-ref">project</a>
+    	学而不思则罔，思而不学则殆。
     
   </div>
 </div>
@@ -134,72 +133,58 @@
       <div class="panel docs-content">
         <div class="wrapper">
             <header class="post-header">
-              <h1 class="post-title">Django-practice-网页上做加减法</h1>
+              <h1 class="post-title">打赏</h1>
               <!--
-                <p class="post-meta">Mar 27, 2017</p>
+                <p class="post-meta"></p>
               -->
-              <div class="meta">Posted on <span class="postdate">Mar 27, 2017</span> By <a target="_blank" href="https://kaizamm.github.com">Kaiz</a></div>
+              <div class="meta">Posted on <span class="postdate"></span> By <a target="_blank" href="https://kaizamm.github.com">Kaiz</a></div>
               <br />
             </header>
             <article class="post-content">
-              <p>视图与网址</p>
+              您的支持是作者写作最大的动力！
+------------------------------
+<hr>
 
-<h3 id="网页上做加减法">网页上做加减法</h3>
-<h4 id="adda4b5-get方法">/add/?a=4&amp;b=5 GET方法</h4>
+如果您喜欢这个博客，读后觉得收获很大...
 
-<p>blog/views.py</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#coding:utf-8
-from django.shortcuts import render
-from django.http import HttpResponse
+如果在你开发或学习过程中本博客帮助到了你...
 
-#def index(request):
-#  return HttpResponse(u"hello,world!")
+你可以对本博客[小额赞助](/donate/method)一下，让我有动力继续写出更高质量的文章。
 
-def index(request):
-  a = request.GET['a']
-  b = request.GET['b']
-  c = int(a)+int(b)
-  return HttpResponse(str(c))
-</code></pre></div></div>
+点击上面小额赞助即可呦！
+<br>
 
-<p>mysite/urls.py</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from django.conf.urls import url
-from django.contrib import admin
-from blog import views as blog_views # new
+![Thank you very much!](/styles/images/freud.jpg)
+<br>
 
-urlpatterns = [
-    url(r'^$',blog_views.index,name='index'),   # new
-    url(r'^admin/',admin.site.urls),
-]
-</code></pre></div></div>
+>声明: 此博客空间用于分享作者个人的一些技术相关， 此网站基于[MIT开源协议](https://github.com/luoyan35714/LessOrMore/blob/master/LICENSE)所有内容完全免费，请放心使用。
 
-<p>浏览器访问   http://172.30.33.183:8000/?a=3&amp;b=9</p>
+<hr>
 
-<h4 id="add223优雅访问">add2/2/3/优雅访问</h4>
+赞助方式一：`支付宝二维码付款`
+------------------------------
 
-<p>blog/views.py</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#coding:utf-8
-from django.shortcuts import render
-from django.http import HttpResponse
+<hr>
+您可以选择手机支付宝扫一扫
 
+<img src="/styles/images/zhifubao.PNG" alt="支付宝二维码付款给Freud" width="310" />
 
-def add2(request,a,b):
-  c = int(a) + int(b)
+<br>
+<br>
 
-</code></pre></div></div>
-<p>mysites/urls.py</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#coding:utf-8
-from django.conf.urls import url
-from django.contrib import admin
-from blog import views as blog_views # new
+赞助方式二：`微信扫一扫`
+------------------------------
 
-urlpatterns = [
-    url(r'^$',blog_views.index,name='index'),   # 对应blog/views.py里的对应的index函数
-    url(r'^add2/(\d+)/(\d+)/$',blog_views.add2,name='add2'),   # 对应blog/views.py里对应的add2函数,(\d+)表示一个或多个数字，用括号表示一个子组,每个子组将作为一个参数，被view.py中的对应视图函数接收。
-    url(r'^admin/',admin.site.urls),
-]
-</code></pre></div></div>
-<p>浏览器访问  http://172.30.33.183:8000/add2/2/3/</p>
+<hr>
+您可以选择手机微信扫一扫
+
+![微信二维码付款给Freud](/styles/images/weixin.png)
+
+<br>
+<br>
+
+<hr>
+
 
             </article>
         </div>
