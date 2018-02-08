@@ -1,22 +1,25 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'jekyll serve'. If you change this file, please restart the server process.
-
 # Site settings
-title: kaiz
-email: 925370765@qq.com
-description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-baseurl: # the subpath of your site, e.g. /blog
-url: "https://kaizamm.github.io" # the base hostname & protocol for your site
-twitter_username: kaiz
-github_username:  kaizamm
+name: Think Deep,Work Lean
+email: zhangkaiamm@gmil.com
+author: Kaiz
+url: https://kaizamm.github.com
+resume_site: 
+github: https://github.com/kaizamm
+baseurl: 
+description: Actually, less is more!
+meta_description: 张凯:学而不思则罔;思而不学则殆;生命不止;折腾不休
+motto: It's our wits that make us men.
+banner: 学而不思则罔，思而不学则殆。
+
+permalink: /:year/:month/:day/:title/
+paginate: 10
+
+exclude: ['README.md', 'Gemfile.lock', 'Gemfile', 'Rakefile']
+
+github_username: kaizamm
 
 # Build settings
 markdown: kramdown
-theme: jekyll-theme-architect
+
+baidu_analysis: a81273dded286ab83c533a4184e6ae8c
+
