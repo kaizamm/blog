@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>consul+docker+register+ocnsul-template实现服务自动发现+主动注册+auto_scale - Think Deep,Work Lean</title>
+
+	<link rel="shortcut icon" href="/styles/images/favicon.jpg">
+	<link rel="icon" href="/styles/images/favicon.jpg">
+
+	<link rel="stylesheet" href="/styles/css/index.css">
+	<link rel="stylesheet" href="/styles/css/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/styles/css/syntax.css">
+	<link rel="canonical" href="/2017/11/17/consul+docker+registrator/">
+	<link rel="alternate" type="application/rss+xml" title="Think Deep,Work Lean" href="/feed.xml">
+	
+	<meta name="keywords" content="consul+docker+register+ocnsul-template实现服务自动发现+主动注册+auto_scale, Think Deep,Work Lean, 张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+	<meta name="description" content="张凯:逆水行舟,不进则退;取法乎上，仅得其中；取法乎中，仅得其下;究天人之际，通古今之变，成一家之言">
+
+	<script src="/styles/js/jquery.min.js"></script>
+	<!--[if lt IE 9]>
+    	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+  	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?a81273dded286ab83c533a4184e6ae8c";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+  	<style type="text/css">
+	  	.docs-content{
+	  		margin-bottom: 10px;
+	  	}
+  	</style>
+</head>
+
+  <body class="index">
+
+    <header class="navbar navbar-inverse navbar-fixed-top docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="/styles/images/logo.jpg">
+      </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">    
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/categories/">Catagory</a>
+        </li>
+        <li>
+          <a href="/tag">Tags</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+  <!--      <li>
+            <a><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></a>
+        </li>-->
+        <li>
+          <a href="/donate/"><strong>打赏</strong></a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a rel="nofollow" target="_blank" href="https://github.com/kaizamm">Github</a></li>
+            <li><a rel="nofollow" href="/author">关于作者</a></li>
+            <li><a rel="nofollow" href="/books">我的书单</a></li>
+        <!--    <li><a rel="nofollow" href="http://www.hifreud.com/domains/">域名管理</a></li>-->
+            <li><a rel="nofollow" href="/note">札记随录</a></li>
+            <li class="divider"></li>
+<!--            <li><a rel="nofollow" target="_blank" href="https://github.com/luoyan35714/LessOrMore.git">本项目</a></li>-->
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+    <div class="docs-header" id="content">
+  <div class="container">
+  	
+  		<!--
+		    <h1>consul+docker+register+ocnsul-template实现服务自动发现+主动注册+auto_scale</h1>
+		    <p>Post on Nov 17, 2017 by <a href="/about">Kaiz</a></p>
+		-->
+		    <h1>Think Deep,Work Lean</h1>
+    
+  </div>
+</div>
+    
+      
+<div class="banner">
+  <div class="container">
+  	
+    	<a href="/categories/#python-ref">python</a>	/
+    	<a href="/tag/#project-ref">project</a>
+    
+  </div>
+</div>
+
+    
+
+    <div class="container docs-container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="sidebar hidden-print" role="complementary">
+        <div id="navigation">
+  <h1>目录</h1>
+  <ul class="nav sidenav">
+  </ul>
+  <div style="height: 200px;width: 200px;">
+    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=5ytn1ssq6za&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"> 
+    </script>
+  </div>
+</div>
+
+ 
+      </div>
+    </div>
+    <div class="col-md-9" role="main">
+      <div class="panel docs-content">
+        <div class="wrapper">
+            <header class="post-header">
+              <h1 class="post-title">consul+docker+register+ocnsul-template实现服务自动发现+主动注册+auto_scale</h1>
+              <!--
+                <p class="post-meta">Nov 17, 2017</p>
+              -->
+              <div class="meta">Posted on <span class="postdate">Nov 17, 2017</span> By <a target="_blank" href="https://kaizamm.github.io">Kaiz</a></div>
+              <br />
+            </header>
+            <article class="post-content">
+              <h3 id="环境准备">环境准备</h3>
+<p>client agent:node1 192.168.0.11
+server agent:node2 192.168.0.12</p>
+<h4 id="consul-client">consul client</h4>
+<p>node1 192.168.0.11</p>
+<ul>
+  <li>/etc/default/consul :
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> CONSUL_FLAGS="-data-dir=/opt/consul/data -config-dir=/opt/consul/conf -pid-file=/opt/consul/run/consul.pid -client=0.0.0.0 -bind=192.168.0.11 -node=consul-node-1 -retry-join '192.168.0.12'"
+</code></pre></div>    </div>
+  </li>
+  <li>/usr/lib/systemd/system/consul.service
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Unit]
+Description=Consul service discovery agent
+Requires=network-online.target
+After=network-online.target
+[Service]
+User=consul
+Group=consul
+EnvironmentFile=-/etc/default/consul
+Environment=GOMAXPROCS=2
+Restart=on-failure
+ExecStartPre=[ -f "/opt/consul/run/consul.pid" ] &amp;&amp; /usr/bin/rm -f /opt/consul/run/consul.pid
+ExecStart=/usr/bin/consul agent $CONSUL_FLAGS
+ExecReload=/bin/kill -HUP $MAINPID
+KillSignal=SIGTERM
+TimeoutStopSec=5
+[Install]
+WantedBy=multi-user.target
+</code></pre></div>    </div>
+  </li>
+  <li>/usr/bin/consul</li>
+  <li>/opt/consul/{data,run,conf}</li>
+  <li>useradd consul</li>
+</ul>
+
+<h4 id="consul-server">consul server</h4>
+<p>192.168.0.12 node2</p>
+<ul>
+  <li>/etc/default/consul
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CONSUL_FLAGS="-server -ui -bootstrap-expect=1 -data-dir=/opt/consul/data -config-dir=/opt/consul/conf -pid-file=/opt/consul/run/consul.pid -client=0.0.0.0 -bind=192.168.0.12 -node=consul-server"
+</code></pre></div>    </div>
+  </li>
+  <li>/usr/lib/systemd/system/consul.service
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Unit]
+Description=Consul service discovery agent
+Requires=network-online.target
+After=network-online.target
+[Service]
+User=consul
+Group=consul
+EnvironmentFile=-/etc/default/consul
+Environment=GOMAXPROCS=2
+Restart=on-failure
+ExecStartPre=[ -f "/opt/consul/run/consul.pid" ] &amp;&amp; /usr/bin/rm -f /opt/consul/run/consul.pid
+ExecStart=/usr/bin/consul agent $CONSUL_FLAGS
+ExecReload=/bin/kill -HUP $MAINPID
+KillSignal=SIGTERM
+TimeoutStopSec=5
+[Install]
+WantedBy=multi-user.target
+</code></pre></div>    </div>
+  </li>
+  <li>/usr/bin/consul</li>
+  <li>/opt/consul/{data,run,conf}</li>
+  <li>useradd consul</li>
+</ul>
+
+<h4 id="docker环境">docker环境</h4>
+<p>搭建简单web。https://hub.docker.com/r/crccheck/hello-world/</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker run -d -P crccheck/hello-world
+$ curl localhost:$port  #port为自动暴露的宿主机端口
+Hello World
+</code></pre></div></div>
+
+<h3 id="registrator">registrator</h3>
+<p>client端装registator，结合docker API 实现服务自动发现、注册及注销，consul注册地址请注意填写agent地址，请勿直接注册进catalog。https://github.com/kaizamm/registrator</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker run -d \
+    --name=registrator \
+    --net=host \
+    --volume=/var/run/docker.sock:/tmp/docker.sock \
+    gliderlabs/registrator:latest \
+      consul://192.168.0.11:8500
+</code></pre></div></div>
+
+<h3 id="几个常用api">几个常用API</h3>
+<h4 id="deregister">deregister</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "Datacenter": "dc1",
+  "Node": "foobar"
+}
+{
+  "Datacenter": "dc1",
+  "Node": "foobar",
+  "CheckID": "service:redis1"
+}
+{
+  "Datacenter": "dc1",
+  "Node": "foobar",
+  "ServiceID": "redis1"
+}
+</code></pre></div></div>
+<p>如：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#删除这个该Node的及上面的所有service/heath check/
+curl -X PUT -d '{"Datacenter":"dc1","Node":"consul-node-1"}' 172.30.33.4:8500/v1/catalog/deregister
+</code></pre></div></div>
+
+<h3 id="consul-template">consul template</h3>
+
+<ul>
+  <li>download地址: https://releases.hashicorp.com/consul-template/0.19.4/</li>
+  <li>github地址：https://github.com/kaizamm/consul-template</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>consul-template -template "in.tpl:out.txt"   #根据in.tpl的模版文件生成out.txt，consult-template以daemon方式运行
+consul-template -template "in.tpl:out.txt" -once   #非daemon方式
+consul-template -template "in.tpl:out.conf:service nginx -s reload"  #第三个参数为要执行的动作
+</code></pre></div></div>
+<p>根据in.tpl生成out.conf</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+#in.tpl
+upstream hello-world {
+  {{ range service "hello-world"}}
+  server {{ .Address }}:{{ .Port }}; {{ end }}
+}
+
+server {
+  listen 8080;
+  location /{
+    proxy_pass http://hello-world;
+  }
+}
+
+</code></pre></div></div>
+<p>运行以上consul-template，查看out.conf</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>upstream hello-world {
+
+  server 192.168.0.12:7777;
+  server 192.168.0.12:8888;
+}
+
+server {
+  listen 8080;
+  location /{
+    proxy_pass http://hello-world;
+  }
+}
+</code></pre></div></div>
+<p>到此为止，结合consul agent + consul template + consul registrator 就能实现服务发现与自动扩容</p>
+
+<h3 id="附supervisorcentos-6可用该方法">附supervisor(centos 6可用该方法)</h3>
+<p>对于redhat7可以采用systemctl对服务控制，对于centos6,则可以考虑用附supervisor对其进程进行管理
+http://supervisord.org/installing.html</p>
+<h4 id="pip-install">pip install</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://bootstrap.pypa.io/get-pip.py --no-check-cetificate
+python get-pip.py install
+</code></pre></div></div>
+
+<p>如：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#cat /etc/supervisor/django.conf
+[program:django]
+directory = /usr/local/cmdb ;
+command = python manage.py runserver 0.0.0.0:7990 ;
+stdout_logfile = /opt/logs/supervisor/django_out.log ;
+stderr_logfile = /opt/logs/supervisor/django_err.log ;
+autostart = true ;
+startsecs = 5 ;
+autorestart = true ;
+startretries = 3 ;
+user = root ;
+</code></pre></div></div>
+
+            </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    <footer class="footer" role="contentinfo">
+	<div class="container">
+		<p class="copyright">Copyright &copy; 2014-2018 <a href=""><code>Kaiz</code></a>.</p>
+	<!--	<p>Powered by <a href="http://jekyllrb.com">Jekyll</a>, themed from <a href="http://lesscss.cn/">Less</a>, refactored by <a href="http://www.hifreud.com/">Freud Kang</a></p> -->
+	</div>
+</footer>
+
+<script src="/styles/js/jquery.min.js"></script>
+<script src="/styles/js/bootstrap.min.js"></script>
+<script src="/styles/js/holder.min.js"></script>
+<script src="/styles/js/lessismore.js"></script>
+<script src="/styles/js/application.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+  </body>
+</html>

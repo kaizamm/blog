@@ -5,8 +5,8 @@
     <description>爱生命爱折腾,从事互联网</description>
     <link>https://kaizamm.github.io/</link>
     <atom:link href="https://kaizamm.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 09 Feb 2018 01:12:50 +0800</pubDate>
-    <lastBuildDate>Fri, 09 Feb 2018 01:12:50 +0800</lastBuildDate>
+    <pubDate>Fri, 09 Feb 2018 09:54:51 +0800</pubDate>
+    <lastBuildDate>Fri, 09 Feb 2018 09:54:51 +0800</lastBuildDate>
     <generator>Jekyll v3.7.2</generator>
     
       <item>
@@ -949,6 +949,190 @@ all DONE at: Thu Nov 30 15:43:40 2017
       </item>
     
       <item>
+        <title>consul+docker+register+ocnsul-template实现服务自动发现+主动注册+auto_scale</title>
+        <description>&lt;h3 id=&quot;环境准备&quot;&gt;环境准备&lt;/h3&gt;
+&lt;p&gt;client agent:node1 192.168.0.11
+server agent:node2 192.168.0.12&lt;/p&gt;
+&lt;h4 id=&quot;consul-client&quot;&gt;consul client&lt;/h4&gt;
+&lt;p&gt;node1 192.168.0.11&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;/etc/default/consul :
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; CONSUL_FLAGS=&quot;-data-dir=/opt/consul/data -config-dir=/opt/consul/conf -pid-file=/opt/consul/run/consul.pid -client=0.0.0.0 -bind=192.168.0.11 -node=consul-node-1 -retry-join '192.168.0.12'&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;/usr/lib/systemd/system/consul.service
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[Unit]
+Description=Consul service discovery agent
+Requires=network-online.target
+After=network-online.target
+[Service]
+User=consul
+Group=consul
+EnvironmentFile=-/etc/default/consul
+Environment=GOMAXPROCS=2
+Restart=on-failure
+ExecStartPre=[ -f &quot;/opt/consul/run/consul.pid&quot; ] &amp;amp;&amp;amp; /usr/bin/rm -f /opt/consul/run/consul.pid
+ExecStart=/usr/bin/consul agent $CONSUL_FLAGS
+ExecReload=/bin/kill -HUP $MAINPID
+KillSignal=SIGTERM
+TimeoutStopSec=5
+[Install]
+WantedBy=multi-user.target
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;/usr/bin/consul&lt;/li&gt;
+  &lt;li&gt;/opt/consul/{data,run,conf}&lt;/li&gt;
+  &lt;li&gt;useradd consul&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;consul-server&quot;&gt;consul server&lt;/h4&gt;
+&lt;p&gt;192.168.0.12 node2&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;/etc/default/consul
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;CONSUL_FLAGS=&quot;-server -ui -bootstrap-expect=1 -data-dir=/opt/consul/data -config-dir=/opt/consul/conf -pid-file=/opt/consul/run/consul.pid -client=0.0.0.0 -bind=192.168.0.12 -node=consul-server&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;/usr/lib/systemd/system/consul.service
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[Unit]
+Description=Consul service discovery agent
+Requires=network-online.target
+After=network-online.target
+[Service]
+User=consul
+Group=consul
+EnvironmentFile=-/etc/default/consul
+Environment=GOMAXPROCS=2
+Restart=on-failure
+ExecStartPre=[ -f &quot;/opt/consul/run/consul.pid&quot; ] &amp;amp;&amp;amp; /usr/bin/rm -f /opt/consul/run/consul.pid
+ExecStart=/usr/bin/consul agent $CONSUL_FLAGS
+ExecReload=/bin/kill -HUP $MAINPID
+KillSignal=SIGTERM
+TimeoutStopSec=5
+[Install]
+WantedBy=multi-user.target
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;/usr/bin/consul&lt;/li&gt;
+  &lt;li&gt;/opt/consul/{data,run,conf}&lt;/li&gt;
+  &lt;li&gt;useradd consul&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;docker环境&quot;&gt;docker环境&lt;/h4&gt;
+&lt;p&gt;搭建简单web。https://hub.docker.com/r/crccheck/hello-world/&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ docker run -d -P crccheck/hello-world
+$ curl localhost:$port  #port为自动暴露的宿主机端口
+Hello World
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;registrator&quot;&gt;registrator&lt;/h3&gt;
+&lt;p&gt;client端装registator，结合docker API 实现服务自动发现、注册及注销，consul注册地址请注意填写agent地址，请勿直接注册进catalog。https://github.com/kaizamm/registrator&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ docker run -d \
+    --name=registrator \
+    --net=host \
+    --volume=/var/run/docker.sock:/tmp/docker.sock \
+    gliderlabs/registrator:latest \
+      consul://192.168.0.11:8500
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;几个常用api&quot;&gt;几个常用API&lt;/h3&gt;
+&lt;h4 id=&quot;deregister&quot;&gt;deregister&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+  &quot;Datacenter&quot;: &quot;dc1&quot;,
+  &quot;Node&quot;: &quot;foobar&quot;
+}
+{
+  &quot;Datacenter&quot;: &quot;dc1&quot;,
+  &quot;Node&quot;: &quot;foobar&quot;,
+  &quot;CheckID&quot;: &quot;service:redis1&quot;
+}
+{
+  &quot;Datacenter&quot;: &quot;dc1&quot;,
+  &quot;Node&quot;: &quot;foobar&quot;,
+  &quot;ServiceID&quot;: &quot;redis1&quot;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;如：&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#删除这个该Node的及上面的所有service/heath check/
+curl -X PUT -d '{&quot;Datacenter&quot;:&quot;dc1&quot;,&quot;Node&quot;:&quot;consul-node-1&quot;}' 172.30.33.4:8500/v1/catalog/deregister
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;consul-template&quot;&gt;consul template&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;download地址: https://releases.hashicorp.com/consul-template/0.19.4/&lt;/li&gt;
+  &lt;li&gt;github地址：https://github.com/kaizamm/consul-template&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;consul-template -template &quot;in.tpl:out.txt&quot;   #根据in.tpl的模版文件生成out.txt，consult-template以daemon方式运行
+consul-template -template &quot;in.tpl:out.txt&quot; -once   #非daemon方式
+consul-template -template &quot;in.tpl:out.conf:service nginx -s reload&quot;  #第三个参数为要执行的动作
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;根据in.tpl生成out.conf&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+#in.tpl
+upstream hello-world {
+  {{ range service &quot;hello-world&quot;}}
+  server {{ .Address }}:{{ .Port }}; {{ end }}
+}
+
+server {
+  listen 8080;
+  location /{
+    proxy_pass http://hello-world;
+  }
+}
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;运行以上consul-template，查看out.conf&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;upstream hello-world {
+
+  server 192.168.0.12:7777;
+  server 192.168.0.12:8888;
+}
+
+server {
+  listen 8080;
+  location /{
+    proxy_pass http://hello-world;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;到此为止，结合consul agent + consul template + consul registrator 就能实现服务发现与自动扩容&lt;/p&gt;
+
+&lt;h3 id=&quot;附supervisorcentos-6可用该方法&quot;&gt;附supervisor(centos 6可用该方法)&lt;/h3&gt;
+&lt;p&gt;对于redhat7可以采用systemctl对服务控制，对于centos6,则可以考虑用附supervisor对其进程进行管理
+http://supervisord.org/installing.html&lt;/p&gt;
+&lt;h4 id=&quot;pip-install&quot;&gt;pip install&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget https://bootstrap.pypa.io/get-pip.py --no-check-cetificate
+python get-pip.py install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;如：&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#cat /etc/supervisor/django.conf
+[program:django]
+directory = /usr/local/cmdb ;
+command = python manage.py runserver 0.0.0.0:7990 ;
+stdout_logfile = /opt/logs/supervisor/django_out.log ;
+stderr_logfile = /opt/logs/supervisor/django_err.log ;
+autostart = true ;
+startsecs = 5 ;
+autorestart = true ;
+startretries = 3 ;
+user = root ;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Fri, 17 Nov 2017 20:00:00 +0800</pubDate>
+        <link>https://kaizamm.github.io/2017/11/17/consul+docker+registrator/</link>
+        <guid isPermaLink="true">https://kaizamm.github.io/2017/11/17/consul+docker+registrator/</guid>
+        
+        <category>project</category>
+        
+        
+        <category>python</category>
+        
+      </item>
+    
+      <item>
         <title>javascript知识</title>
         <description>&lt;h3 id=&quot;map&quot;&gt;map&lt;/h3&gt;
 &lt;p&gt;var f=function(x){
@@ -1795,469 +1979,6 @@ $(document).ready(function(){
         <guid isPermaLink="true">https://kaizamm.github.io/2017/09/27/jquery/</guid>
         
         <category>document</category>
-        
-        
-        <category>python</category>
-        
-      </item>
-    
-      <item>
-        <title>Flask_Web开发</title>
-        <description>&lt;h2 id=&quot;程序基本结构&quot;&gt;程序基本结构&lt;/h2&gt;
-&lt;h3 id=&quot;环境准备&quot;&gt;环境准备&lt;/h3&gt;
-&lt;p&gt;官网  http://flask.pocoo.org/；实验环境python-virtualenv，安装 sudo yum install python-virtualenv 即可。用这个环境的好处，可在系统的python解释器中避免包的混乱和版本的冲突，为每个程序单独创建虚拟环境可以保证程序只能访问虚拟环境中的包，从而保持全局解释器的干净整洁，并且虚拟环境中不需要管理员权限。一旦安装完成，virtualenv实用工具就可以从常规账户中调用。&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo yum install python-virtualenv
-git clone https://github.com/miguelgrinberg/flasky.git
-cd flasky/
-git checkout 1a
-virtualenv venv
-source venv/bin/activate #启动
-deactivate #退回全局
-pip install flask
-#查看一下flask的安装位置
-In [3]: import sys
-In [4]: sys.modules['flask']
-Out[4]: &amp;lt;module 'flask' from '/tmp/flasky/venv/lib/python2.7/site-packages/flask/__init__.pyc'&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h3 id=&quot;初始化&quot;&gt;初始化&lt;/h3&gt;
-&lt;p&gt;所有的Flask程序都需创建一个程序实例，web服务器使用一种名为web服务网关接口WSGI的协议，把接收自客户端的所有请求都转交给这个对象处理。程序实例是Flask类的对象，使用下面的代码创建&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from flask import Flask
-app = Flask(__name__)  #Flask类的构造函数只有一个必须指定的参数，即程序的主模块或包的名字，在大多数程序中，Python的__name__变量就是所需的值，Flask用这个参数决定程序的根目录，以便稍后稍后能够找到相对于程序根目录的资源文件位置。
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;一个完整的程序&quot;&gt;一个完整的程序&lt;/h3&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#cat hello.py
-from flask import Flask
-app = Flask(__name__)
-
-
-@app.route('/')
-def index():
-    return '&amp;lt;h1&amp;gt;Hello World!&amp;lt;/h1&amp;gt;'
-
-@app.route('/user/&amp;lt;name&amp;gt;')  #name 为变量
-def user(name):
-  return '&amp;lt;h1&amp;gt;hello,%s!&amp;lt;h1&amp;gt;' % name
-
-if __name__ == '__main__':
-    app.run(debug=True)
-
-#python hello.py运行进来后访问
-
-[root@node1 ~]# curl http://localhost:5000
-&amp;lt;h1&amp;gt;Hello World!&amp;lt;/h1&amp;gt;
-[root@node1 ~]# curl http://localhost:5000/user/kaiz
-&amp;lt;h1&amp;gt;hello,kaiz!&amp;lt;h1&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h3 id=&quot;程序和请求上下文&quot;&gt;程序和请求上下文&lt;/h3&gt;
-&lt;p&gt;在Flask中有两种上下文：程序上下文和请求上下文，如下：&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;变量名&lt;/th&gt;
-      &lt;th&gt;上下文&lt;/th&gt;
-      &lt;th&gt;说明&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;current_app&lt;/td&gt;
-      &lt;td&gt;程序上下文&lt;/td&gt;
-      &lt;td&gt;当前激活的程序实例&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;g&lt;/td&gt;
-      &lt;td&gt;程序上下文&lt;/td&gt;
-      &lt;td&gt;处理请求时用作临时存储的对象，每次请求都会重设这个变量&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;request&lt;/td&gt;
-      &lt;td&gt;请求上下文&lt;/td&gt;
-      &lt;td&gt;请求对象，封装了客户端发出的HTTP请求中的内容&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;session&lt;/td&gt;
-      &lt;td&gt;请求上下文&lt;/td&gt;
-      &lt;td&gt;用户会话，用于存储请求之间需要“记住”的值的词典&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Flask在分发请求之前激活（或推送）程序和请求上下文，请求处理完成后再将其删除，程序上下文被推送后，就可以在线程中使用current_app和g变量。类似地，请求上下文被推送后，就可以使用request和session变量。如果使用这些变量时我们没有激活程序上下文或请求上下文，就会导致报错。&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;In [1]: from hello import app
-In [2]: from flask import current_app
-In [3]: current_app.name  #在没有激活程序上下文之前就调用current_app.name会导致报错，但推送上下文之后就可以调用了
----------------------------------------------------------------------------
-RuntimeError                              Traceback (most recent call last)
-RuntimeError: Working outside of application context.
-In [4]: app_ctx = app.app_context()  #注意：在程序实例上调用app.app_context()可获得一个程序上下文。
-In [5]: app_ctx.push()
-In [6]: current_app.name
-Out[6]: 'hello'
-In [7]: app_ctx.p
-app_ctx.pop   app_ctx.push  
-In [7]: app_ctx.pop()
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h3 id=&quot;请求调度&quot;&gt;请求调度&lt;/h3&gt;
-&lt;p&gt;程序收到客户发来的请求后，要找到处理该请求的视图函数，为了完成这个任务，Flask会在程序的URL映射中查找请求的URL。URL映射是URL和视图函数之间的对应关系。Flask使用app.route修饰器或者非修饰器形式的app.add_url_rule()生成映射。要想查看Flask程序中URL映射是什么样子，可以在shell中检查hello.py生成的映射&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#cat hello.py
-from flask import Flask
-app = Flask(__name__)
-
-@app.route('/')
-def index():
-    return '&amp;lt;h1&amp;gt;Hello World!&amp;lt;/h1&amp;gt;'
-
-@app.route('/user/&amp;lt;name&amp;gt;')
-def user(name):
-  return '&amp;lt;h1&amp;gt;hello,%s!&amp;lt;h1&amp;gt;' % name
-
-if __name__ == '__main__':
-    app.run(debug=True)
-
-In [1]: from hello import app
-In [3]: app.url_map
-Out[3]:
-    Map([&amp;lt;Rule '/' (HEAD, OPTIONS, GET) -&amp;gt; index&amp;gt;,
-     &amp;lt;Rule '/static/&amp;lt;filename&amp;gt;' (HEAD, OPTIONS, GET) -&amp;gt; static&amp;gt;,
-     &amp;lt;Rule '/user/&amp;lt;name&amp;gt;' (HEAD, OPTIONS, GET) -&amp;gt; user&amp;gt;])
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;/和/user/&lt;name&gt;路由在程序中使用app.route修饰器定义。/static/&lt;filename&gt;路由是Flask添加的特殊路由，用于访问静态文件。URL中的HEAD/OPTIONS/GET是请求方法，由路由进行处理。Flask为每个路由都指定了请求方法，这样不同的请求方法发送到相同的URL上时，会使用不同的视图函数进行处理。HEAD和OPTIONS方法由Flask自动处理，因此可以这么说，在这个程序中，URL映射中的3个路由都使用GET方法。&lt;/filename&gt;&lt;/name&gt;&lt;/p&gt;
-&lt;h3 id=&quot;请求钩子&quot;&gt;请求钩子&lt;/h3&gt;
-&lt;p&gt;在请求之前或之后执行代码&lt;/p&gt;
-&lt;h3 id=&quot;响应&quot;&gt;响应&lt;/h3&gt;
-&lt;p&gt;Flask调用视图函数后，会将基返回值作为响应的内容。大多数情况下，响应就是一个简单的字符串，作为HTML页面回送客户端。但HTTP协议需要的不仅是作为请求响应的字符串。HTTP响应中一个很重要的部份是状态码，Flask默认设为200，这个代码表明请求已经被成功处理。如果视图函数返回的响应需要使用不同的状态码，那么可以把数字代码作为第二个返回值，添加到响应文本之后，例如，下述视图函数返回一个400状态码，表示请求无效。&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@app.route('/')
-def index():
-  return '&amp;lt;h1&amp;gt;Bad Request&amp;lt;/h1&amp;gt;',400
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;视图返回的响应还可以接受第三个参数，这是一个由首部(header)组成的字典，可以添加到HTTP响应中。一般情况下并不需要这么做。如果不想返回由1个、2个或3个值组成的元组，Flask视图函数还可以返回Response对象。make_response()函数可接受1个、2个、3个参数（和视图函数的返回值一样），并返回一个Response对象。有时我们需要在视图函数中进行这种转换，然后在响应对象上调用各种方法，进一步设置响应。下例创建了一个响应对象，然后设置了cookie:&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from flask import make_response
-@app.route('/')
-def index():
-  response = make_response('&amp;lt;h1&amp;gt;This document carries a cookie!&amp;lt;/h1&amp;gt;')
-  response.set_cookie('answer','42')
-  return response
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;有一种名为重定向的特殊响应类型。这种响应没有页面文档，只告诉浏览器一个新地址用以加载新页面。重定向经常在Web表单中使用。重定向常使用302状态码表示，指向的地址由Location首部提供。重定向响应可以使用3个值开式的返回值生成，也可在Response对象中设定。不过，由于使用频繁，Flask提供了redirect()辅助函数，用于生成这种响应。&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from flask import redirect
-@app.route('/')
-def index():
-  return redirect('http://www.example.com')
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;还有一种特殊的响应由abort函数生成，用于处理错误。&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from flask import abort
-@app.route('/user/&amp;lt;id&amp;gt;')
-def get_user(id):
-  user = load_user(id)
-  if not user:
-    abort(404)
-  return '&amp;lt;h1&amp;gt;hello,%s&amp;lt;/h1&amp;gt;' % user.name
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h3 id=&quot;flask扩展-flask-script&quot;&gt;Flask扩展 flask-script&lt;/h3&gt;
-&lt;p&gt;flask-script是Flask扩展，为Flask添加一个命令行解释器&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip install flask-script
-#cat hello.py
-from flask.ext.script import Manager
-manager = Manager(app)
-#...
-if __name__ == &quot;__main__&quot;:
-  manager.run()
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;专为Flask开发的扩展都开暴露在flask.ext命名空间下。flask-script输出了一个名为Manager的类，可从flask.ext.script中引入。&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#python hello.py
-usage: hello.py [-h]{shell,runserver}...
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;模版&quot;&gt;模版&lt;/h2&gt;
-&lt;p&gt;模版是一个包含响应文本的文体，其中包含用占位变量表示的动态部份，基具体值只在请求的上下文中才能知道，使用真实值替换变量，再返回最科得到的响应字符串，这一过程称为渲染。为了渲染模版，Flask使用jinja2。&lt;/p&gt;
-&lt;h3 id=&quot;jinja2变量过滤器&quot;&gt;jinja2变量过滤器&lt;/h3&gt;
-&lt;p&gt;可以使用过滤器修改变量，过滤器名添加在变量后之后，中间使用竖线分隔。如下&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;hello,
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;过滤器名| 说明
-—|—
-safe | 渲染值时不转义
-capitalize| 把值的首字母转换成大写，基他字母转换成小写
-lower| 把值转换成小写形式
-upper| 把值转换成大写形式
-title| 把值中每个单词的首字母都转换成大写
-trim| 把值的首尾空格去掉
-striptags|渲染之前把值中所有的HTML标签都删掉&lt;/p&gt;
-
-&lt;p&gt;详见http://jinja.pocoo.org/docs/2.9/templates/#builtin-filters&lt;/p&gt;
-
-&lt;h3 id=&quot;jinjia2控制结构&quot;&gt;jinjia2控制结构&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;if语句&lt;/li&gt;
-  &lt;li&gt;for语句&lt;/li&gt;
-  &lt;li&gt;宏，类似Python的继承&lt;/li&gt;
-  &lt;li&gt;为了重复使用宏，把其保存为单独的文件中，然后在需要使用的模版中导入：&lt;/li&gt;
-  &lt;li&gt;需要在多处重复使用的模板代码片段可以写入单独的文件，再包含在所有的模版中，以避免重复：&lt;/li&gt;
-  &lt;li&gt;另一种重复使用代码的强大方式是模版继承，它类似于python代码中类继承。首先创建一个名为base.html的基模版&lt;/li&gt;
-  &lt;li&gt;block标签定义的元素可在衍生模版中修改。本例中，我们定义了名为head、__title__和body块。注意，__title__包含在head中。下面是基版的衍生模板&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;使用bootstrap&quot;&gt;使用bootstrap&lt;/h3&gt;
-&lt;p&gt;官网http://getbootstrap.com
-bootstrap是Twitter开发的一个开源框架，它提供的用户界面组件可用于创建整洁且具有吸引力的网页，而且这些网页还能兼容所有现代web浏览器。bootstrap是客户端框架，因此不会直接涉及服务器。服务器需要做的只是提供引用了bootstrap层叠式表CSS和Javascript文件的HTML响应，并在HTML、css和JavaScript代码中实例化所需的组件。这些操作最理想的执行场就是模版。使用一个名为Flask-Bootstrap的Flask扩展，简化集成过程。pip安装&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#pip install flask-bootstrap
-from flask_bootstrap import Bootstrap
-#...
-bootstrap = Bootstrap(app)
-
-#In [5]: !cat hello.py
-from flask import Flask
-app = Flask(__name__)
-
-@app.route('/')
-def index():
-    return '&amp;lt;h1&amp;gt;Hello World!&amp;lt;/h1&amp;gt;'
-
-@app.route('/user/&amp;lt;name&amp;gt;')
-def user(name):
-  return '&amp;lt;h1&amp;gt;hello,%s!&amp;lt;h1&amp;gt;' % name
-
-if __name__ == '__main__':
-    app.run(debug=True)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h3 id=&quot;flask-moment插件&quot;&gt;flask-moment插件&lt;/h3&gt;
-&lt;h2 id=&quot;web-表单&quot;&gt;web 表单&lt;/h2&gt;
-&lt;p&gt;尽管flask的请求对象提供的信息足够用于处理web表单，但有些任务很单调，而且重复操作。比如，生成表单的HTML代码和验证提交的表单数据。Flask-WTF扩展可以把处理WEB表单的过程变成一种愉悦的体验。这个扩展对独立的WTForms包进行了包装，方便集成到Flask程序中。pip install flask-wtf即可安装。&lt;/p&gt;
-&lt;h3 id=&quot;跨站请求伪造保护&quot;&gt;跨站请求伪造保护&lt;/h3&gt;
-&lt;p&gt;默认情况下，Flask-WTF能保护所有表单免受跨站请求伪造cross-site request forgery即CSRF的攻击。为了实现CSRF保护，Flask-WTF需要程序设置一个密钥。Flask-WTF利用这个密钥生成加密令牌，再用令牌验证请深圳市中表单数据的真伪。设置密钥的方法如下：&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;app = Flask(__name__)
-app.config['SECRET_KEY'] = 'hard to guess string'
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;app.config字典可用来存储框架、扩展和程序本身的配置变量。使用标准的字典句法就能把配置值添加到app.config对象中。这个对象还提供一些方法，可以从文件或环境中导入配置值。SECRET_KEY配置变量是通用密钥，可在Flask和多个第三方扩展中使用。&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;为了增强安全性，密钥不应该写入代码中，而要保存在环境变量中&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;表单类&quot;&gt;表单类&lt;/h3&gt;
-&lt;p&gt;使用Flask-WTF时，每个Web表单都有一个继承自Form的类表示。这个类定义表单中的一组字段，每个字段都用对象表示。字段对象可附属一个或多个验证函数。验证函数用来验证用户提交的输入值是否符合要求。&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#cat hello.py
-from flask import Flask, render_template
-from flask_script import Manager
-from flask_bootstrap import Bootstrap
-from flask_moment import Moment
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
-from wtforms.validators import Required
-
-app = Flask(__name__)
-app.config['SECRET_KEY'] = 'hard to guess string'
-
-manager = Manager(app)
-bootstrap = Bootstrap(app)
-moment = Moment(app)
-
-class NameForm(FlaskForm):
-    name = StringField('What is your name?', validators=[Required()])
-    submit = SubmitField('Submit')
-
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template('404.html'), 404
-
-@app.errorhandler(500)
-def internal_server_error(e):
-    return render_template('500.html'), 500
-
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    name = None
-    form = NameForm()
-    if form.validate_on_submit():
-        name = form.name.data
-        form.name.data = ''
-    return render_template('index.html', form=form, name=name)
-
-if __name__ == '__main__':
-    manager.run()
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;这个表单中的字段都定义为类变量，类变量的值是相应字段类型的对象。StringField类表示属性为type=”text”的input元素。SubmitField类表示属性为type=”submit”的input元素。StringField构造函数中的可选参数validators指定一个由验证函数组成的列表，在接受用户提交的数据之前验证数据。验证函数Required()确保提交的字段不为空。 WTFomrs支持的HTML标准字段如下&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;字段类型&lt;/th&gt;
-      &lt;th&gt;说明&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;StringField&lt;/td&gt;
-      &lt;td&gt;文本字段&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;TextAreaField&lt;/td&gt;
-      &lt;td&gt;多行文本字段&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;PasswordField&lt;/td&gt;
-      &lt;td&gt;密码文本字段&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;HiddenField&lt;/td&gt;
-      &lt;td&gt;隐藏文本字段&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;DateField&lt;/td&gt;
-      &lt;td&gt;文本字段，值为datetime.date格式&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;DateTimeField&lt;/td&gt;
-      &lt;td&gt;文本字段，值为datetime.datetime格式&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;IntegerField&lt;/td&gt;
-      &lt;td&gt;文本字段，值为整数&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;DecimalField&lt;/td&gt;
-      &lt;td&gt;文本字段，值为decimal.Decimal(小数点)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;FloatField&lt;/td&gt;
-      &lt;td&gt;文本字段，值为浮点数&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;BooleanField&lt;/td&gt;
-      &lt;td&gt;复选框，值为True和False&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;RadioField&lt;/td&gt;
-      &lt;td&gt;一组单选框&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;SelectField&lt;/td&gt;
-      &lt;td&gt;下拉列表&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;SelectMultipleField&lt;/td&gt;
-      &lt;td&gt;下拉列表，可选择多个值&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;FileField&lt;/td&gt;
-      &lt;td&gt;文件上传字段&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;SubmitField&lt;/td&gt;
-      &lt;td&gt;表单提交按钮&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;FormField&lt;/td&gt;
-      &lt;td&gt;把表单作为字段嵌入另一个表单&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;FieldList&lt;/td&gt;
-      &lt;td&gt;一组指定类型的字段&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;WTForms验证函数&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;验证函数&lt;/th&gt;
-      &lt;th&gt;说明&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Email&lt;/td&gt;
-      &lt;td&gt;验证电子邮件地址&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;EqualTo&lt;/td&gt;
-      &lt;td&gt;比较两个字段的值；常用于要求输入两次密码进行确认的情况&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;IPAddress&lt;/td&gt;
-      &lt;td&gt;验证IPv4网络地址&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Length&lt;/td&gt;
-      &lt;td&gt;验证输入的值在数字范围内&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Optional&lt;/td&gt;
-      &lt;td&gt;无输入值时跳过其他验证函数&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Required&lt;/td&gt;
-      &lt;td&gt;确保字段中有数据&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Regexp&lt;/td&gt;
-      &lt;td&gt;使用正则表达式验证输入值&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;URL&lt;/td&gt;
-      &lt;td&gt;验证URL&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;AnyOf&lt;/td&gt;
-      &lt;td&gt;确保输入值在可选值列表中&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;NoneOf&lt;/td&gt;
-      &lt;td&gt;确保输入值不在可选值列表中&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;把表单渲染成html&quot;&gt;把表单渲染成HTML&lt;/h3&gt;
-&lt;p&gt;表单字段是可调用的，在模版中调用后会渲染成HTML。假设视图函数把一个NameForm实例通过参数form传入模版，在模板中可以生成一个简单的表单，如下所示：&lt;/p&gt;
-
-&lt;p&gt;当然这个表单很简陋，若想改进表单的外观，可以把参数传入渲染字段的函数，传入的参数会被转换成字段的HTML属性。例如，可以为字段指定id或class属性，然后定义CSS样式。&lt;/p&gt;
-
-&lt;p&gt;即便能指定HTML属性，但按照这种方式渲染表单的工作量还是很大，所以在条件允许的情况下最好能使用Bootstrap中的表单样式。Flask-Bootstrap提供了一个非常高端的辅助函数，可以使用Bootstrap中预先定义好的表单样式渲染整个Flask-WTF表单，而这些操作只需一次调用即可完成。使用Flask-Bootstrap,上述表单可使用下面的方式渲染：&lt;/p&gt;
-
-&lt;p&gt;import 指令使用方法和普通Python代码一样，允许导入模板中的元素并用在多个模版中。导入的bootstrap/wtf.html文件中定义了一个使用Bootstrap渲染Flask-WTF表单对象的辅助函数。wtf.quick_form()函数的参数为Flask-WTF表单对象，使用Bootstrap的默认样式渲染传入的表单。&lt;/p&gt;
-
-&lt;p&gt;在index.html中，模板的内容现在有两部分，第一部份是页面头部，显示欢迎消息。这里用到一个模版条件语句。Jinja2中的条件语句格式为。如果条件计算结果为True,那么渲染if和else指令之间的值。反之，渲染else和endif之间的值。&lt;/p&gt;
-&lt;h3 id=&quot;在视图函数中处理表单&quot;&gt;在视图函数中处理表单&lt;/h3&gt;
-&lt;p&gt;在新版hello.py中，视图函数index()不仅要渲染表单，还要接收表单中的数据。&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#hello.py路由方法
-@app.route('/',methods=['GET','POST'])
-def index():
-  name = None
-  form = NameForm()
-  if form.validate_on_submit():
-    name = form.name.data
-    form.name.data = ''
-  return render_template('index.html',form=form,name=name)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;app.route修饰器中添加的methods参数告诉Flask在URL映射中把这个视图函数注册为GET和POST请求的处理程序。如果没指定methods参数，就只把视图函数注册为GET请求的处理程序。&lt;/p&gt;
-&lt;h3 id=&quot;重定向和用户会话&quot;&gt;重定向和用户会话&lt;/h3&gt;
-&lt;p&gt;用户输入名字后提交表单，然后点击浏览器的刷新按钮，会看到一个重复提交表单的警告，要求再次确认。之所以出现这个警告是因为在刷新页面时浏览器会重新发送之前发送过的最后一个请求。如果这个请求是一个包含表彰数据的POST请求，刷新页面后会再次提交表单。大多数情况下，这并不是想要的结果，基本这个原因，最好别让web程序把post请求作为浏览器发送的最后一个请求。这种请求的方式是，使用重定向作为POST请求的响应，而不是使用常规响应。重定向是一种特殊的响应，响应内容是URL，而不是包含HTML代码的字符串。浏览器收到这种响应时，会向重定向的URL发起GET请求，显示页面的内容。这种方式叫做Post/重定向/Get模式。&lt;/p&gt;
-&lt;h3 id=&quot;flash消息&quot;&gt;Flash消息&lt;/h3&gt;
-&lt;p&gt;请求完成后，有时需要让用户知道状态发生了变化。一个例子就是用户提交了有一项错误的登录表单后，服务器发回的响就重新渲染了登录表单，并在表单上面显示一个消息，提示用户名或密码错误。这种功能是是Flask的核心特性。flash()函数可实现这种效果。&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from flash import Flask,render_template,session,redirect,url_for,flash
-@app.route('/',methods=['GET','POST'])
-def index():
-  form = NameForm()
-  if form.validate_on_submit():
-    old_name = session.get('name')
-    if old_name is not None and old_name != form.name.data:
-      flash('Looks like you have changed your name!')
-    session['name'] = form.name.data
-    return redirect(url_for('index'))
-  return render_template('index.html',form = form,name = session.get('name'))
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;在这个例子中，每次提交的名字都会和存储在用户会话中的名字进行比较，而会话中存储的名字是前一次在这个表单中提交的数据。如果两个名字不一样，就会调用flash()函数，在发给客户端的下一个响应中显示一个消息。仅调用flash()函数并不能把消息显示出来，程序使用的模版要渲染这些消息。最好基模板中渲染Flash消息，因为这样所有页面都能使用这些消息。Flask把get_flashed_messages()函数开放给模板，用来获取并渲染消息。&lt;/p&gt;
-</description>
-        <pubDate>Mon, 28 Aug 2017 20:00:00 +0800</pubDate>
-        <link>https://kaizamm.github.io/2017/08/28/Flask_Web%E5%BC%80%E5%8F%91/</link>
-        <guid isPermaLink="true">https://kaizamm.github.io/2017/08/28/Flask_Web%E5%BC%80%E5%8F%91/</guid>
-        
-        <category>project</category>
         
         
         <category>python</category>
