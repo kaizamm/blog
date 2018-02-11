@@ -5,6 +5,10 @@ date:         2017-07-04 12:00:00
 categories: document
 tag: python
 ---
+
+* content
+{:toc}
+
 ### numpy属性
 + ndim：维度
 + shape: 行数和列数

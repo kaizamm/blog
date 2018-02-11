@@ -6,6 +6,9 @@ categories: document
 tag: python
 ---
 
+* content
+{:toc}
+
 ### datetime模块
 ```python
 import datetime

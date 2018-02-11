@@ -2,9 +2,12 @@
 layout:       post
 title:        "python-Build-in-Functions"
 date:         2017-08-16 12:00:00
-categories: python
-tag: docuement
+categories: docuement
+tag: python
 ---
+
+* content
+{:toc}
 
 ### Build-in Functions
 参考 https://docs.python.org/3/library/functions.html#exec

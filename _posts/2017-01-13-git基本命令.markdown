@@ -2,9 +2,12 @@
 layout:       post
 title:        "git知识"
 date:         2017-01-13 12:00:00
-categories: git
-tag: document
+categories: document
+tag: git
 ---
+
+* content
+{:toc}
 
 ### 概述
 #### git三大区

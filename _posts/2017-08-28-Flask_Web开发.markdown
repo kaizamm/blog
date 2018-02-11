@@ -2,9 +2,12 @@
 layout:       post
 title:        "Flask_Web开发"
 date:         2017-08-28 12:00:00
-categories: python
-tag: project
+categories: document
+tag: python
 ---
+
+* content
+{:toc}
 
 ## 程序基本结构
 ### 环境准备

@@ -2,9 +2,12 @@
 layout:       post
 title:        "javascript知识"
 date:         2017-11-08 12:00:00
-categories: python
-tag: document
+categories: document
+tag: javascript
 ---
+
+* content
+{:toc}
 
 ### map
 var f=function(x){

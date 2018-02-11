@@ -2,9 +2,12 @@
 layout:       post
 title:        "redis消息发布与订阅"
 date:         2017-10-26 12:00:00
-categories: python
-tag: project
+categories: document
+tag: redis
 ---
+
+* content
+{:toc}
 
 ### python 与 redis
 + 安装

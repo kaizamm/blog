@@ -6,6 +6,9 @@ categories: document
 tag: consul
 ---
 
+* content
+{:toc}
+
 文档主要来官网翻译 https://www.consul.io
 ### 什么是consul
 + Consul是个分布式、高可用的系统。此篇只介绍基础功能，深入的请移步[in-depth architecture overview](https://www.consul.io/docs/internals/architecture.html)。

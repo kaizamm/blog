@@ -8,6 +8,9 @@ tag:
   - scrapy
 ---
 
+* content
+{:toc}
+
 ### Item Pipeline
 当Item在Spider中被收集之后，它将会被传递到Item Pipeline，一些组件会按照一定的顺序执行对Item的处理，每个item pipeline组件是实现了简单方法的python类。他们接收到Item并通过它执行一些行为，同时也决定此Item是否继续通过pipeline，或是被丢弃而不再进行处理。以下是item pipeline的一些典型应用：
 + 清理HTML数据

@@ -2,11 +2,16 @@
 layout:       post
 title:        "Zabbix trigger salt-api to logorotate"
 date:         2017-08-04 12:00:00
-categories:    document
-tag: saltstack
+categories:    project
+tag:
+  - salt
+  - zabbix
+  - python
 ---
 
----
+* content
+{:toc}
+
 ### 准备工作
 安装好对应zabbix server/agent，salt-master、salt-minion、salt-api
 

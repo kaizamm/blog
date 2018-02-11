@@ -6,6 +6,9 @@ categories: document
 tag: vagrant
 ---
 
+* content
+{:toc}
+
 ## vagrant概述
 
 Vagrant是一个基于Ruby的工具，用于创建和部署虚拟化开发环境，用Vagrant，可快速的自动化的从模板box虚拟机创建出新的虚拟机，启停虚拟机，开发测试，不用了destroy虚拟机

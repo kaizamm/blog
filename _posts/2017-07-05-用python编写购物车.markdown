@@ -6,6 +6,9 @@ categories: project
 tag: python
 ---
 
+* content
+{:toc}
+
 
 ### 功能：
 + 从文件中读取可购买的商品信息显示

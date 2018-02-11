@@ -6,6 +6,9 @@ categories: python
 tag: document
 ---
 
+* content
+{:toc}
+
 ### 定义：
 ### 递归有两个经典：阶乘和幂
 1. n的阶乘，n*(n-1)*(n-2)……\*2\*1

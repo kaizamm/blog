@@ -6,6 +6,10 @@ categories: document
 tag: salt
 ---
 
+* content
+{:toc}
+
+
 ### grains/pillars及模版基础
 grains、pillars提供了一种允许在minion中作用用户自定义变量的方案。模版为这些提供了更高级的用法。grains定义在指定的minion上，pillar定义在master上。它们都可以通过静态（statically)或动态(dynamically)的方式进行定义，但是grain常用于提供不常修改的数据，至少是不重启minion就不会变，而pillar更倾向于动态的数据。
 

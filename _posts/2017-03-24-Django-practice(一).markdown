@@ -2,9 +2,14 @@
 layout:       post
 title:        "Django-practice(一)"
 date:         2017-03-24 12:00:00
-categories: python
-tag: django
+categories: document
+tag:
+  - django
+  - python
 ---
+
+* content
+{:toc}
 
 ### 安装
 ```

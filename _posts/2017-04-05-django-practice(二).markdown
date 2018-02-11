@@ -2,9 +2,14 @@
 layout:       post
 title:        "django-practice（二）"
 date:         2017-04-05 12:00:00
-categories: python
-tag: django
+categories: document
+tag:
+  - django
+  - python
 ---
+
+* content
+{:toc}
 
 
 ### ORM

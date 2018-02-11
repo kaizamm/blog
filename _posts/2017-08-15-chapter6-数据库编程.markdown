@@ -5,6 +5,10 @@ date:         2017-08-15 12:00:00
 categories: python
 tag: project
 ---
+
+* content
+{:toc}
+
 ### 简介
 很多应用数据取自数据库，sql关系型数据库，如SQL Server、PostgreSQL和MySQL等；一些非关系型数据库(NoSQL); Python内置的sqllite3; 从表中选取数据时，大部分Python SQL驱动器(PyODBC、psycopg2、MySQLdb、pymssql)都会返回一个元组列表;
 文件或简单的持久化存储可以满足一些小应用的需求，而大型服务器或高数据容量的应用则需要更加成熟的数据库系统，常用的有关系型数据库、非关系型数据库以及对象关系映射ORM。

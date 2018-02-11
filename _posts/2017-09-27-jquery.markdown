@@ -2,9 +2,12 @@
 layout:       post
 title:        "jquery"
 date:         2017-09-27 12:00:00
-categories: python
-tag: document
+categories: document
+tag: python
 ---
+
+* content
+{:toc}
 
 
 ### jquery语法

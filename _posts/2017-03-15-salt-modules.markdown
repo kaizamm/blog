@@ -6,6 +6,9 @@ categories: document
 tag: salt
 ---
 
+* content
+{:toc}
+
 更多参考 https://docs.saltstack.com/en/latest/ref/modules/all/salt.modules.status.html
 ### cp模块
 cp模块实现远程文件、目录的复制，以及下载url文件等操作，参数：cache_local、get_file、get_dir、get_url

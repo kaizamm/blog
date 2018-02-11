@@ -2,9 +2,14 @@
 layout:       post
 title:        "Django-practice-网页上做加减法"
 date:         2017-03-27 12:00:00
-categories: python
-tag: project
+categories: project
+tag:
+  - python
+  - django
 ---
+
+* content
+{:toc}
 
 视图与网址
 

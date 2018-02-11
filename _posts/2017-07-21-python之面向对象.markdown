@@ -2,9 +2,12 @@
 layout:       post
 title:        "python之面向对象"
 date:         2017-07-21 12:00:00
-categories: python
-tag: project
+categories: document
+tag: python
 ---
+
+* content
+{:toc}
 
 ### 概述
 + 面向过程：根据业务逻辑从上到下写垒代码

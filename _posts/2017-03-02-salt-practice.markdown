@@ -6,6 +6,9 @@ categories: document
 tag: salt
 ---
 
+* content
+{:toc}
+
 ### 概述
 依赖zeromq，salt-master监听两个端口：4505/tcp，publist_port，提供远程执行命令发送功能；4506/tcp，ret_port，用于文件服务、认证、结果搜索等功能接口，master端口需开通4505、4506,minion端口无特定端口要开通，minion端通过订阅master端4505端口的消息，然后将消息通过master端的4506端口返回结果
 ```

@@ -6,6 +6,9 @@ categories: document
 tag: python
 ---
 
+* content
+{:toc}
+
 ### os
 操作系统相关
 + os.path  os.path.isdir

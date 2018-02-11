@@ -2,9 +2,14 @@
 layout:       post
 title:        "consul+docker+register+ocnsul-template实现服务自动发现+主动注册+auto_scale"
 date:         2017-11-17 12:00:00
-categories: python
-tag: project
+categories: document
+tag:
+  - 服务发现
+  - consul
 ---
+
+* content
+{:toc}
 
 ### 环境准备
 client agent:node1 192.168.0.11
