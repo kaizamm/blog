@@ -2,8 +2,8 @@
 layout:       post
 title:        "python的抽象"
 date:         2016-12-27 12:00:00
-categories: python
-tag: document
+categories: document
+tag: python
 ---
 
 * content

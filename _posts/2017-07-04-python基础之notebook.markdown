@@ -3,7 +3,7 @@ layout:       post
 title:        "Jupyter-
 notebook"
 date:         2017-07-04 12:00:00
-categories: python
+categories: document
 tag: Jupyter notebook
 ---
 

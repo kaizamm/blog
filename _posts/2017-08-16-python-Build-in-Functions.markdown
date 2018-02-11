@@ -2,7 +2,7 @@
 layout:       post
 title:        "python-Build-in-Functions"
 date:         2017-08-16 12:00:00
-categories: docuement
+categories: document
 tag: python
 ---
 

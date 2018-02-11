@@ -2,8 +2,10 @@
 layout:       post
 title:        "chapter6-数据库编程"
 date:         2017-08-15 12:00:00
-categories: python
-tag: project
+categories: project
+tag:
+  - python
+  - 数据库编程
 ---
 
 * content
