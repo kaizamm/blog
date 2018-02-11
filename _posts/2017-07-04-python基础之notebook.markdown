@@ -1,9 +1,10 @@
 ---
 layout:       post
-title:        "用python实现用户登陆"
+title:        "Jupyter-
+notebook"
 date:         2017-07-04 12:00:00
 categories: python
-tag: notebook
+tag: Jupyter notebook
 ---
 
 ### 运行

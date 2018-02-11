@@ -1,9 +1,11 @@
 ---
 layout:       post
-title:        "python爬虫之scrapy基础"
+title:        "scrapy-爬虫-基础"
 date:         2018-01-31 12:00:00
 categories: document
-tag: python
+tag:
+  - python
+  - scrapy
 ---
 
 ### 前言
@@ -52,7 +54,8 @@ root@kaiz-virtual-machine:/opt# scrapy runspider myspider.py
 ...
 ```
 
-xpath语法详见http://www.runoob.com/xpath/xpath-syntax.html ;对于以上spider用xpath写为:
+对于以上spider用xpath写为:
+
 ```python
 import scrapy
 class BlogSpider(scrapy.Spider):
@@ -197,12 +200,24 @@ scrapy crawl dmoz
 
 Scrapy提取数据有自己的一套机制。它们被称作选择器(seletors)，因为他们通过特定的 XPath 或者 CSS 表达式来“选择” HTML文件中的某个部分。
 
-XPath 是一门用来在XML文件中选择节点的语言，也可以用在HTML上。 CSS 是一门将HTML文档样式化的语言。选择器由它定义，并与特定的HTML元素的样式相关连。
-+ /html/head/title: 选择HTML文档中 <head> 标签内的 <title> 元素
+XPath 是一门用来在XML文件中选择节点的语言，也可以用在HTML上。 CSS 是一门将HTML文档样式化的语言。选择器由它定义，并与特定的HTML元素的样式相关连。xpath语法详见http://www.runoob.com/xpath/xpath-syntax.html ;
+
+```bash
+XPath Expression	Result
+/bookstore/book[1]	Selects the first book element that is the child of the bookstore element
+/bookstore/book[last()]	Selects the last book element that is the child of the bookstore element
+/bookstore/book[last()-1]	Selects the last but one book element that is the child of the bookstore element
+/bookstore/book[position()<3]	Selects the first two book elements that are children of the bookstore element
+//title[@lang]	Selects all the title elements that have an attribute named lang
+//title[@lang='en']	Selects all the title elements that have a "lang" attribute with a value of "en"
+/bookstore/book[price>35.00]	Selects all the book elements of the bookstore element that have a price element with a value greater than 35.00
+/bookstore/book[price>35.00]/title	Selects all the title elements of the book elements of the bookstore element that have a price element with a value greater than 35.00
+```
++ /html/head/title: 选择HTML文档中 <head> 标签内的 <title> 元素的selector
 + /html/head/title/text(): 选择上面提到的 <title> 元素的文字
 + //td: 选择所有的 <td> 元素
 + //div[@class="mine"]: 选择所有具有 class="mine" 属性的 div 元素
-
++ extract() : To actually extract the textual data, you must call the selector .extract() method
 Scrapy选择器构建于 lxml 库之上，这意味着它们在速度和解析准确性上非常相似。
 
 ##### 构造选择器(selectors)
