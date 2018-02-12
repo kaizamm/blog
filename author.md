@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 我的书单
+title: Contact Me
 permalink: /author/
 ---
 
@@ -10,5 +10,5 @@ permalink: /author/
 
 
 -----------------------------------------------------------------
-+ qq: 925370765 
++ qq: 925370765
 + tel: 18071130719
