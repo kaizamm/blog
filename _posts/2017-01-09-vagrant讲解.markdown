@@ -218,8 +218,10 @@ config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
    end
  end
  ```
+ 
 + 循环创建
-```
+
+```bash
 # files: Vagrantfile
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
