@@ -126,9 +126,12 @@ config.vm.network "public_network" ,type: 'dhcp'
 ```
 + static IP
 ```
-config.vm.network "public_network", ip: "192.168.0.17" `
+config.vm.network "public_network", ip: "192.168.0.17" 
+```
 >若host machine有多个interface，可用参数bridge指定默认：
-`config.vm.network "public_network",bridge: "en1:Wi-Fi" `
+```
+config.vm.network "public_network",bridge: "en1:Wi-Fi"
+```
 
 + Diable AUTO-Configuration
 
@@ -149,7 +152,9 @@ end
 
 
 ## Synced Folders
+
 在host machine及guest machine之间的文件共享
+
 + Basic Usage
 ```
 config.vm.synced_folder "src/", "/srv/website"
