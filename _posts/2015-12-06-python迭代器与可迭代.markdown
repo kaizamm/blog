@@ -1,7 +1,7 @@
 ---
 layout:       post
 title:        "python迭代器与可迭代"
-date:         2016-12-06 12:00:00
+date:         2015-12-06 12:00:00
 categories: document
 tag: python
 ---
