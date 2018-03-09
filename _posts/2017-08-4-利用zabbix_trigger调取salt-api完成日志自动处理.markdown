@@ -17,12 +17,12 @@ tag:
 
 ### 对应zabbix添加script,action
 
-<img src="{{ '/styles/images/1.png' | prepend: site.baseurl }}" alt="" width="410" />
+<img src="{{ '/styles/images/1.png' | prepend: site.baseurl }}" alt="" width="610" />
 ### 对应zabbix添加script,action
-<img src="{{ '/styles/images/2.png' | prepend: site.baseurl }}" alt="" width="410" />
-<img src="{{ '/styles/images/3.pgn' | prepend: site.baseurl }}" alt="" width="410" />
-<img src="{{ '/styles/images/4.png' | prepend: site.baseurl }}" alt="" width="410" />
-<img src="{{ '/styles/images/5.png' | prepend: site.baseurl }}" alt="" width="410" />
+<img src="{{ '/styles/images/2.png' | prepend: site.baseurl }}" alt="" width="610" />
+<img src="{{ '/styles/images/3.pgn' | prepend: site.baseurl }}" alt="" width="610" />
+<img src="{{ '/styles/images/4.png' | prepend: site.baseurl }}" alt="" width="610" />
+<img src="{{ '/styles/images/5.png' | prepend: site.baseurl }}" alt="" width="610" />
 
 ### ZABBIX 传参
 <img src="{{ '/styles/images/6.png' | prepend: site.baseurl }}" alt="诫子书" width="410" />
