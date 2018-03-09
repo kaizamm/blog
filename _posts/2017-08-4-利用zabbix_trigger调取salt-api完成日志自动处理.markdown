@@ -16,21 +16,16 @@ tag:
 安装好对应zabbix server/agent，salt-master、salt-minion、salt-api
 
 ### 对应zabbix添加script,action
-![1.png][1.png]
-[1.png]: ./利用zabbix_trigger调取salt-api完成日志自动处理/1.png
+
+<img src="{{ '/styles/images/1.jpg' | prepend: site.baseurl }}" alt="诫子书" width="410" />
 ### 对应zabbix添加script,action
-![2.png][2.png]
-[2.png]: ./利用zabbix_trigger调取salt-api完成日志自动处理/2.png
-![3.png][3.png]
-[3.png]: ./利用zabbix_trigger调取salt-api完成日志自动处理/3.png
-![4.png][4.png]
-[4.png]: ./利用zabbix_trigger调取salt-api完成日志自动处理/4.png
-![5.png][5.png]
-[5.png]: ./利用zabbix_trigger调取salt-api完成日志自动处理/5.png
+<img src="{{ '/styles/images/2.jpg' | prepend: site.baseurl }}" alt="诫子书" width="410" />
+<img src="{{ '/styles/images/3.jpg' | prepend: site.baseurl }}" alt="诫子书" width="410" />
+<img src="{{ '/styles/images/4.jpg' | prepend: site.baseurl }}" alt="诫子书" width="410" />
+<img src="{{ '/styles/images/5.jpg' | prepend: site.baseurl }}" alt="诫子书" width="410" />
 
 ### ZABBIX 传参
-![6.png][6.png]
-[6.png]: ./利用zabbix_trigger调取salt-api完成日志自动处理/6.png
+<img src="{{ '/styles/images/6.jpg' | prepend: site.baseurl }}" alt="诫子书" width="410" />
 
 ### ZABBIX执行脚本
 ```

@@ -242,6 +242,53 @@ XPath Expression	Result
 + **//div/@lang: 选择所有具有 lang属性的值，如//a/@href**
 + extract() : To actually extract the textual data, you must call the selector .extract() method,将选择器里的内容解析出来
 
+对于selector来说，可用的方法还有如下：
+```python
+In [116]: dir(new_se2)
+Out[116]:
+[
+...
+'css',
+'extract',
+'extract_unquoted',
+'get',
+'getall',
+'namespaces',
+'re',
+'re_first',
+'register_namespace',
+'remove_namespaces',
+'response',
+'root',
+'select',
+'selectorlist_cls',
+'text',
+'type',
+'xpath']
+```
+
+eg：
+
+```python
+>>> links = hxs.select('//a[contains(@href, "image")]')
+>>> links.extract()
+[u'<a href="image1.html">Name: My image 1 <br><img src="image1_thumb.jpg"></a>',
+ u'<a href="image2.html">Name: My image 2 <br><img src="image2_thumb.jpg"></a>',
+ u'<a href="image3.html">Name: My image 3 <br><img src="image3_thumb.jpg"></a>',
+ u'<a href="image4.html">Name: My image 4 <br><img src="image4_thumb.jpg"></a>',
+ u'<a href="image5.html">Name: My image 5 <br><img src="image5_thumb.jpg"></a>']
+
+>>> for index, link in enumerate(links):
+        args = (index, link.select('@href').extract(), link.select('img/@src').extract())
+        print 'Link number %d points to url %s and image %s' % args
+
+Link number 0 points to url [u'image1.html'] and image [u'image1_thumb.jpg']
+Link number 1 points to url [u'image2.html'] and image [u'image2_thumb.jpg']
+Link number 2 points to url [u'image3.html'] and image [u'image3_thumb.jpg']
+Link number 3 points to url [u'image4.html'] and image [u'image4_thumb.jpg']
+Link number 4 points to url [u'image5.html'] and image [u'image5_thumb.jpg']
+```
+
 Scrapy选择器构建于 lxml 库之上，这意味着它们在速度和解析准确性上非常相似。
 
 ##### 构造选择器(selectors)

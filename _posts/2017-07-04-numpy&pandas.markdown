@@ -3,7 +3,9 @@ layout:       post
 title:        "numpy pandas科学计算"
 date:         2017-07-04 12:00:00
 categories: document
-tag: python
+tag:
+  - python
+  - 科学计算
 ---
 
 * content

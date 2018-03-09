@@ -1,6 +1,6 @@
 ---
 layout:       post
-title:        "scrapy进阶(一)"
+title:        "scrapy进阶"
 date:         2018-02-02 12:00:00
 categories: document
 tag:
@@ -11,6 +11,11 @@ tag:
 
 * content
 {:toc}
+
+### 架构概览
+接下来的图表展现了Scrapy的架构，包括组件及在系统中发生的数据流的概览(绿色箭头所示)。 下面对每个组件都做了简单介绍，并给出了详细内容的链接。数据流如下所描述
+
+<img src="{{ '/styles/images/scrapy_architecture.png' | prepend: site.baseurl }}" alt="" width="410" />
 
 ### Item Pipeline
 当Item在Spider中被收集之后，它将会被传递到Item Pipeline，一些组件会按照一定的顺序执行对Item的处理，每个item pipeline组件是实现了简单方法的python类。他们接收到Item并通过它执行一些行为，同时也决定此Item是否继续通过pipeline，或是被丢弃而不再进行处理。以下是item pipeline的一些典型应用：
@@ -292,4 +297,24 @@ http://crawlera.com/
 scrapy bench
 ```
 
-### demo
+### 关于scrapy解析需用的几个库
+#### selenium
+#### urllib
+#### Beautifulsoup
+```python
+import requests
+from bs4 import BeautifulSoup
+url = "https://tieba.baidu.com/index.html"
+response = requests.get(url)
+html = response.text
+soup = BeautifulSoup(html,'lxml')
+content = soup.find_all(class_="title feed-item-link")
+#获取title
+title = []
+href = []
+for item in content:
+    title.append(item.text)
+    href.append(item.attrs['href'])
+for i in zip(title,href):
+    print(i)
+```

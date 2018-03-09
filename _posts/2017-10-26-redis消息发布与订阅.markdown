@@ -108,11 +108,6 @@ if __name__ == '__main__':
 
 + 效果图
 
-![效果图1][效果图1]
-[效果图1]: ./redis消息发布与订阅/效果图1.png
-
-![效果图2][效果图2]
-[效果图2]: ./redis消息发布与订阅/效果图2.png
-
-![效果图3][效果图3]
-[效果图3]: ./redis消息发布与订阅/效果图3.png
+<img src="{{ '/styles/images/xiaoguotu1.png' | prepend: site.baseurl }}" alt="" width="410" />
+<img src="{{ '/styles/images/xiaoguotu2.png' | prepend: site.baseurl }}" alt="" width="410" />
+<img src="{{ '/styles/images/xiaoguotu3.png' | prepend: site.baseurl }}" alt="" width="410" />
