@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Tag plugin="workflow-support@2.18">
+  <node class="cps.n.StepAtomNode" plugin="workflow-cps@2.45">
+    <parentIds>
+      <string>12</string>
+    </parentIds>
+    <id>13</id>
+    <descriptorId>org.jenkinsci.plugins.workflow.steps.IsUnixStep</descriptorId>
+  </node>
+  <actions>
+    <wf.a.TimingAction plugin="workflow-api@2.26">
+      <startTime>1520426946047</startTime>
+    </wf.a.TimingAction>
+    <s.a.LogActionImpl>
+      <charset>UTF-8</charset>
+    </s.a.LogActionImpl>
+  </actions>
+</Tag>

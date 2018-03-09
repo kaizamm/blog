@@ -25,7 +25,7 @@ tag:
 <img src="{{ '/styles/images/5.png' | prepend: site.baseurl }}" alt="" width="610" />
 
 ### ZABBIX 传参
-<img src="{{ '/styles/images/6.png' | prepend: site.baseurl }}" alt="诫子书" width="410" />
+<img src="{{ '/styles/images/6.png' | prepend: site.baseurl }}" alt="诫子书" width="610" />
 
 ### ZABBIX执行脚本
 ```

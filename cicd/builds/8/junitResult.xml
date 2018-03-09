@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<result plugin="junit@1.24">
+  <suites>
+    <suite>
+      <file>/var/jenkins_home/workspace/cicd/target/surefire-reports/TEST-com.mycompany.app.AppTest.xml</file>
+      <name>com.mycompany.app.AppTest</name>
+      <duration>0.006</duration>
+      <time>0.006</time>
+      <nodeId>20</nodeId>
+      <enclosingBlocks>
+        <string>18</string>
+      </enclosingBlocks>
+      <enclosingBlockNames>
+        <string>Test</string>
+      </enclosingBlockNames>
+      <cases>
+        <case>
+          <duration>0.005</duration>
+          <className>com.mycompany.app.AppTest</className>
+          <testName>testAppMain</testName>
+          <skipped>false</skipped>
+          <failedSince>0</failedSince>
+        </case>
+        <case>
+          <duration>0.001</duration>
+          <className>com.mycompany.app.AppTest</className>
+          <testName>testAppConstructor</testName>
+          <skipped>false</skipped>
+          <failedSince>0</failedSince>
+        </case>
+      </cases>
+    </suite>
+  </suites>
+  <duration>0.006</duration>
+  <keepLongStdio>false</keepLongStdio>
+</result>
