@@ -57,11 +57,85 @@ $ sudo apt-get install ansible
 aserver.example.org
 bserver.example.org
 ```
+
+#### 配置免密登陆
+
++ 方式一：用密码登陆
+
++ 方式二：用证书配置免密
+```bash
+ssh-keygen #一直回车
+ssh-copy-id -i ~/.ssh/id_rsa.pub user@目标主机ip  #ssh-copy-id将本地的公钥传输到远程主机的authorized_keys文件中
+（也可以用  scp /root/.ssh/id_rsa.pub 目标IP:/root/.ssh/authorizedz_keys）
+ssh user@目标主机ip #此时就可以直接登陆
+```
+
+若还是不行，请检查ssh的配置文件：
+```
+RSAAuthentication yes
+PubkeyAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys
+```
+
+.ssh目录下的各文件(.ssh目录权限700，authorized_keys权限600)：
+
+```
+authorized_keys:存放远程免密登录的公钥,主要通过这个文件记录多台机器的公钥
+id_rsa : 生成的私钥文件
+id_rsa.pub ： 生成的公钥文件
+know_hosts : 已知的主机公钥清单
+```
+
++ 方式三：批量配置
+
+如：现有一批机器的root的用户名密码，如何批量实现ansible主机与这批机器之间免密认证？
+1. ssh-keyscan 主机名 >> /root/.ssh/know_hosts    #两台远程主机的公钥记录加入本地known_hosts文件，实现登录不需要输入yes
+2. 通过用户和密码批量登录机器,
+配置hosts文件，带密码参数ansible_ssh_pass
+```
+# cat hosts
+[password]
+10.58.8.1 ansible_ssh_pass=123456
+10.58.8.2 ansible_ssh_user=weblogic ansible_ssh_pass=123456 ansible_sudo_pass=weblogic
+```
+这里面可以通过root用户和密码来登录10.58.8.1，其他像端口和用户等参数是默认的22和root；对于10.58.8.2则可以通过weblohic用户和密码来登录，但是roles目录下的yml文件，需要在全局指定sudo: yes
+
+
+首先，需要用ssh-keygen来把远程主机的公钥来获取到本地；
+
+ssh-keyscan10.58.8.110.58.8.2
+
+/root/.ssh/known_hosts 把1和2两台主机加入本地known_hosts文件，实现登录不需要输入yes
+
+然后，设置export ANSIBLE_HOST_KEY_CHECKING=False
+
+现在需要通过playbook来实现批量对服务器设置免密码登录了，但是因为现在还没有配置秘钥，所有还得用密码登录，也就是在hosts文件里面对变量ansible_ssh_pass直接定义密码，当然如果所有机器的密码都一样的话，就不需要在hosts里面定义了，直接在命令行用-k参数来指定即可。
+
+3. 配置ssh-addkey.yml文件
+```
+# ssh-addkey.yml
+----
+hosts: all gather_facts: no
+- name: install sshkey
+  authorized_key: user=rootkey="{{ lookup('file', '/root/.ssh/id_rsa.pub') }}" state=present
+```
+
+4. 运行ansible-playbook -i hosts ssh-addkey.yml
+
+这样ansible的公钥就会批量记录到远程主机的authorized_key文件中，这个时候把hosts里面的关于密码的变量去掉，就可以实现免密码登录了。
+
+> 注意，如果已经配置过免密登陆过，以后就不要再运行ssh-keygen了，否则之前所有的配置过免密登陆都会失效
+
+
+ssh-agent 如果一个主机和若干个主机建立免密码登录后，在登录一台主机后，不能通过这台主机实现登录其他主机，也就是这些若干主机之间是无法相互登录的，可以通过转发来实现
+
  我们假定你使用SSH Key来授权.为了避免在建立SSH连接时,重复输入密码你可以这么 做:
 
  ```
- $ ssh-agent bash
- $ ssh-add ~/.ssh/id_rsa
+ $ ssh-agent bash  或者（ssh-agent bash --login -i）
+ $ ssh-add ~/.ssh/id_rsa  #ssh-add命令是把专用密钥添加到ssh-agent的高速缓存中，如果不敲这条命令，则无法实现转发
+ $ 配置/etc/ssh/ssh_config ForwardAgent yes
+#然后执行ssh -A 主机1；ssh -A 主机2，就可以无限制跳转到需要登录的机器
  ```
 
  (根据你的建立方式,你也许希望使用Ansible的 --private-key 选项,通过指定pem文件来代替SSH Key来授权) 现在ping 你的所有节点:
