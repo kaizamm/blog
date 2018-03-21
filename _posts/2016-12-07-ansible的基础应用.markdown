@@ -115,9 +115,10 @@ ssh-keyscan10.58.8.110.58.8.2
 ```
 # ssh-addkey.yml
 ----
-hosts: all gather_facts: no
-- name: install sshkey
-  authorized_key: user=rootkey="{{ lookup('file', '/root/.ssh/id_rsa.pub') }}" state=present
+- hosts: all
+  gather_facts: no
+  - name: install sshkey
+    authorized_key: user=rootkey="{{ lookup('file', '/root/.ssh/id_rsa.pub') }}" state=present
 ```
 
 4. 运行ansible-playbook -i hosts ssh-addkey.yml

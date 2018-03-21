@@ -21,8 +21,8 @@ k8s是一个便携式、可扩展的开源平台，管理容器负载和服务�
 ### 内核
 内核必须支持 memory and swap accounting 。确认你的linux内核开启了如下配置
 ```bash
- $cat /boot/config-***-generic
- CONFIG_RESOURCE_COUNTERS=y
+#cat /boot/config-***-generic
+CONFIG_RESOURCE_COUNTERS=y
 CONFIG_MEMCG=y
 CONFIG_MEMCG_SWAP=y
 CONFIG_MEMCG_SWAP_ENABLED=y
