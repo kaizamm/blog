@@ -4,8 +4,7 @@ title:  kubernetes-Exopse Your App Publicly
 date:   2018-03-21 01:08:00 +0800
 categories: document
 tag:
-  - k8s
-
+  - kubernetes
 ---
 
 * content
