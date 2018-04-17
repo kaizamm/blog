@@ -320,7 +320,30 @@ print Foo.__doc
 + \__class\__表示操作的对象的类是什么
 + \__init\__
 + \__del\__:析构方法，对对象在内存在被释放时，自动触发执行，最后一次呐喊
+
+析构方法，当对象在内存中被释放时，自动触发执行。
+
+注：此方法一般无须定义，因为Python是一门高级语言，程序员在使用时无需关心内存的分配和释放，因为此工作都是交给Python解释器来执行，所以，析构函数的调用是由解释器在进行垃圾回收时自动触发执行的。
+
+```python
+class Foo:
+    def __del__(self):
+        pass
+```
+
+
 + \__call\__:对象后面加括号触发执行
+
+```python
+class Foo:
+    def __init__(self):
+        pass    
+    def __call__(self, *args, **kwargs):
+        print '__call__'
+obj = Foo() # 执行 __init__
+obj()       # 执行 __call__
+```
+
 + \__dict\__:类或对象中的所有成员
 + \__str\__:如果一个类中定义了\__str\__方法，那就在打印对象时，默认输入该方法的返回值
 + \__getitem\__、\__setitem\__、\__delitem\__:用于索引操作，如字典。以上分别表示获取、设置、删除数据
@@ -349,4 +372,4 @@ hi,this is  kaiz
 end
 ```
 
-参考 http://www.cnblogs.com/wupeiqi/p/4766801.html
+[参考](http://www.cnblogs.com/wupeiqi/p/4766801.html)
