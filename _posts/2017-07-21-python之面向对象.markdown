@@ -10,10 +10,15 @@ tag: python
 {:toc}
 
 ### 概述
+
+关于python的编程有以下几种方式
+
 + 面向过程：根据业务逻辑从上到下写垒代码
 + 函数式： 将某功能代码封装到函数中，日后便无需重复编写，仅调用函数即可
 + 面向对象： 对函数进行分类和封装，让开发“更快更好更强”
+
 ### 创建类和对象
+
 面向对象其实就是对类和对象的使用，类就是一个模版，模版里包含多个函数，函数里实现一些功能；对象则是根据模版创建实例，通过实例对象可以执行类中的函数。
 
 ```
@@ -26,11 +31,13 @@ class Foo:
 obj = Foo()
 ```
 
+> python 自醒反射继承鸭子类型类方法静态方法静态字段属性装饰器
+
 ### 面向对象的三大特性
 #### 封装
-封装故名思义就是将内容封装到某个地方，以后再去调用被封装在某处的内容。所以在使用面向对象的封装特性时，需要：
-##### 将内容封装到某处
-```
+封装故名思义就是将内容封装到某个地方，以后再去调用被封装在某处的内容。
+
+```python
 class Foo:
   def __init__(self,name,age):
     self.name = name
@@ -43,10 +50,11 @@ obj2 = Foo('amm',28)
 #如上，即是将kaiz,18分别封装到obj1/self的name和age属性中
 #self是一个形式参数，当执行obj1 = Foo('kaiz',18)时，self等于obj1
 ```
-##### 从某处调用被封装的内容
-调用被封装的内容时，有两种情况：
-###### 通过对象直接调用
-```
+#### 调用被封装的内容
+
++  通过对象直接调用
+
+```python
 class Foo:
   def __init__(slef,name,age):
     self.name = name
@@ -55,8 +63,10 @@ obj1 =Foo('kaiz',18)
 print obj1.name
 print obj1.age
 ```
-###### 通过self间接调用
-```
+
++  通过self间接调用
+
+```python
 class Foo:
   def __init__(slef,name,age):
     self.name = name
@@ -69,7 +79,7 @@ class Foo:
 
 ###  继承
 继承，子类继承父类（派生类继承基类）
-```
+```python
 class Father:
   def __init__(self,name,age):
     self.name = name
@@ -96,7 +106,7 @@ class A(B,C)
 ```
 
 ### 多态
-```
+```python
 class F1:
     pass
 
@@ -130,7 +140,7 @@ Func(s2_obj)
 
 #### 字段
 普通字段和静态字段在定义和使用中有所区别，本质区别是内存中保存位置不同；普通字段属于类对象，静态字段属于类
-```
+```python
 class Province:
   #静态字段
   country = '中国'
@@ -153,7 +163,7 @@ Provice.country
 + 类方法：由类调用，至少一个cls参数，执行类方法时，自动将调用该方法的类复制给cls
 + 静态方法：由类调用，无默认参数
 
-```
+```python
 class Foo:
   def __init__(self,name):
     self.name = name
@@ -185,10 +195,41 @@ Foo.static_func()
 
 ```
 
+```python
+In [24]: class foo(object):
+    ...:     price = 5
+    ...:     def __init__(self,name):
+    ...:         self.name = name
+    ...:     def regular_func(self):
+    ...:         print(self.name)
+    ...:     @staticmethod
+    ...:     def static_method_func():
+    ...:         print("static_method_func")
+    ...:     @classmethod
+    ...:     def classmethod_func(cls,name):
+    ...:         cls(name).regular_func()
+
+
+ In [26]: A=foo("kaiz")
+
+ In [27]: A.regular_func()
+ kaiz
+
+ In [28]: A.price
+ Out[28]: 5
+
+ In [29]: A.static_method_func()
+ static_method_func
+
+ In [30]: A.classmethod_func("amm")
+ amm
+
+```
+
 #### 属性
 属性就是普通方法的变种，在定义时，在普通方法的基础上添加@property装饰器，属性仅有一个self参数，调用时无需括号；方法： foo_obj.func()，属性： foo_obj.prop; 属性两种定义方式，一种是用装饰器的形式，一种是静态字段
 + 属性的基本使用
-```
+```python
 ###########定义#########
 class Foo:
 
@@ -212,7 +253,7 @@ result = foo_obj.prop
 
 + 私有成员：私有成员在命名时，前两个字符是下划线，特殊成员除外如： \__init\__、\__call\__、\__dict\__等
 
-```
+```python
 class C:
   def __init__(self):
     self.name = '公有字段'
@@ -221,7 +262,7 @@ class C:
 
 + 公有成员：公有静态字段类可可以访问，类内部也可以访问，派生类中也可以访问；私有静态字段，仅类内部可以访问
 
-```
+```python
 class C:
   name = '公有静态字段'
   def func(self):
@@ -241,7 +282,7 @@ obj_son.show() #派生类中可以访问
 
 ```
 对照如下
-```
+```python
 class C:
   __name = "公有静态字段"
   def func(self):
@@ -284,5 +325,24 @@ print Foo.__doc
 该三个方法用于分片操作
 + \__iter\__
 用于迭代器，之所以列表、字典、元组可以进行for循环，是因为类型内部定义了 \__iter\__
+
+### 装饰器
+对函数进行封装，直接上代码吧，直接暴力！
+```python
+In [49]: def func(function):
+    ...:     def wrap(arg):
+    ...:         print("begin")
+    ...:         function(arg)
+    ...:         print("end")
+    ...:     return wrap
+In [50]: @func
+    ...: def func2(argss):
+    ...:     print("hi,this is ",argss)
+
+In [51]: func2("kaiz")
+begin
+hi,this is  kaiz
+end
+```
 
 参考 http://www.cnblogs.com/wupeiqi/p/4766801.html
