@@ -388,26 +388,6 @@ del obj[0:2]                # 自动触发执行 __delslice__
 + \__iter\__
 用于迭代器，之所以列表、字典、元组可以进行for循环，是因为类型内部定义了 \__iter\__
 
-### 装饰器
-对函数进行封装，直接上代码吧，直接暴力！
-
-```python
-In [49]: def func(function):
-    ...:     def wrap(arg):
-    ...:         print("begin")
-    ...:         function(arg)
-    ...:         print("end")
-    ...:     return wrap
-In [50]: @func
-    ...: def func2(argss):
-    ...:     print("hi,this is ",argss)
-
-In [51]: func2("kaiz")
-begin
-hi,this is  kaiz
-end
-```
-
 eg:
 ```python
 class foo(object):
@@ -426,5 +406,40 @@ Out[24]: {'name': 'kaiz'}
 In [25]: A='asdf'
 this is del function
 ```
+
+### 装饰器
+对函数进行封装，直接上代码
+
+```python
+import time
+def timeit(f):
+    def timer(*arg):
+        start = time.time()
+        result = f(*arg)
+        end = time.time()
+        print("Function runtime is %s" % (end-start))
+        return result  #记住此处处最好有个返回值
+    return timer
+
+
+@timeit
+def factorial_two(n):
+    if n == 1:
+        return 1
+    elif n > 1:
+        return n * factorial_two(n-1)
+    else:
+        return 0
+
+print(factorial_two(4))
+
+Function runtime is 0.0
+Function runtime is 0.0
+Function runtime is 0.0
+Function runtime is 0.0
+24
+```
+
+
 
 [参考](http://www.cnblogs.com/wupeiqi/p/4766801.html)
