@@ -22,7 +22,7 @@ tag: python
 
 面向对象其实就是对类和对象的使用，类就是一个模版，模版里包含多个函数，函数里实现一些功能；对象则是根据模版创建实例，通过实例对象可以执行类中的函数。
 
-```
+```python
 class Foo:  
   #创建类中的函数
   def Bar(self):
@@ -303,7 +303,10 @@ obj_son.show() #派生类中可以访问  -->错误
 ```
 
 #### 类的特殊成员
-+ __doc__
+```
+ __doc__
+```
+
 表示类的描述信息
 ```
 class Foo:
@@ -317,33 +320,127 @@ print Foo.__doc
 + \__module\__:表示当前操作的对象在哪个模块
 + \__class\__表示操作的对象的类是什么
 + \__init\__
-+ \__del\__:析构方法，对对象在内存在被释放时，自动触发执行，最后一次呐喊
++ \__del\__:析构方法，对对象在内存在被释放时，自动触发执行，最后一次呐喊。注：此方法一般无须定义，因为Python是一门高级语言，程序员在使用时无需关心内存的分配和释放，因为此工作都是交给Python解释器来执行，所以，析构函数的调用是由解释器在进行垃圾回收时自动触发执行的。
+
+```python
+class Foo:
+    def __del__(self):
+        pass
+```
+
 + \__call\__:对象后面加括号触发执行
+
+```python
+class Foo:
+    def __init__(self):
+        pass    
+    def __call__(self, *args, **kwargs):
+        print '__call__'
+obj = Foo() # 执行 __init__
+obj()       # 执行 __call__
+```
+
 + \__dict\__:类或对象中的所有成员
-+ \__str\__:如果一个类中定义了\__str\__方法，那就在打印对象时，默认输入该方法的返回值
++ \__str\__:如果一个类中定义了\__str\__方法，那就在打印对象时，默认输入该方法的返回值。如果一个类中定义了__str__方法，那么在打印 对象 时，默认输出该方法的返回值。
+```python
+    def __str__(self):
+        return 'kaiz'
+obj = Foo()
+print obj
+# 输出：kaiz
+```
+
 + \__getitem\__、\__setitem\__、\__delitem\__:用于索引操作，如字典。以上分别表示获取、设置、删除数据
+
+```python
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+class Foo(object):
+    def __getitem__(self, key):
+        print '__getitem__',key
+    def __setitem__(self, key, value):
+        print '__setitem__',key,value
+    def __delitem__(self, key):
+        print '__delitem__',key
+obj = Foo()
+result = obj['k1']      # 自动触发执行 __getitem__
+obj['k2'] = 'wupeiqi'   # 自动触发执行 __setitem__
+del obj['k1']           # 自动触发执行 __delitem__
+```
+
 + \__getslice\__、\__setslice\__、\__delslice\__
-该三个方法用于分片操作
+该三个方法用于分片操作，如列表：
+```python
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+class Foo(object):
+    def __getslice__(self, i, j):
+        print '__getslice__',i,j
+    def __setslice__(self, i, j, sequence):
+        print '__setslice__',i,j
+    def __delslice__(self, i, j):
+        print '__delslice__',i,j
+obj = Foo()
+obj[-1:1]                   # 自动触发执行 __getslice__
+obj[0:1] = [11,22,33,44]    # 自动触发执行 __setslice__
+del obj[0:2]                # 自动触发执行 __delslice__
+```
+
 + \__iter\__
 用于迭代器，之所以列表、字典、元组可以进行for循环，是因为类型内部定义了 \__iter\__
 
-### 装饰器
-对函数进行封装，直接上代码吧，直接暴力！
+eg:
 ```python
-In [49]: def func(function):
-    ...:     def wrap(arg):
-    ...:         print("begin")
-    ...:         function(arg)
-    ...:         print("end")
-    ...:     return wrap
-In [50]: @func
-    ...: def func2(argss):
-    ...:     print("hi,this is ",argss)
+class foo(object):
+    def __init__(self,name):
+        self.name=name
+    def __call__(self):
+        print("this is call function")
+    def __del__(self):
+        print("this is del function")
+    def __str__(self):
+        return "amm"
 
-In [51]: func2("kaiz")
-begin
-hi,this is  kaiz
-end
+In [22]: A=foo("kaiz")
+In [24]: A.__dict__
+Out[24]: {'name': 'kaiz'}
+In [25]: A='asdf'
+this is del function
 ```
 
-参考 http://www.cnblogs.com/wupeiqi/p/4766801.html
+### 装饰器
+对函数进行封装，直接上代码
+
+```python
+import time
+def timeit(f):
+    def timer(*arg):
+        start = time.time()
+        result = f(*arg)
+        end = time.time()
+        print("Function runtime is %s" % (end-start))
+        return result  #记住此处处最好有个返回值
+    return timer
+
+
+@timeit
+def factorial_two(n):
+    if n == 1:
+        return 1
+    elif n > 1:
+        return n * factorial_two(n-1)
+    else:
+        return 0
+
+print(factorial_two(4))
+
+Function runtime is 0.0
+Function runtime is 0.0
+Function runtime is 0.0
+Function runtime is 0.0
+24
+```
+
+
+
+[参考](http://www.cnblogs.com/wupeiqi/p/4766801.html)
