@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  用kubeadm来安装kubernetes cluster
+title:  基于kubeadm安装kubernetes cluster
 date:   2018-03-09 01:08:00 +0800
 categories: document
 tag:
@@ -179,9 +179,7 @@ kubectl proxy --address="192.168.12.9" -p 8001 --accept-hosts='^*$'
 ### troubleshooting
 
 + Q: kubelet无法启动
-A: 通过journalctl -xeu kubelet查看提示信息，注意思如下三点：1.cgroupsfs的修改 2.kubeadm 的执行结果（master:kubeadm join; nodes: kubeadm join）
++ A: 通过journalctl -xeu kubelet查看提示信息，注意思如下三点：1.cgroupsfs的修改 2.kubeadm 的执行结果（master:kubeadm join; nodes: kubeadm join）
 
 + Q: 'kubectl get nodes'查看到的信息只有一个master提示ready，其余notready
-A: 查看nodes的flannel网络是否正常，查看image是否已全部下载完毕
-
-+ Q: master上
++ A: 查看nodes的flannel网络是否正常，查看image是否已全部下载完毕
