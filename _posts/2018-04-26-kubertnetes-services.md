@@ -6,11 +6,11 @@ categories: document
 tag:
   - kubernetes
 
-
-  * content
-  {:toc}
-
 ---
+
+* content
+{:toc}
+
 
 # 概述
 kubernetes pods很容易消亡，快速创建和销毁，且不可复活。ReplicationControllers会动态的创建和销毁pods（当scale up/down或是rolling updates时）。每个pod拥有自己的IP，但不固定。这就导致一个问题，如果在集群内，backends pods为frontend pods提供功能时，如何能保证frontend正确连接到backend
