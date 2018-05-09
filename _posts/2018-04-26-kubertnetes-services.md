@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  kubernetes services
-date:   2018-04-27 01:08:00 +0800
+date:   2018-04-26 01:08:00 +0800
 categories: document
 tag:
   - kubernetes

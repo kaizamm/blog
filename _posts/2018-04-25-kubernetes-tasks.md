@@ -1,4 +1,4 @@
-  ---
+---
 layout: post
 title:  kubernetes tasks from official website
 date:   2018-04-25 01:08:00 +0800
@@ -10,7 +10,7 @@ tag:
 * content
 {:toc}
 
-#  Configure a Pod to Use a Volume for Storage
+###  Configure a Pod to Use a Volume for Storage
 ```
 apiVersion: v1
 kind: Pod
@@ -57,7 +57,7 @@ kubectl exec -it redis -- /bin/bash
 ls /data/redis  ## test-file
 ```
 
-# Configure a Pod to Use a PersistentVolume for Storage
+### Configure a Pod to Use a PersistentVolume for Storage
 
 即 pvc，它的过程如下：
 
@@ -65,13 +65,13 @@ ls /data/redis  ## test-file
 2. 集群用户创建的pvc，会自动地绑定到一个合适的pv上
 3. 用户创建的pod会使用pvc作为存储
 
-## Create an index.html file on your Node
+#### Create an index.html file on your Node
 ```
 mkdir /mnt/data
 echo 'Hello from Kubernetes storage' > /mnt/data/index.html
 ```
 
-## Create a PersistentVolume
+#### Create a PersistentVolume
 
 在本章我们将创建一个hostpath的 pv。kubernetes在单结点上支持的hostpath的开发和测试。一个hostPath pv在node上使用一个文件或是一个目录来模拟网络连接的存储。
 
@@ -108,7 +108,7 @@ task-pv-volume   10Gi       RWO            Retain           Available           
 ```
 可以看到pv的STATUSo是Available，也就意味着这个还没有绑定到PVC上面。
 
-## 创建一个PVC（PersistentVolumeClaim）
+#### 创建一个PVC（PersistentVolumeClaim）
 下一步就是创建pvc，pod利用pvc去请求物理内存
 
 ```
@@ -139,7 +139,7 @@ NAME             CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS    CLAIM     
 task-pv-volume   10Gi       RWO            Retain           Bound     default/task-pv-claim   manual                   1h
 ```
 
-## Create Pod
+#### Create Pod
 下一步就是将你的pvc当作一个卷来创建pod
 ```
 kind: Pod

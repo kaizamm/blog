@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  kubernetes labels
-date:   2018-03-21 01:08:00 +0800
+date:   2018-04-27 01:08:00 +0800
 categories: document
 tag:
   - kubernetes

@@ -1,16 +1,16 @@
 ---
 layout: post
 title:  kubernetes proxy
-date:   2018-04-27 01:08:00 +0800
+date:   2018-04-26 01:08:00 +0800
 categories: document
 tag:
   - kubernetes
 
-
-  * content
-  {:toc}
-
 ---
+* content
+{:toc}
+
+
 
 # 前言
 在研究service时，想知道，如果想把pod直接expose后，此时服务类型为ClusterIp，不知道是否能通过kubectl proxy能让外部访问该服务？带着这个疑问，来研究一下kubectl proxy的具体原理
