@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  openstack基础环境搭建
+title:  openstack主要组件及基础环境搭建
 date:   2018-05-10
 categories: document
 tag:
@@ -41,68 +41,39 @@ I 版 ：最后一个支持centos6和python2.6的，I版本以后的都是默认
 
 私有云以vmware为主
 
-### 关键服件
+### 主要组件
 openstack系统由几个关键服件组成，**计算服务**,**认证服务**，**网络服务**，**镜像服务**，**块存储服务**，**对象存储服务**，**计量服务**，**编排服务**，**数据库服务**。
 
-+ 认证服务（Identity，代号为“Keystone”）
+#### 认证服务（Identity，代号为“Keystone”）
 
-
-用数据库连接客户端以 root 用户连接到数据库服务器
-```
-mysql -uroot -p
-```
-创建 keystone 数据库
-```
-CREATE DATABASE keystone;
-```
-对keystone给予恰当权限
-```
-MariaDB [(none)]> grant all privileges on keystone.* to 'keystone'@'localhost' identified by '123.com';
-Query OK, 0 rows affected (0.00 sec)
-
-MariaDB [(none)]> grant all privileges on keystone.* to 'keystone'@'%' identified by '123.com';
-Query OK, 0 rows affected (0.00 sec)
-```
-退出后生成一个随机值，在初始的配置中作为管理员的令牌
-```
-[root@linux-node3 system]# openssl rand -hex 10
-2cc4ea41401aae657ac2
-```
-
-安装并配置组件
-
-*使用带有mod_wsgi的Apache HTTP服务器来服务认证服务请求，端口为5000和35357。缺省情况下，Kestone服务仍然监听这些端口。然而，本教程手动禁用keystone服务。*
-
-
-
-+ 计算服务(Compute，代号为“Nova”)
+#### 计算服务(Compute，代号为“Nova”)
 
 根据需求提供虚拟的服务器。Rackspace和HP公司提供商业云计算服务正是建立在Nova之上，在Mercado Libre和NASA（Nova项目的起源地）内部也是使用的Nova。
-+ 控制面板（Dashboard，代号为“Horizon”）
+#### 控制面板（Dashboard，代号为“Horizon”）
 
 为OpenStack的所有服务提供一个模块化的基于Web的用户界面。使用这个Web图形界面，可以完成云计算平台上的大多数的操作，如启动客户机、分配IP地址、设置访问控制权限等。
 <img src="{{ '/styles/images/openstack/dashboard.png' | prepend: site.baseurl }}" alt="" width="810" />
 
-+ 网络服务（Network，代号为“Neutron”）
+#### 网络服务（Network，代号为“Neutron”）
 
-+ 镜像服务（Image，代号为“Glance”）
+#### 镜像服务（Image，代号为“Glance”）
 
-+ 块存储服务（Block Storage，代号为“Cinder”）
+#### 块存储服务（Block Storage，代号为“Cinder”）
 
-+ 对象存储服务（Object Storage，代号为“Swift”）
+#### 对象存储服务（Object Storage，代号为“Swift”）
 
 提供的对象存储服务，允许对文件进行存储或者检索（但不是通过挂载文件服务器上目录的方式来实现）。
 目前已经有好几家公司开始提供基于Swift的商业存储服务，这些公司包括KT公司、Rackspace公司（Swift项目的发源地）和Internap公司，
 而且，有很多大公司内部也使用Swift来存储数据。
-+ 计量服务
+#### 计量服务
 
-+ 编排服务
+#### 编排服务
 
-+ 数据库服务
+#### 数据库服务
 
-+ 文件共享系统服务
+#### 文件共享系统服务
 
-+ Telemetry服务
+#### Telemetry服务
 
 [更多](https://docs.openstack.org/mitaka/zh_CN/install-guide-rdo/)
 
@@ -110,6 +81,7 @@ Query OK, 0 rows affected (0.00 sec)
 硬件所需最小资源
 <img src="{{ '/styles/images/openstack/hwreqs.png' | prepend: site.baseurl }}" alt="示意图" width="810" />
 
+#### 基础环境安装
 Vmware Workstation<br>
 虚拟机系统2个<br>
 系统版本：centos7.1.1503 x86_64<br>
@@ -149,6 +121,17 @@ GATEWAY="192.168.56.2"
 192.168.56.12 linux-node2 linux-node2.example.com
 ```
 
+换阿里源
+```
+mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak && curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo && \
+yum makecache
+```
+
+如果不换阿里源，装个epel仓库也行，二选一即可
+```
+rpm -ivh http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
+```
+
 时钟同步<br>
 
 ----------------------------
@@ -172,24 +155,13 @@ timedatectl  status #查看状态
 chronyc tracking #校准时间服务器
 ```
 关于用chrony设置集群中时间同步，client及server都需要将配置文件中的同步源修改为server IP,[参考1](https://renwole.com/archives/1032)  [参考2](https://www.cnblogs.com/clsn/archive/2017/11/16/7844857.html)
-```
-firewall-cmd --add-service ntp
-```
-------------------------
+
+~~------分割线-------~~
+
+---------
 
 ```
-yum install -y chrony && systemctl start chronyd.service && systemctl enable chronyd.service
-```
-
-换阿里源
-```
-curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo && \
-yum makecache
-```
-
-如果不换阿里源，装个epel仓库也行，二选一即可
-```
-rpm -ivh http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
+yum install -y chrony && systemctl start chronyd.service && systemctl enable chronyd.service && firewall-cmd --add-service ntp
 ```
 
 安装openstack仓库
@@ -211,13 +183,21 @@ yum install -y python-openstackclient
 ```
 yum install -y openstack-selinux
 ```
-安装mysql
+#### mysql安装
 ```
 yum install -y mariadb mariadb-server python2-PyMySQL   
 ```
 修改mysql配置文件
-
-
+```
+vim /etc/my.cnf.d/openstack.cnf
+[mysqld]
+bind-address = 192.168.56.11 #设置监听的IP地址
+default-storage-engine = innodb  #设置默认的存储引擎
+innodb_file_per_table = on#使用独享表空间
+collation-server = utf8_general_ci #服务器的默认校对规则
+character-set-server = utf8 #服务器安装时指定的默认字符集设定
+max_connections = 4096 #设置MySQL的最大连接数，生产请根据实际情况设置。
+```
 
 启动mysql
 ```
@@ -227,3 +207,94 @@ systemctl start mariadb && systemctl enable mariadb
 ```
 mysql_secure_installation
 ```
+
+
+用数据库连接客户端以 root 用户连接到数据库服务器
+```
+mysql -uroot -p
+```
+创建 keystone 数据库
+```
+CREATE DATABASE keystone;
+```
+对keystone给予恰当权限
+```
+grant all privileges on keystone.* to 'keystone'@'localhost' identified by '123.com';
+
+grant all privileges on keystone.* to 'keystone'@'%' identified by '123.com';
+```
+
+~~退出后生成一个随机值，在初始的配置中作为管理员的令牌~~
+```
+[root@linux-node3 system]# openssl rand -hex 10
+2cc4ea41401aae657ac2
+```
+
+类似地创建Glance Nova Neutron Cinder数据库
+
+```
+#Glance
+CREATE DATABASE glance;
+GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'localhost' IDENTIFIED BY 'glance';
+GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'%' IDENTIFIED BY 'glance';
+# Nova
+CREATE DATABASE nova;
+GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'localhost' IDENTIFIED BY 'nova';
+GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'%' IDENTIFIED BY 'nova';
+CREATE DATABASE nova_api;
+GRANT ALL PRIVILEGES ON nova_api.* TO 'nova'@'localhost' IDENTIFIED BY 'nova';
+GRANT ALL PRIVILEGES ON nova_api.* TO 'nova'@'%' IDENTIFIED BY 'nova';
+CREATE DATABASE nova_cell0;
+GRANT ALL PRIVILEGES ON nova_cell0.* TO 'nova'@'localhost' IDENTIFIED BY 'nova';
+GRANT ALL PRIVILEGES ON nova_cell0.* TO 'nova'@'%' IDENTIFIED BY 'nova';
+#Neutron
+CREATE DATABASE neutron;
+GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'localhost' IDENTIFIED BY 'neutron';
+GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'%' IDENTIFIED BY 'neutron';
+#Cinder
+CREATE DATABASE cinder;
+GRANT ALL PRIVILEGES ON cinder.* TO 'cinder'@'localhost' IDENTIFIED BY 'cinder';
+GRANT ALL PRIVILEGES ON cinder.* TO 'cinder'@'%' IDENTIFIED BY 'cinder';
+```
+
+#### RabbitMQ安装
+```
+yum install -y rabbitmq-server && \
+systemctl enable rabbitmq-server.service && \
+systemctl start rabbitmq-server.service && \
+systemctl status rabbitmq-server.service
+```
+添加openstack用户
+```
+rabbitmqctl add_user openstack openstack
+```
+给刚才的openstack用户给权限
+```
+rabbitmqctl set_permissions openstack ".*" ".*" ".*"
+```
+启用web插件
+```
+rabbitmq-plugins list
+rabbitmq-plugins enable rabbitmq_management
+```
+端口说明：
+```
+[root@linux-node1 yum.repos.d]# netstat -nltp
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:25672           0.0.0.0:*               LISTEN      4880/beam           -> mq集群所需要的端口
+tcp        0      0 192.168.56.11:3306      0.0.0.0:*               LISTEN      4569/mysqld         
+tcp        0      0 192.168.56.11:11211     0.0.0.0:*               LISTEN      1110/memcached      
+tcp        0      0 0.0.0.0:4369            0.0.0.0:*               LISTEN      4772/epmd           
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1101/sshd           
+tcp        0      0 0.0.0.0:15672           0.0.0.0:*               LISTEN      4880/beam        -> mq的管理界面   
+tcp6       0      0 :::5672                 :::*                    LISTEN      4880/beam        -> mq的端口   
+tcp6       0      0 :::5000                 :::*                    LISTEN      1111/httpd          
+tcp6       0      0 :::8778                 :::*                    LISTEN      1111/httpd          
+tcp6       0      0 ::1:11211               :::*                    LISTEN      1110/memcached      
+tcp6       0      0 :::80                   :::*                    LISTEN      1111/httpd          
+tcp6       0      0 :::4369                 :::*                    LISTEN      4772/epmd           
+tcp6       0      0 :::22                   :::*                    LISTEN      1101/sshd           
+tcp6       0      0 :::35357                :::*                    LISTEN      1111/httpd       
+```
+
+web界面访问 http://192.168.56.11:15672/#/  用户名：guest # guest
