@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  openstack实战之glance
+title:  openstack实战之glance（3）
 date:   2018-05-13
-categories: document
+categories: project
 tag:
   - openstack
 

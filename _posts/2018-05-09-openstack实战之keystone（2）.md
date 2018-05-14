@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  openstack实战之keystone
-date:   2018-05-13
-categories: document
+title:  openstack实战之keystone（2）
+date:   2018-05-09
+categories: project
 tag:
   - openstack
 
@@ -164,4 +164,4 @@ export OS_IMAGE_API_VERSION=2
 ```
 source admin-openstack.sh && openstack token issue
 source demo-openstack.sh  && openstack token issue
-``` 
+```

@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  openstack实战篇之nova（4）
-date:   2018-05-09
-categories: document
+title:  openstack实战之nova（4）
+date:   2018-05-13
+categories: project
 tag:
   - openstack
 
