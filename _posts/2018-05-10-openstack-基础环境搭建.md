@@ -46,18 +46,7 @@ openstack系统由几个关键服件组成，**计算服务**,**认证服务**�
 
 + 认证服务（Identity，代号为“Keystone”）
 
-安装mysql
-```
-yum install mariadb mariadb-server -y
-```
-启动mysql
-```
-systemctl start mysqld
-```
-初始化
-```
-mysql_secure_installation
-```
+
 用数据库连接客户端以 root 用户连接到数据库服务器
 ```
 mysql -uroot -p
@@ -194,23 +183,47 @@ yum install -y chrony && systemctl start chronyd.service && systemctl enable chr
 
 换阿里源
 ```
-cd /etc/yum.repos.d/ && \
-mv CentOS-Base.repo CentOS-Base.repo.bak && \
 curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo && \
 yum makecache
+```
+
+如果不换阿里源，装个epel仓库也行，二选一即可
+```
+rpm -ivh http://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm
+```
+
+安装openstack仓库
+```
+yum install -y centos-release-openstack-queens
 ```
 
 安装openstack仓库,此时安装queen版本
 ```
 yum install -y centos-release-openstack-queens
 ```
-安装openstack仓库
-```
-yum install -y centos-release-openstack-queens
-```
+
 
 安装openstack client
 ```
 yum install -y python-openstackclient
 ```
 安装openstack selinx包,生产中我我们通常关闭selinx,但是如果我们不关闭,我们可以通过这个软件对它自动配置。
+```
+yum install -y openstack-selinux
+```
+安装mysql
+```
+yum install -y mariadb mariadb-server python2-PyMySQL   
+```
+修改mysql配置文件
+
+
+
+启动mysql
+```
+systemctl start mariadb && systemctl enable mariadb
+```
+初始化
+```
+mysql_secure_installation
+```
