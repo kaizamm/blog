@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  openstack实战篇之nova
+title:  openstack实战篇之nova（4）
 date:   2018-05-09
 categories: document
 tag:
