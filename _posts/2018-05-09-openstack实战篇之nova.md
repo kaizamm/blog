@@ -10,8 +10,7 @@ tag:
 * content
 {:toc}
 
-### 环境
-centos7.2 两台
+## 控制节点
 ### 控制节点安装
 ```
 [root@linux-node1 ~]# yum install -y openstack-nova-api openstack-nova-placement-api \
@@ -188,8 +187,8 @@ openstack-nova-conductor.service \
 [root@linux-node2 ~]# chown root:nova /etc/nova/nova.conf
 ```
 
-+ 删除多余的数据配置
-+ 修改VNC配置
+### 删除多余的数据配置
+### 修改VNC配置
 计算节点需要监听所有IP，同时设置novncproxy的访问地址
 ```
 [vnc]
@@ -198,25 +197,27 @@ server_listen = 0.0.0.0
 server_proxyclient_address = 192.168.56.12
 novncproxy_base_url = http://192.168.56.11:6080/vnc_auto.html
 ```
-+ 虚拟化适配
+### 虚拟化适配
 ```
 [root@linux-node2 ~]# egrep -c '(vmx|svm)' /proc/cpuinfo
 [libvirt]
 virt_type=qemu
+```
 如果返回的是非0的值，那么表示计算节点服务器支持硬件虚拟化，需要在nova.conf里面设置
+```
 [libvirt]
 virt_type=kvm
 ```
-+ 启动nova-compute
+### 启动nova-compute
 ```
 # systemctl enable libvirtd.service openstack-nova-compute.service
 # systemctl start libvirtd.service openstack-nova-compute.service
 ```
-+ 验证计算节点
+### 验证计算节点
 ```
 [root@linux-node1 ~]# openstack host list
 ```
-+ 计算节点加入控制节点
+### 计算节点加入控制节点
 ```
 [root@linux-node1 ~]# su -s /bin/sh -c "nova-manage cell_v2 discover_hosts --verbose" nova
 ```
