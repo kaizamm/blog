@@ -10,7 +10,6 @@ tag:
 * content
 {:toc}
 
-## 控制节点
 ### 控制节点安装
 ```
 [root@linux-node1 ~]# yum install -y openstack-nova-api openstack-nova-placement-api \
