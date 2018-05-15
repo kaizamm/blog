@@ -158,7 +158,8 @@ metadata_proxy_shared_secret = unixhot.com
 ```
 ### Neutron服务注册
 ```
-# openstack service create --name neutron --description "OpenStack Networking" network
+#source admin-openstack.sh  && \
+  openstack service create --name neutron --description "OpenStack Networking" network
 ```
 创建endpoint
 ```
@@ -241,3 +242,4 @@ password = neutron
 [root@linux-node1 ~]# openstack network agent list
 ```
 看是否有linux-node2.example.com的Linux bridge agent
+*主意，如果此时没出现linux-node2的令牌，请检查时间是否同步，另查看node2的neutron日志*
