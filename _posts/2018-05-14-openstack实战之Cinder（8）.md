@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  openstack实战Horizon（7）
+title:  openstack实战之Cinder（8）
 date:   2018-05-14  
 categories: project
 tag:
