@@ -4,7 +4,7 @@ title:  linux的bonding技术
 date:   2018-05-16  
 categories: project
 tag:
-  - openstack
+  - linux
 
 ---
 * content
@@ -63,7 +63,7 @@ GATEWAY=192.168.56.2
 ONBOOT=yes  
 BOOTPROTO=none  
 USERCTL=no  
-BONDING_OPTS="mode=1 miimon=100"  #设置网卡的运行模式，此处配置的是mode=1   miimon是用来进行链路监测的。比如:miimon=100，那么系统每100ms监测一次链路连接状态，如果有一条线路不通就转入另一条线路；模式1为主备模式。
+BONDING_OPTS="mode=1 primary=eth0 updelay=1000 fail_over_mac=1  miimon=100"  #设置网卡的运行模式，此处配置的是mode=1   miimon是用来进行链路监测的。比如:miimon=100，那么系统每100ms监测一次链路连接状态，如果有一条线路不通就转入另一条线路；模式1为主备模式。
 
 #vi /etc/sysconfig/network-scripts/ifcfg-eth0  
 DEVICE=eth0  

@@ -139,6 +139,13 @@ ssh-agent 如果一个主机和若干个主机建立免密码登录后，在登�
 #然后执行ssh -A 主机1；ssh -A 主机2，就可以无限制跳转到需要登录的机器
  ```
 
+
+
+
+### ansible命令
+
+ <img src="{{ '/styles/images/ansible命令参数.png' | prepend: site.baseurl }}" alt="示意图" width="810" />
+
  (根据你的建立方式,你也许希望使用Ansible的 --private-key 选项,通过指定pem文件来代替SSH Key来授权) 现在ping 你的所有节点:
 
  ```
