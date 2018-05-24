@@ -18,7 +18,8 @@ categories: document
 
 使用git从[LessOrMore](https://github.com/luoyan35714/LessOrMore.git)主页下载项目
 
-### _config配置
+###  \_config配置
+
 ```bash
 name: 博客名称
 email: 邮箱地址
@@ -80,7 +81,7 @@ jekyll server
 诫子书				{#zhugeliang}
 ------------------------
 
-<img src="{{ '/styles/images/jiezishu.jpg' | prepend: site.baseurl }}" alt="诫子书" width="410" />
+<img src="{{ '/styles/images/jiezishu.jpg' | prepend: site.baseurl }}" alt="" width="610" />
 
 [诸葛亮](#)
 
