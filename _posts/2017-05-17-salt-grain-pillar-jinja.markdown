@@ -96,7 +96,8 @@ apache2_conf:
  The user {{ grains['user'] }} is referred to here.
  The user {{ pillar['user'] }} is referred to here.
  {% endraw %}
- ```
+```
+
 pillar类似
 ```
 {% raw %}
@@ -125,6 +126,7 @@ salt会首先搜索minion配置文件中的值，如果没有找到，则会检�
  {% set mylist = ['apple','orange','bananas'] %}
 {% endraw %}
 ```
+
 
 ```
 {% raw %}
