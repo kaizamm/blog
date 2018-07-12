@@ -11,7 +11,7 @@ tag:
 {:toc}
 
 ### 前言
-(参考)[https://www.cnblogs.com/xingyun/p/4703325.html]
+[参考1](https://www.cnblogs.com/xingyun/p/4703325.html]
 (参考)[http://www.aboutyun.com/thread-11406-1-1.html]
 ### 概述
 
@@ -40,7 +40,8 @@ Cell 概念的引入，是为了扩充单个 Region 下的集群规模，主要�
 <img src="{{ '/styles/images/openstack-cell-02.jpg | prepend: site.baseurl }}" alt="" width="310" />
 {% endraw %}
 
-### Availability Zone & Host Aggregates Zone
+### AZ & HAZ
+即Availability Zone & Host Aggregates Zone
 
 之所以把 AZ 和 HAZ 放到一同分析，是因为二者的概念实在类似。
 
@@ -53,68 +54,9 @@ HAZ 也是把一批具有共同属性的计算节点划分到同一个 Zone 中�
 <img src="{{ '/styles/images/openstack-az-haz.jpg | prepend: site.baseurl }}" alt="" width="310" />
 {% endraw %}
 
-　　Example: Specify compute hosts with SSDs
+### AZ及HAZ的使用方法
 
-```
-/etc/nova/nova.conf:
-scheduler_default_filters=AggregateInstanceExtraSpecsFilter,AvailabilityZoneFilter,RamFilter,ComputeFilter
-
-$ nova aggregate-create fast-io nova
-+----+---------+-------------------+-------+----------+
-| Id | Name    | Availability Zone | Hosts | Metadata |
-+----+---------+-------------------+-------+----------+
-| 1  | fast-io | nova              |       |          |
-+----+---------+-------------------+-------+----------+
-
-$ nova aggregate-set-metadata 1 ssd=true
-+----+---------+-------------------+-------+-------------------+
-| Id | Name    | Availability Zone | Hosts | Metadata          |
-+----+---------+-------------------+-------+-------------------+
-| 1  | fast-io | nova              | []    | {u'ssd': u'true'} |
-+----+---------+-------------------+-------+-------------------+
-
-$ nova aggregate-add-host 1 node1
-+----+---------+-------------------+-----------+-------------------+
-| Id | Name    | Availability Zone | Hosts      | Metadata          |
-+----+---------+-------------------+------------+-------------------+
-| 1  | fast-io | nova              | [u'node1'] | {u'ssd': u'true'} |
-+----+---------+-------------------+------------+-------------------+
-
-$ nova aggregate-add-host 1 node2
-+----+---------+-------------------+---------------------+-------------------+
-| Id | Name    | Availability Zone | Hosts                | Metadata          |
-+----+---------+-------------------+----------------------+-------------------+
-| 1  | fast-io | nova              | [u'node1', u'node2'] | {u'ssd': u'true'} |
-+----+---------+-------------------+----------------------+-------------------+
-$ nova flavor-create ssd.large 6 8192 80 4
-+----+-----------+-----------+------+-----------+------+-------+-------------+-----------+-------------+
-| ID | Name      | Memory_MB | Disk | Ephemeral | Swap | VCPUs | RXTX_Factor | Is_Public | extra_specs |
-+----+-----------+-----------+------+-----------+------+-------+-------------+-----------+-------------+
-| 6  | ssd.large | 8192      | 80   | 0         |      | 4     | 1           | True      | {}          |
-+----+-----------+-----------+------+-----------+------+-------+-------------+-----------+-------------+
-\# nova flavor-key set_key --name=ssd.large  --key=ssd --value=true
-$ nova flavor-show ssd.large
-+----------------------------+-------------------+
-| Property                   | Value             |
-+----------------------------+-------------------+
-| OS-FLV-DISABLED:disabled   | False             |
-| OS-FLV-EXT-DATA:ephemeral  | 0                 |
-| disk                       | 80                |
-| extra_specs                | {u'ssd': u'true'} |
-| id                         | 6                 |
-| name                       | ssd.large         |
-| os-flavor-access:is_public | True              |
-| ram                        | 8192              |
-| rxtx_factor                | 1.0               |
-| swap                       |                   |
-| vcpus                      | 4                 |
-+----------------------------+-------------------+
-Now, when a user requests an instance with the ssd.large flavor, the scheduler only considers hosts with the ssd=true key-value pair. In this example, these are node1 and node2.
-```
-
-### Availability Zone 和 Host Aggregates Zone 的使用方法
-
-+ Availability Zone 使用方法
+1. Availability Zone 使用方法
 Nova 调用创建 HAZ 的 API 创建 AZ，即在创建 HAZ 时，定义一个 AZ。
 ```
 $nova   aggregate-create   HAZ-01   AZ-01
@@ -130,7 +72,6 @@ $nova   aggregate-create   HAZ-01   AZ-01
 $nova   aggregate-add-host   3   compute01
 +——+————+————————+————————+——————————————+
 | Id      | Name     | Availability Zone   | Hosts                     | Metadata                                    |
-+——+————+————————+————————+——————————————+
 | 3       | HAZ-01  | AZ-01                      | [u'compute-1']     | {u'availability_zone': u'AZ-01′}   |
 +——+————+————————+————————+——————————————+
 ```
@@ -140,7 +81,7 @@ $nova   aggregate-add-host   3   compute01
 nova boot  –flavor m1.small  –image cirros –availability-zone AZ-01 vm
 ```
 
-+ Host Aggregates Zone 的使用方法
+2. Host Aggregates Zone 的使用方法
 配置 nova.conf
 ```
 scheduler_default_filters=AggregateInstanceExtraSpecsFilter,AvailabilityZoneFilter,RamFilter,ComputeFilter
@@ -181,7 +122,7 @@ $nova flavor-create m1.ssd auto 4096 10 2 –is-public true
 +———+————+——————+———+—————+———+———+——————+————+——————+
 | ID         | Name      | Memory_MB  | Disk    | Ephemeral  | Swap   | VCPUs | RXTX_Factor  | Is_Public  | extra_specs   |
 +———+————+——————+———+—————+———+———+——————+————+——————+
-| ......        | m1.ssd    | 4096               | 10       | 0                 |            | 2          | 1.0                  | True        | {}                   |
+| 1          | m1.ssd    | 4096       | 10       | 0         |        | 2     | 1.0          | True        | {}            |
 +———+————+——————+———+—————+———+———+——————+————+——————+
 ```
 
@@ -189,11 +130,11 @@ $nova flavor-create m1.ssd auto 4096 10 2 –is-public true
 ```
 $nova flavor-key m1.ssd set ssd=true
 
-[        DISCUZ_CODE_58        ]nbsp;  nova flavor-show m1.ssd
+$nova flavor-show m1.ssd
 +———+————+——————+———+—————+———+———+——————+————+———————+
 | ID         | Name      | Memory_MB  | Disk    | Ephemeral  | Swap   | VCPUs | RXTX_Factor  | Is_Public  | extra_specs       |
 +———+————+——————+———+—————+———+———+——————+————+———————+
-| ......        | m1.ssd    | 4096               | 10       | 0                 |            | 2          | 1.0                  | True        | {u'ssd': u'true'}  |
+| 1          | m1.ssd    | 4096       | 10      | 0          |        | 2     | 1.0          | True       | {u'ssd': u'true'}  |
 +———+————+——————+———+—————+———+———+——————+————+———————+
 ```
 
@@ -237,4 +178,67 @@ nova host-list
 nova host-update --maintenance [enable | disable]
 #Put/resume host into/from maintenance.
 ```
-(参考)[http://docs.openstack.org/trunk/openstack-compute/admin/content/host-aggregates.html]
+[参考](http://docs.openstack.org/trunk/openstack-compute/admin/content/host-aggregates.html)
+
+
+### 附
+另一个比较好的例子：
+
+Example: Specify compute hosts with SSDs
+
+```
+/etc/nova/nova.conf:
+scheduler_default_filters=AggregateInstanceExtraSpecsFilter,AvailabilityZoneFilter,RamFilter,ComputeFilter
+
+$ nova aggregate-create fast-io nova
++----+---------+-------------------+-------+----------+
+| Id | Name    | Availability Zone | Hosts | Metadata |
++----+---------+-------------------+-------+----------+
+| 1  | fast-io | nova              |       |          |
++----+---------+-------------------+-------+----------+
+
+$ nova aggregate-set-metadata 1 ssd=true
++----+---------+-------------------+-------+-------------------+
+| Id | Name    | Availability Zone | Hosts | Metadata          |
++----+---------+-------------------+-------+-------------------+
+| 1  | fast-io | nova              | []    | {u'ssd': u'true'} |
++----+---------+-------------------+-------+-------------------+
+
+$ nova aggregate-add-host 1 node1
++----+---------+-------------------+-----------+-------------------+
+| Id | Name    | Availability Zone | Hosts      | Metadata          |
++----+---------+-------------------+------------+-------------------+
+| 1  | fast-io | nova              | [u'node1'] | {u'ssd': u'true'} |
++----+---------+-------------------+------------+-------------------+
+
+$ nova aggregate-add-host 1 node2
++----+---------+-------------------+---------------------+-------------------+
+| Id | Name    | Availability Zone | Hosts                | Metadata          |
++----+---------+-------------------+----------------------+-------------------+
+| 1  | fast-io | nova              | [u'node1', u'node2'] | {u'ssd': u'true'} |
++----+---------+-------------------+----------------------+-------------------+
+$ nova flavor-create ssd.large 6 8192 80 4
++----+-----------+-----------+------+-----------+------+-------+-------------+-----------+-------------+
+| ID | Name      | Memory_MB | Disk | Ephemeral | Swap | VCPUs | RXTX_Factor | Is_Public | extra_specs |
++----+-----------+-----------+------+-----------+------+-------+-------------+-----------+-------------+
+| 6  | ssd.large | 8192      | 80   | 0         |      | 4     | 1           | True      | {}          |
++----+-----------+-----------+------+-----------+------+-------+-------------+-----------+-------------+
+$nova flavor-key set_key --name=ssd.large  --key=ssd --value=true
+$nova flavor-show ssd.large
++----------------------------+-------------------+
+| Property                   | Value             |
++----------------------------+-------------------+
+| OS-FLV-DISABLED:disabled   | False             |
+| OS-FLV-EXT-DATA:ephemeral  | 0                 |
+| disk                       | 80                |
+| extra_specs                | {u'ssd': u'true'} |
+| id                         | 6                 |
+| name                       | ssd.large         |
+| os-flavor-access:is_public | True              |
+| ram                        | 8192              |
+| rxtx_factor                | 1.0               |
+| swap                       |                   |
+| vcpus                      | 4                 |
++----------------------------+-------------------+
+Now, when a user requests an instance with the ssd.large flavor, the scheduler only considers hosts with the ssd=true key-value pair. In this example, these are node1 and node2.
+```
