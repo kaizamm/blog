@@ -11,8 +11,8 @@ tag:
 {:toc}
 
 ### 前言
-[参考1](https://www.cnblogs.com/xingyun/p/4703325.html]
-(参考)[http://www.aboutyun.com/thread-11406-1-1.html]
+[参考1](https://www.cnblogs.com/xingyun/p/4703325.html)
+[参考2](http://www.aboutyun.com/thread-11406-1-1.html)
 ### 概述
 
 {% raw %}
@@ -143,46 +143,8 @@ $nova flavor-show m1.ssd
 nova boot –flavor m1.ssd –image  cirros vm_ssd
 ```
 
-### 特殊调度
-此外每一个aggregate还可以配置不同的metadata(AZ也是一个metadata) 如上图中所示，aggregateA被标记了ssd：true，表示这些host支持SSD，如果在flavor的extra-specs中配置了ssd：true，那么调度时，仅有这个aggregate的宿主机会通过过滤器。换言之，此flavor创建的虚拟机只能落在此aggregate上。
-
-### 命令行接口
-```
-nova aggregate-list
-# Print a list of all aggregates.
-
-nova aggregate-create <name> <availability-zone>
-# Create a new aggregate named <name> in availability zone <availability-zone>. Returns the ID of the newly created aggregate.
-
-nova aggregate-delete <id>
-# Delete an aggregate with id <id>.
-
-nova aggregate-details <id>
-# Show details of the aggregate with id <id>.
-
-nova aggregate-add-host <id> <host>
-# Add host with name <host> to aggregate with id <id>.
-
-nova aggregate-remove-host <id> <host>
-# Remove the host with name <host> from the aggregate with id <id>.
-
-nova aggregate-set-metadata <id> <key=value> [<key=value> ...]
-# Add or update metadata (key-value pairs) associated with the aggregate with id <id>.
-
-nova aggregate-update <id> <name> [<availability_zone>]
-# Update the aggregate's name and optionally availability zone.
-
-nova host-list
-# List all hosts by service.
-
-nova host-update --maintenance [enable | disable]
-#Put/resume host into/from maintenance.
-```
-[参考](http://docs.openstack.org/trunk/openstack-compute/admin/content/host-aggregates.html)
-
-
 ### 附
-另一个比较好的例子：
+#### 另一个比较好的例子：
 
 Example: Specify compute hosts with SSDs
 
@@ -242,3 +204,43 @@ $nova flavor-show ssd.large
 +----------------------------+-------------------+
 Now, when a user requests an instance with the ssd.large flavor, the scheduler only considers hosts with the ssd=true key-value pair. In this example, these are node1 and node2.
 ```
+
+*说明*
+此外每一个aggregate还可以配置不同的metadata(AZ也是一个metadata) 如上图中所示，aggregateA被标记了ssd：true，表示这些host支持SSD，如果在flavor的extra-specs中配置了ssd：true，那么调度时，仅有这个aggregate的宿主机会通过过滤器。换言之，此flavor创建的虚拟机只能落在此aggregate上。
+
+#### 命令行接口
+```
+nova aggregate-list
+# Print a list of all aggregates.
+
+nova aggregate-create <name> <availability-zone>
+# Create a new aggregate named <name> in availability zone <availability-zone>. Returns the ID of the newly created aggregate.
+
+nova aggregate-delete <id>
+# Delete an aggregate with id <id>.
+
+nova aggregate-details <id>
+# Show details of the aggregate with id <id>.
+
+nova aggregate-add-host <id> <host>
+# Add host with name <host> to aggregate with id <id>.
+
+nova aggregate-remove-host <id> <host>
+# Remove the host with name <host> from the aggregate with id <id>.
+
+nova aggregate-set-metadata <id> <key=value> [<key=value> ...]
+# Add or update metadata (key-value pairs) associated with the aggregate with id <id>.
+
+nova aggregate-update <id> <name> [<availability_zone>]
+# Update the aggregate's name and optionally availability zone.
+
+nova host-list
+# List all hosts by service.
+
+nova host-update --maintenance [enable | disable]
+#Put/resume host into/from maintenance.
+```
+[参考](http://docs.openstack.org/trunk/openstack-compute/admin/content/host-aggregates.html)
+
+#### 关于flavor
+类型模板(flavor) 在Openstack中，虚机硬件模板被称为类型模板(flavor)，包括RAM和硬盘大小，CPU核数等。标准安装后有5个缺省的类型
