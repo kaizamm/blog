@@ -21,9 +21,9 @@ tag:
 Compute Service Nova 是 OpenStack 最核心的服务，负责维护和管理云环境的计算资源。
 OpenStack 作为 IaaS 的云操作系统，虚拟机生命周期管理也就是通过 Nova 来实现的
 
-Glance 为 VM 提供 image <p>
-Cinder 和 Swift 分别为 VM 提供块存储和对象存储 <p>
-Neutron 为 VM 提供网络连接<p>
+Glance 为 VM 提供 image </p>
+Cinder 和 Swift 分别为 VM 提供块存储和对象存储 </p>
+Neutron 为 VM 提供网络连接</p>
 
 [参考](https://www.cnblogs.com/CloudMan6/p/5716947.html)
 
