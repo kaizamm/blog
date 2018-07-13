@@ -15,11 +15,11 @@ tag:
 [参考2](http://www.aboutyun.com/thread-11406-1-1.html)
 ### 概述
 
-<img src="{{ '/styles/images/openstack-region-cell-az.jpg' | prepend: site.baseurl }}" alt="" width="310" />
+<img src="{{ '/styles/images/openstack-region-cell-az.jpg' | prepend: site.baseurl }}" alt="" width="610" />
 
 为了提供规模化、分布式部署、资源优化利用和兼容 AWS 的功能，openstack 引入了 Region，Cell，Availability Zone(AZ) 和 Host Aggregates Zone(HAZ) 四个概念，其中 Region 和 AZ 是从公有云大哥 AWS 引入，Cell 是为了扩充一个 Region 下的集群的规模而引入的，Host Aggregates 是优化资源调度和利用引入的。这四个概念均和集群部署相关;从部署层次来说，它们有以下关系 Region > Cell > Availabiliy Zone > Host Aggregates
 
-<img src="{{ '/styles/images/region-cell-za-haz.png' | prepend: site.baseurl }}" alt="" width="310" />
+<img src="{{ '/styles/images/region-cell-az-haz.png' | prepend: site.baseurl }}" alt="" width="610" />
 
 ### region
 
@@ -30,7 +30,7 @@ tag:
 ### cell
 Cell 概念的引入，是为了扩充单个 Region 下的集群规模，主要解决 AMQP 和 Database 的性能瓶颈，每个 Region 下的 openstack 集群都有自己的消息中间件和数据库，当计算节点达到一定规模(和IBM，easystack，华为等交流的数据是300~500)，消息中间件就成为了扩展计算节点的性能瓶颈。Cell 的引入就是为了解决单个 Region 的规模问题，每个 Region 下可以有多个 Cell，每个 Cell 维护自己的数据库和消息中间件，所有 Cell 共享本 Region 下的 nova-api，共享全局唯一的 Keystone。
 
-<img src="{{ '/styles/images/openstack-cell-02.jpg | prepend: site.baseurl }}" alt="" width="310" />
+<img src="{{ '/styles/images/openstack-cell-02.jpg | prepend: site.baseurl }}" alt="" width="610" />
 
 ### AZ & HAZ
 即Availability Zone & Host Aggregates Zone
@@ -43,7 +43,7 @@ AWS 每个 Region 下有多个 AZ。Openstack 也引入了 AZ 的概念， AZ �
 HAZ 也是把一批具有共同属性的计算节点划分到同一个 Zone 中，HAZ 可以对 AZ 进一步细分，一个 AZ 可以有多个 HAZ。 同一个 HAZ 下的机器都具有某种共同的属性，比如高性能计算，高性能存储(SSD)，高性能网络(支持SRIOV等)。HAZ 和 AZ 另一个不同之处在于 HAZ 对用户不是明确可见的，用户在创建虚拟机时不能像指定 AZ 一样直接指定 HAZ，但是可以通过在 Instance Flavor 中设置相关属性，由 nova-scheduler 调度根据该调度策略调度到满足该属性的的 Host Aggr egates Zones 中。</p>
 
 {% raw %}
-<img src="{{ '/styles/images/openstack-az-haz.jpg | prepend: site.baseurl }}" alt="" width="310" />
+<img src="{{ '/styles/images/openstack-az-haz.jpg | prepend: site.baseurl }}" alt="" width="610" />
 {% endraw %}
 
 ### AZ及HAZ的使用方法
