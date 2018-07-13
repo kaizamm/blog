@@ -15,30 +15,22 @@ tag:
 [参考2](http://www.aboutyun.com/thread-11406-1-1.html)
 ### 概述
 
-{% raw %}
 <img src="{{ '/styles/images/openstack-region-cell-az.jpg' | prepend: site.baseurl }}" alt="" width="310" />
-{% endraw %}
 
 为了提供规模化、分布式部署、资源优化利用和兼容 AWS 的功能，openstack 引入了 Region，Cell，Availability Zone(AZ) 和 Host Aggregates Zone(HAZ) 四个概念，其中 Region 和 AZ 是从公有云大哥 AWS 引入，Cell 是为了扩充一个 Region 下的集群的规模而引入的，Host Aggregates 是优化资源调度和利用引入的。这四个概念均和集群部署相关;从部署层次来说，它们有以下关系 Region > Cell > Availabiliy Zone > Host Aggregates
 
-{% raw %}
 <img src="{{ '/styles/images/region-cell-za-haz.png' | prepend: site.baseurl }}" alt="" width="310" />
-{% endraw %}
 
 ### region
 
 顾名思义，Region 直译过来就是区域，地域的概念，而事实上，AWS 按地域(国家或者城市)设置一个 Region，每个 Region 下有多个 Availability Zone。Openstack 同样支持 Region 的概念，支持全球化部署，比如为了降低网络延时，用户可以选择特定的 Region 来部署服务。各个 Region 之间的计算资源、网络资源、存储资源都是独立的，但所有 Region 共享账户用户信息，因为 Keystone 是实现 openstack 租户用户管理和认证的功能的组件，所以 Keystone 全局唯一，所有 Region 共享一个 Keystone，Keystone endpoint 中存储了访问各个 Region 的 URL。
 
-{% raw %}
 <img src="{{ '/styles/images/openstack-region.jpg' | prepend: site.baseurl }}" alt="" width="310" />
-{% endraw %}
 
 ### cell
 Cell 概念的引入，是为了扩充单个 Region 下的集群规模，主要解决 AMQP 和 Database 的性能瓶颈，每个 Region 下的 openstack 集群都有自己的消息中间件和数据库，当计算节点达到一定规模(和IBM，easystack，华为等交流的数据是300~500)，消息中间件就成为了扩展计算节点的性能瓶颈。Cell 的引入就是为了解决单个 Region 的规模问题，每个 Region 下可以有多个 Cell，每个 Cell 维护自己的数据库和消息中间件，所有 Cell 共享本 Region 下的 nova-api，共享全局唯一的 Keystone。
 
-{% raw %}
 <img src="{{ '/styles/images/openstack-cell-02.jpg | prepend: site.baseurl }}" alt="" width="310" />
-{% endraw %}
 
 ### AZ & HAZ
 即Availability Zone & Host Aggregates Zone
@@ -56,7 +48,7 @@ HAZ 也是把一批具有共同属性的计算节点划分到同一个 Zone 中�
 
 ### AZ及HAZ的使用方法
 
-1. Availability Zone 使用方法
+#### Availability Zone 使用方法
 Nova 调用创建 HAZ 的 API 创建 AZ，即在创建 HAZ 时，定义一个 AZ。
 ```
 $nova   aggregate-create   HAZ-01   AZ-01
@@ -81,7 +73,7 @@ $nova   aggregate-add-host   3   compute01
 nova boot  –flavor m1.small  –image cirros –availability-zone AZ-01 vm
 ```
 
-2. Host Aggregates Zone 的使用方法
+#### Host Aggregates Zone 的使用方法
 配置 nova.conf
 ```
 scheduler_default_filters=AggregateInstanceExtraSpecsFilter,AvailabilityZoneFilter,RamFilter,ComputeFilter
