@@ -12,11 +12,20 @@ tag:
 
 
 ### 介绍
+
 目前的Nova主要由API，Compute，Conductor，Scheduler组成
 
 + Compute：用来交互并管理虚拟机的生命周期；
 + Scheduler：从可用池中根据各种策略选择最合适的计算节点来创建新的虚拟机；
 + Conductor：为数据库的访问提供统一的接口层。
+
+Nova用于为单个用户或使用群组管理虚拟机实例的整个生命周期，根据用户需求来提供虚拟服务。负责虚拟机创建、开机、关机、挂起、暂停、调整、迁移、重启、销毁等操作，配置CPU、内存等信息规格。</p>
+1、Nova API ：HTTP服务，用于接收和处理客户端发送的HTTP请求</p>
+2、Nova Cert ：用于管理证书，为了兼容AWS。AWS提供一整套的基础设施和应用程序服务，使得几乎所有的应用程序在云上运行</p>
+3、Nova Compute ：Nova组件中最核心的服务，实现虚拟机管理的功能。实现了在计算节点上创建、启动、暂停、关闭和删除虚拟机、虚拟机在不同的计算节点间迁移、虚拟机安全控制、管理虚拟机磁盘镜像以及快照等功能。</p>
+4、Nova Conductor ：RPC服务，主要提供数据库查询功能。以前的openstack版本中，Nova Compute子服务中定义了许多的数据库查询方法。但是，由于Nova Compute子服务需要在每个计算节点上启动，一旦某个计算节点被攻击，就将完全获得数据库的访问权限。有了Nova Conductor子服务之后，便可在其中实现数据库访问权限的控制。</p>
+5、Nova Scheduler ：Nova调度子服务。当客户端向Nova 服务器发起创建虚拟机请求时，决定将续集你创建在哪个节点上。</p>
+6、Nova Console、Nova Consoleauth、Nova VNCProxy ：Nova控制台子服务。功能是实现客户端通过代理服务器远程访问虚拟机实例的控制界面。
 
 Compute Service Nova 是 OpenStack 最核心的服务，负责维护和管理云环境的计算资源。
 OpenStack 作为 IaaS 的云操作系统，虚拟机生命周期管理也就是通过 Nova 来实现的

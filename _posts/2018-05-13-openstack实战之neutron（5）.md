@@ -13,6 +13,8 @@ tag:
 ### 介绍
 Neutron 管理的网络资源包括 Network，subnet 和 port
 
+Neutron 为整个 OpenStack 环境提供网络支持，包括二层交换，三层路由，负载均衡，防火墙和 VPN 等
+
 #### network
 
 Neutron 支持多种类型的 network，包括 local, flat, VLAN, VxLAN 和 GRE
