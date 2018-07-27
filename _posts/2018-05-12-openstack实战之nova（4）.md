@@ -30,9 +30,18 @@ Nova用于为单个用户或使用群组管理虚拟机实例的整个生命周�
 Compute Service Nova 是 OpenStack 最核心的服务，负责维护和管理云环境的计算资源。
 OpenStack 作为 IaaS 的云操作系统，虚拟机生命周期管理也就是通过 Nova 来实现的
 
-Glance 为 VM 提供 image </p>
-Cinder 和 Swift 分别为 VM 提供块存储和对象存储 </p>
-Neutron 为 VM 提供网络连接</p>
+Glance 为 VM 提供 image <br>
+Cinder 和 Swift 分别为 VM 提供块存储和对象存储 <br>
+Neutron 为 VM 提供网络连接<br>
+
+#### Nova下的主要资源
+(1) Availability Zone  一组节点的集合
+(2) Host-aggregate 按照硬件资源某个属性划分的集合
+(3) Instance instance实例相关的东西，包括虚机的生命周期管理、迁移等
+(4) Flavor 计算实例的模版，定义计算实例的vCPU、RAM、硬盘大小等
+(5) Server-group 虚拟机组，可以指定亲和性/反亲和性等
+(6) Quota 控制用户的资源限额
+
 
 [参考](https://www.cnblogs.com/CloudMan6/p/5716947.html)
 
