@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  namespace
-date:   2018-06-01  
+date:   2015-07-27  
 categories: linux
 tag:
   - ns
@@ -12,4 +12,5 @@ tag:
 {:toc}
 
 ### 前言
+偷懒参考别人的吧，如下写得很不错
 [参考](https://blog.csdn.net/ghost_leader/article/details/71075551)
