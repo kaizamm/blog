@@ -229,14 +229,14 @@ In [24]: class foo(object):
 
 #### 属性
 属性就是普通方法的变种，在定义时，在普通方法的基础上添加@property装饰器，属性仅有一个self参数，调用时无需括号；方法： foo_obj.func()，属性： foo_obj.prop; 属性两种定义方式，一种是用装饰器的形式，一种是静态字段
+
 + 属性的基本使用
-```python
+
+```
 ###########定义#########
 class Foo:
-
   def Func(self):
     pass
-
   #定义属性
   @property
   def prop(self):
@@ -249,6 +249,7 @@ foo_obj.prop
 #调用属性
 result = foo_obj.prop
 ```
+
 #### 类成员的修饰符
 类成员的修饰符
 
