@@ -32,6 +32,7 @@ tag: python
 
 重点
 + all()
+
 ```
 all(iterable)
 Return True if all elements of the iterable are true (or if the iterable is empty). Equivalent to:
@@ -42,9 +43,13 @@ def all(iterable):
             return False
     return True
 ```
+
 + any()
+
 + \__import\__
+
 + eval()
+
 ```
 >>> x = 1
 >>> eval('x+1')
@@ -61,14 +66,21 @@ def all(iterable):
 >>> x == list(x2) and y == list(y2)
 True
 ```
+
 + map(function,iterable)
+
 + filter(function,iterable)
+
 相当于
+
 ```
 (item for item in iterable if function(item)) if function is not None and (item for item in iterable if item) if function is None.
 ```
+
 + enumerate()
+
 对可迭代对象进行操作，加上index
+
 ```
 In [26]: iter = ['coffee','tea','sugar']
 
@@ -80,6 +92,9 @@ In [27]: for i,text in enumerate(iter):
 2 sugar
 ```
 + lambda()
+
 + getattr()
+
 + chr()
+
 + ord()
