@@ -70,12 +70,13 @@ cs.close() #关闭客户套接字,服务器会继续等待下一个客户的连�
 ss.close() #关闭服务器套接字(可选)
 ```
 代码如下
-```
+
+```python
 #!/usr/bin/env python
 #_*_coding:UTF8_*_
 from socket import *
 from time import ctime
-
+#
 #HOST为空表示bind()函数可以绑定在所有有效地址上。
 HOST = ''
 #随便一个未被占用的端口号
@@ -88,7 +89,7 @@ tcpSerSock = socket(AF_INET,SOCK_STREAM)
 tcpSerSock.bind(ADDR)
 #listen()函数的参数只是表示最多允许多少个连接同时连进来，后来的连接就会被拒绝掉
 tcpSerSock.listen(5)
-
+#
 #无限循环
 while True:
     print 'waiting for connection...'
@@ -106,6 +107,7 @@ while True:
         tcpCliSock.close
     tcpSerSock.close()
 ```
+
 通过 telnet就可以连接测试访问
 
 #### 创建一个TCP客户端
