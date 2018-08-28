@@ -102,8 +102,14 @@ sqllite3.connect('marketing/test')
 + 非关系数据库： MongoDB/Redis/Cassandra/SimpleDB/Tokyo Cabinet/CouchDB/Bigtable
 ### 数据库和Python:适配器,MySQL DB API 驱动
 对于每种支持的数据库，python都有一个或多个适配器用于连接Python中的目标数据库系统。比如Sybase/SAP/Oracle/SQLSserver，这些数据库就都存在多个可用的适配器。我们需要做的事情就是挑选出最合适的适配器。我们看几个使用适配器模块与关系数据库进行通信的例子。真正的秘密在于建立连接。一旦你建立连接，并使用DB-API的对象、属性和对象方法，你的核心代码就会看起来很相似，而无须去管它使用了哪个适配器以及RDBMS。参考http://python.usyiyi.cn/translate/django_182/ref/databases.html
+
+#### PyMySQL
+
 #### MySQLdb
 它是惟一不支持python3的驱动，安装如下
+
+>pymsql 是 Python 中操作MySQL 的模块，其使用方法和 MySQLdb 几乎相同。但目前在 python3.x 中，PyMySQL 取代了 MySQLdb
+
 ```
 easy_install mysql-python (mix os)
 pip install mysql-python (mix os)
