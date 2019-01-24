@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title:  Rabbitmq官网阅读之Topics
 categories: [document]
 tags: [rabbitmq,消息中间件]
