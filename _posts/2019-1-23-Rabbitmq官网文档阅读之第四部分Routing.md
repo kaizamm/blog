@@ -62,6 +62,7 @@ for severity in severities:
 ### CODE
 
 1. emit_log_direct.py（生产者）
+
 ```python
 #!/usr/bin/env python
 import pika
@@ -81,7 +82,9 @@ channel.basic_publish(exchange='direct_logs',
 print(" [x] Sent %r:%r" % (severity, message))
 connection.close()
 ```
+
 2. receive_logs_direct.py（消费者）
+
 ```python
 #!/usr/bin/env python
 import pika
