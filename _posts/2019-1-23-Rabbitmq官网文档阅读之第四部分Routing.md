@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title:  Rabbitmq官网文档阅读之第四部分Routing
 categories: [blog,document]
 tags: [消息队列]
