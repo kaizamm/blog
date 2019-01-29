@@ -112,7 +112,8 @@ curl -s -H "X-Auth-Token:$token" $url -k |python -m json.tool
 ```
 project_id：通过openstack project list获取  
 
-3. 同理依次类推，如要获取什么数据，最重要的就是拿到对应的API：  
+3. 同理依次类推，如要获取什么数据，最重要的就是拿到对应的API：
+  
   + /v3/domains:列出domains  
     ```bash
     curl -s \
