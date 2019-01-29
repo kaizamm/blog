@@ -75,7 +75,8 @@ pipeline = healthcheck cors sizelimit http_proxy_to_wsgi osprofiler url_normaliz
 + keystone.auth.plugins.token.Token  
 + keystone.auth.plugins.totp.TOTP  
 
-通过curl获取数据，如：token
+## 通过curl调用API获取数据
+1. 第一步首先要先获取token  
 ```bash
 curl -i \
   -H "Content-Type: application/json" \
@@ -99,16 +100,129 @@ curl -i \
     }
   }
 }' \
-  "https://10.190.48.204:5000/v3/auth/tokens” -k
+  "https://10.190.48.204:5000/v3/auth/tokens” -k |python -m json.tool
 ```  
 
-拿到token后，就可以获取项目上的数据了，如获取虚机   
+2. 拿到token后，就可以获取项目上的数据了，如获取虚机   
 ```bash
 token=37a9799a28f94d5498737cf0018107f8
 project_id=6f12225f5fc946c7bae62646fff5dfb2
 url="https://10.190.48.204:8774/v2.1/$project_id/servers"
 curl -s -H "X-Auth-Token:$token" $url -k |python -m json.tool
 ```
+project_id：通过openstack project list获取  
+
+3.同理依次类推，如要获取什么数据，最重要的就是拿到对应的API：  
+  + /v3/domains:列出domains  
+  ```bash
+  curl -s \
+-H "X-Auth-Token: $OS_TOKEN" \
+"http://localhost:5000/v3/domains" | python -mjson.tool
+  ```
+
+  + /v3/domains: 创建一个domain  
+    ```bash
+    curl -s \
+     -H "X-Auth-Token: $OS_TOKEN" \
+     -H "Content-Type: application/json" \
+     -d '{ "domain": { "name": "newdomain"}}' \
+     "http://localhost:5000/v3/domains" | python -mjson.tool
+    ```  
+
+  + /v3/projects:列出projects
+    ```bash
+    curl -s \
+     -H "X-Auth-Token: $OS_TOKEN" \
+     "http://localhost:5000/v3/projects" | python -mjson.tool
+    ```
+
+  + /v3/services:列出services
+    ```bash
+    curl -s \
+     -H "X-Auth-Token: $OS_TOKEN" \
+     "http://localhost:5000/v3/services" | python -mjson.tool
+    ```
+
+  + /v3/endpoints:获取endpoints
+    ```bash
+    curl -s \
+     -H "X-Auth-Token: $OS_TOKEN" \
+     "http://localhost:5000/v3/endpoints" | python -mjson.tool
+
+  + /v3/users 列出users  
+     ```bash
+     curl -s \
+      -H "X-Auth-Token: $OS_TOKEN" \
+      "http://localhost:5000/v3/users" | python -mjson.tool
+
+  + /v3/users 创建user
+      ```bash
+      curl -s \
+       -H "X-Auth-Token: $OS_TOKEN" \
+       -H "Content-Type: application/json" \
+       -d '{"user": {"name": "newuser", "password": "changeme"}}' \
+       "http://localhost:5000/v3/users" | python -mjson.tool
+      ```
+
+  + /v3/users/{user_id}：列出用户的详细信息：
+      ```bash
+       USER_ID=ec8fc20605354edd91873f2d66bf4fc4
+       curl -s \
+        -H "X-Auth-Token: $OS_TOKEN" \
+        "http://localhost:5000/v3/users/$USER_ID" | python -mjson.tool
+      ````
+
+  + /v3/users/{user_id}/password：修改密码:普通用户
+  ```bash
+  USER_ID=b7793000f8d84c79af4e215e9da78654
+  ORIG_PASS=userpwd
+  NEW_PASS=newuserpwd
+
+  curl \
+   -H "X-Auth-Token: $OS_TOKEN" \
+   -H "Content-Type: application/json" \
+   -d '{ "user": {"password": "'$NEW_PASS'", "original_password": "'$ORIG_PASS'"} }' \
+   "http://localhost:5000/v3/users/$USER_ID/password"
+  ```
+
+  + PATCH  /v3/users/{user_id}:修改密码，用admin修改普通用户密码
+  ```bash
+    USER_ID=b7793000f8d84c79af4e215e9da78654
+  NEW_PASS=newuserpwd
+
+  curl -s -X PATCH \
+   -H "X-Auth-Token: $OS_TOKEN" \
+   -H "Content-Type: application/json" \
+   -d '{ "user": {"password": "'$NEW_PASS'"} }' \
+   "http://localhost:5000/v3/users/$USER_ID" | python -mjson.tool
+  ```
+  + PUT /v3/projects/{project_id}/groups/{group_id}/roles/{role_id}:
+  在一个项目里创建一个group role assignment
+  ```bash
+    curl -s -X PUT \
+   -H "X-Auth-Token: $OS_TOKEN" \
+   "http://localhost:5000/v3/projects/$PROJECT_ID/groups/$GROUP_ID/roles/$ROLE_ID" |
+   python -mjson.tool
+  ```
+  + 其他还有很多，请参考[官方API](https://docs.openstack.org/keystone/pike/api_curl_examples.html)
 
 ## keystone package
 Keystone的安装包对应的[代码模块](https://docs.openstack.org/keystone/latest/api/keystone.assignment.backends.base.html)
+
+## 命令行
+### keystone-namanage
+keystone-manage初始化或是更新Keystone内部数据用，只在在HTTP API不能完成时才使用这个命令，如数据库迁移、数据迁入迁出；
++ bootstrap: 产生新的bootstrap进程  
++ credential_migrate: 用新的私钥产生一个新的认证  
++ credential_setup
++ db_sync: 同步数据库  
++ db_version  
++ doctor: 常见问题诊断  
++ domain_config_upload: 上传新的domain配置文件  
++ ...  
+
+### keystone-status
+升级deployment
+
++ upgrade  
++ upgrade check  
