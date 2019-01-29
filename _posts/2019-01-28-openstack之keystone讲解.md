@@ -113,7 +113,7 @@ curl -s -H "X-Auth-Token:$token" $url -k |python -m json.tool
 project_id：通过openstack project list获取  
 
 3. 同理依次类推，如要获取什么数据，最重要的就是拿到对应的API：
-  
+
   + /v3/domains:列出domains  
     ```bash
     curl -s \
@@ -211,7 +211,7 @@ project_id：通过openstack project list获取
 Keystone的安装包对应的[代码模块](https://docs.openstack.org/keystone/latest/api/keystone.assignment.backends.base.html)
 
 ## 命令行
-### keystone-namanage
+### keystone-manage
 keystone-manage初始化或是更新Keystone内部数据用，只在在HTTP API不能完成时才使用这个命令，如数据库迁移、数据迁入迁出；
 + bootstrap: 产生新的bootstrap进程  
 + credential_migrate: 用新的私钥产生一个新的认证  
