@@ -118,7 +118,7 @@ project_id：通过openstack project list获取
     curl -s \
      -H "X-Auth-Token: $OS_TOKEN" \
      "http://localhost:5000/v3/domains" | python -mjson.tool
-  ```
+   ```
 
   + /v3/domains: 创建一个domain  
     ```bash
@@ -187,7 +187,7 @@ project_id：通过openstack project list获取
 
   + PATCH  /v3/users/{user_id}:修改密码，用admin修改普通用户密码
     ```bash
-      USER_ID=b7793000f8d84c79af4e215e9da78654
+    USER_ID=b7793000f8d84c79af4e215e9da78654
     NEW_PASS=newuserpwd
 
     curl -s -X PATCH \
@@ -199,7 +199,7 @@ project_id：通过openstack project list获取
   + PUT /v3/projects/{project_id}/groups/{group_id}/roles/{role_id}:
   在一个项目里创建一个group role assignment
     ```bash
-      curl -s -X PUT \
+    curl -s -X PUT \
      -H "X-Auth-Token: $OS_TOKEN" \
      "http://localhost:5000/v3/projects/$PROJECT_ID/groups/$GROUP_ID/roles/$ROLE_ID" |
      python -mjson.tool
