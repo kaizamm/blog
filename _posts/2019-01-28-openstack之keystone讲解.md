@@ -112,12 +112,12 @@ curl -s -H "X-Auth-Token:$token" $url -k |python -m json.tool
 ```
 project_id：通过openstack project list获取  
 
-3.同理依次类推，如要获取什么数据，最重要的就是拿到对应的API：  
+3. 同理依次类推，如要获取什么数据，最重要的就是拿到对应的API：  
   + /v3/domains:列出domains  
-  ```bash
-  curl -s \
--H "X-Auth-Token: $OS_TOKEN" \
-"http://localhost:5000/v3/domains" | python -mjson.tool
+    ```bash
+    curl -s \
+     -H "X-Auth-Token: $OS_TOKEN" \
+     "http://localhost:5000/v3/domains" | python -mjson.tool
   ```
 
   + /v3/domains: 创建一个domain  
