@@ -173,37 +173,37 @@ project_id：通过openstack project list获取
       ````
 
   + /v3/users/{user_id}/password：修改密码:普通用户
-  ```bash
-  USER_ID=b7793000f8d84c79af4e215e9da78654
-  ORIG_PASS=userpwd
-  NEW_PASS=newuserpwd
+    ```bash
+    USER_ID=b7793000f8d84c79af4e215e9da78654
+    ORIG_PASS=userpwd
+    NEW_PASS=newuserpwd
 
-  curl \
-   -H "X-Auth-Token: $OS_TOKEN" \
-   -H "Content-Type: application/json" \
-   -d '{ "user": {"password": "'$NEW_PASS'", "original_password": "'$ORIG_PASS'"} }' \
-   "http://localhost:5000/v3/users/$USER_ID/password"
-  ```
+    curl \
+     -H "X-Auth-Token: $OS_TOKEN" \
+     -H "Content-Type: application/json" \
+     -d '{ "user": {"password": "'$NEW_PASS'", "original_password": "'$ORIG_PASS'"} }' \
+     "http://localhost:5000/v3/users/$USER_ID/password"
+    ```
 
   + PATCH  /v3/users/{user_id}:修改密码，用admin修改普通用户密码
-  ```bash
-    USER_ID=b7793000f8d84c79af4e215e9da78654
-  NEW_PASS=newuserpwd
+    ```bash
+      USER_ID=b7793000f8d84c79af4e215e9da78654
+    NEW_PASS=newuserpwd
 
-  curl -s -X PATCH \
-   -H "X-Auth-Token: $OS_TOKEN" \
-   -H "Content-Type: application/json" \
-   -d '{ "user": {"password": "'$NEW_PASS'"} }' \
-   "http://localhost:5000/v3/users/$USER_ID" | python -mjson.tool
-  ```
+    curl -s -X PATCH \
+     -H "X-Auth-Token: $OS_TOKEN" \
+     -H "Content-Type: application/json" \
+     -d '{ "user": {"password": "'$NEW_PASS'"} }' \
+     "http://localhost:5000/v3/users/$USER_ID" | python -mjson.tool
+    ```
   + PUT /v3/projects/{project_id}/groups/{group_id}/roles/{role_id}:
   在一个项目里创建一个group role assignment
-  ```bash
-    curl -s -X PUT \
-   -H "X-Auth-Token: $OS_TOKEN" \
-   "http://localhost:5000/v3/projects/$PROJECT_ID/groups/$GROUP_ID/roles/$ROLE_ID" |
-   python -mjson.tool
-  ```
+    ```bash
+      curl -s -X PUT \
+     -H "X-Auth-Token: $OS_TOKEN" \
+     "http://localhost:5000/v3/projects/$PROJECT_ID/groups/$GROUP_ID/roles/$ROLE_ID" |
+     python -mjson.tool
+    ```
   + 其他还有很多，请参考[官方API](https://docs.openstack.org/keystone/pike/api_curl_examples.html)
 
 ## keystone package
