@@ -148,7 +148,7 @@ project_id：通过openstack project list获取
     curl -s \
      -H "X-Auth-Token: $OS_TOKEN" \
      "http://localhost:5000/v3/endpoints" | python -mjson.tool
-
+    ```  
   + /v3/users 列出users  
      ```bash
      curl -s \
