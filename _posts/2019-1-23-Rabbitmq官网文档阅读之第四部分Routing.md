@@ -2,8 +2,8 @@
 layout: post
 published: true
 title:  Rabbitmq官网文档阅读之第四部分Routing
-categories: [blog,document]
-tags: [消息队列]
+categories: [document]
+tags: [rabbitmq,消息中间件]
 ---
 * content
 {:toc}

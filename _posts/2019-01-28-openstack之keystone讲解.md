@@ -2,7 +2,7 @@
 layout: post
 published: true
 title:  openstack之keystone讲解
-categories: [document,blog]
+categories: [document]
 tags: [openstack,私有云]
 ---
 * content
@@ -65,7 +65,11 @@ pipeline = healthcheck cors sizelimit http_proxy_to_wsgi osprofiler url_normaliz
 
 ## Policy
 在每个服务的对应的配置目录，如![/etc/keystone/policy.json](/styles/images/keystone1.jpg)  
-具体对应的每个API的policy，参考[点我](https://docs.openstack.org/keystone/latest/getting-started/policy_mapping.html)
+具体对应的每个API的policy，参考[点我](https://docs.openstack.org/keystone/latest/getting-started/policy_mapping.html)；关于policy.json文件的语法，请参考[点我](https://docs.openstack.org/ocata/config-reference/policy-json-file.html);在此放上一篇Nova的policy.json的示例，但是请注意，该未例有个变量没有定义，需要自己手动加上，已经跟官网提了bug，后续如果加上了，那么这个可以忽略，为
+```bash
+  "admin_api": "is_admin:True or (role:admin and is_admin_project:True)"
+```
+[compute服务示例参考](https://docs.openstack.org/mitaka/config-reference/compute/policy.json.html)
 
 ## Plugins
 + keystone.auth.plugins.external.Base  
