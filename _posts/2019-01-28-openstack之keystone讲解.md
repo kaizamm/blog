@@ -92,7 +92,7 @@ curl -i \
         "user": {
           "name": "admin",
           "domain": { "id": "default" },
-          "password": “Fiberhome.2019"
+          "password": “xxxx"
         }
       }
     },
@@ -104,14 +104,14 @@ curl -i \
     }
   }
 }' \
-  "https://10.190.48.204:5000/v3/auth/tokens” -k |python -m json.tool
+  "https://x.x.x.x:5000/v3/auth/tokens” -k |python -m json.tool
 ```  
 
 2. 拿到token后，就可以获取项目上的数据了，如获取虚机   
 ```bash
 token=37a9799a28f94d5498737cf0018107f8
 project_id=6f12225f5fc946c7bae62646fff5dfb2
-url="https://10.190.48.204:8774/v2.1/$project_id/servers"
+url="https://x.x.x.x:8774/v2.1/$project_id/servers"
 curl -s -H "X-Auth-Token:$token" $url -k |python -m json.tool
 ```
 project_id：通过openstack project list获取  
