@@ -1,9 +1,9 @@
 ---
-layout: post
-published: true
-title:  JavaScript关键特性
-categories: [前端]
-tags: [javascript]
+layout:         post
+published:         true
+title:          JavaScript关键特性
+categories:         [前端]
+tags:         [javascript]
 ---
 
 * content
