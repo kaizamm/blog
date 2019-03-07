@@ -69,6 +69,15 @@ True
 
 + map(function,iterable)
 
++ reduce(function,iterable[,initializer]  
+Python3 统计某字符串重复次数  
+```python
+from functools import reduce
+sentences = ['The Deep Learning textbook is a resource intended to help students and practitioners enter the field of machine learning in general and deep learning in particular. ']
+word_count =reduce(lambda a,x:a+x.count("learning"),sentences,0)
+print(word_count)
+```
+
 + filter(function,iterable)
 
 相当于
