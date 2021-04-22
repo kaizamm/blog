@@ -18,12 +18,21 @@ kube-proxy有三种工作模式：iptables kube-proxy userspace。
 
 - ipvs模式：在规则查找时，通过hash算法，时间复杂度 O(1)，解决了大量规则查找时性能问题。但是有自己本身天然的问题：**conn_reuse_mode的参数为0导致的滚动发布时服务访问失败的问题至今（2021年4月）也解决的不太干净**
 
-```go
+```bash
 # 1，延迟1s
 # 0, 不延迟，如果请求 cluster IP 的源端口被重用了，也就是在 conntrack table 里已经有了 <src_ip, src_port, cluster_ip, cluster_port> 条目了，那么 IPVS 会直接选择之前服务这个 <src_ip, src_port> 的 pod，并不会真的按权重走负载均衡逻辑，导致新的连接去了那个要被删除的 pod，当那个 pod 30s 后被删除后，这些重用了源端口的流量就会连接失败了；现象：部分请求会报告连接失败，no route to host。
 [root@ssa2 vs]# cat /proc/sys/net/ipv4/vs/conn_reuse_mode
 0
 ```
+
+**思考：Pod有30s后的删除时间，那conntrack条目如果在这个时间内删除，这时在conntrack表中没有这个四元组，请求不就不会过来了吗？**
+
+答：默认是tcp关闭连接10s后，conntrack条目会删除
+
+`[root@ssa2 netfilter]# cat nf_conntrack_tcp_timeout_close
+10`
+
+但是由于pod在准备删除30s时间内，是有可能有请求进来的，只要有一个请求进来，这个时间就会被拉长10s，直接pod删除后，这个记录最长还可能存在10s。这个时间内就会发生请求来了，pod不存在场景。直到此时，才会彻底不会有这个conntrack条目。
 
 - userspace模式：这个是早期的模式，工作在用户空间，现在基本已经不用。原理是类似一个普通的负载均衡器，每个service连接到后端pod，都需要经过它来转发。在主机上会找开一个新的连接端口，用于和后端通信。**注入sidecar后pods，在通信的时候，跟这种方式很类似。一旦注入sidecar，这个pods的通信就不会走kube-proxy，而是通过envoy直接转发到下一个service ip。service ip通过selector中的label来匹配后端pods，根据pods label匹配不同版本，实现流量的灰度发布**
 
@@ -154,15 +163,15 @@ with the apiserver API to configure the proxy.`,
 
 下一步就是读入Flag相关变量。
 
-flag的传入有两种方式：goflag是官方提供的。另一种方式是Pflag，pflag跟cobra一样是spf13提供的；可以直接把goflag接收的参数转换成pflag方式。
+flag的传入有两种方式：goflag是官方提供的。另一种方式是pflag，pflag跟cobra一样是spf13提供的；可以直接把goflag接收的参数转换成pflag方式。
 
 pflag实现的原理也很简单：先New一个实例，然后调取os.Args读取配置，把这个实例初始化。
 
 ```go
 // utilflag.InitFlags() (by removing its pflag.Parse() call). For now, we have to set the
-	// normalize func and add the go flag set by hand.
-	pflag.CommandLine.SetNormalizeFunc(cliflag.WordSepNormalizeFunc)
-	pflag.CommandLine.AddGoFlagSet(goflag.CommandLine)
+// normalize func and add the go flag set by hand.
+pflag.CommandLine.SetNormalizeFunc(cliflag.WordSepNormalizeFunc)
+pflag.CommandLine.AddGoFlagSet(goflag.CommandLine)
 ```
 
 先是new一个对象出来，options存放了程序运行所有相关的参数。
@@ -388,3 +397,7 @@ func NewServiceConfig(serviceInformer coreinformers.ServiceInformer, resyncPerio
 ```
 
 至此完成了kube-proxy基本的代码分析。
+
+参考：
+
+<https://www.jianshu.com/p/734640384fda>
