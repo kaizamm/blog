@@ -300,3 +300,4 @@ tcp4       0      0  127.0.0.1.8080         *.*                    LISTEN
 
 至此，完成了 springboot在Kubernetes上的实践。
 
+参考 <https://spring.io/guides/gs/spring-boot-kubernetes/>
