@@ -1,7 +1,7 @@
 ---
 layout: post
 published: true
-title: 使用kubevela实现应用分流
+title: KubeVela基于Istio实现应用分流
 categories: [k8s]
 tags: [k8s,kubevela,oam]
 ---
