@@ -14,8 +14,6 @@ Kubernetes在与mesos、swarm的竞争中获胜，已经是事实上的云原生
 
 ***但是这个平台太复杂了***
 
-### 业务开发转型之痛
-
 - **业务开发部门：你们喜欢折腾，跟我有啥关系？**  
   
   1. 对于业务开发来说，他们聚焦在业务逻辑、订单流转等功能实现上，如电商平台，订单系统、仓库系统、支付系统等。  
@@ -26,17 +24,17 @@ Kubernetes在与mesos、swarm的竞争中获胜，已经是事实上的云原生
 
 - **基础平台部：该如何说服业务开发部门来使用k8s系统呢？**  
 
-你跟他们讲一大堆k8s的好处，什么服务发现、什么负载均衡、什么自动伸缩，balabala...
+    你跟他们讲一大堆k8s的好处，什么服务发现、什么负载均衡、什么自动伸缩，balabala...
 
-他们其实并不关心！他们说spring cloud有全家桶，什么都有，而且社区成熟繁荣。
+    他们其实并不关心！他们说spring cloud有全家桶，什么都有，而且社区成熟繁荣。
 
-**现状：大多业务部门，迫于公司领导对云原生要求，要求业务开发迁移至k8s平台。**
+- **现状：大多业务部门，迫于公司领导对云原生要求，要求业务开发迁移至k8s平台。**
 
-***k8s是一个极其复杂的系统，cluster、pod、deployment、statefulset、hpa、ingress、istio、service、镜像、docker等概念已经足以让人眼花缭乱，而且还涉及网络、存储等底层的技术。***
+    ***k8s是一个极其复杂的系统，cluster、pod、deployment、statefulset、hpa、ingress、istio、service、镜像、docker等概念已经足以让人眼花缭乱，而且还涉及网络、存储等底层的技术。***
 
-如果要求业务开发人员掌握，相信他们内心是崩溃的。
+    如果要求业务开发人员掌握，相信他们内心是崩溃的。
 
-迁移成本极其巨大！（时间成本、沟通成本、学习成本）
+    迁移成本极其巨大！（时间成本、沟通成本、学习成本）
 
 ![Optimized-Kubernetes-Expectation-vs-Reality-1](/styles/images/Optimized-Kubernetes-Expectation-vs-Reality-1.png)
 
