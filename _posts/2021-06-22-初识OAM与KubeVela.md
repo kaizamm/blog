@@ -36,8 +36,6 @@ Kubernetes在与mesos、swarm的竞争中获胜，已经是事实上的云原生
 
     迁移成本极其巨大！（时间成本、沟通成本、学习成本）
 
-![Optimized-Kubernetes-Expectation-vs-Reality-1](/styles/images/Optimized-Kubernetes-Expectation-vs-Reality-1.png)
-
 4. **有没有一种方案，能降低业务研发的心智负担，能快速让他上手？**
 
     业界有成功的典型：`Heroku`。  
@@ -47,6 +45,8 @@ Kubernetes在与mesos、swarm的竞争中获胜，已经是事实上的云原生
     国内也有类似的产品，如：`Rainbond`。  
 
     这就是OAM的来源。  
+
+![Optimized-Kubernetes-Expectation-vs-Reality-1](/styles/images/Optimized-Kubernetes-Expectation-vs-Reality-1.png)
 
 ## 什么是OAM?
 
