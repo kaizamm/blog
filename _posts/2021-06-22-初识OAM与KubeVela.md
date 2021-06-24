@@ -38,15 +38,15 @@ Kubernetes在与mesos、swarm的竞争中获胜，已经是事实上的云原生
 
 ![Optimized-Kubernetes-Expectation-vs-Reality-1](/styles/images/Optimized-Kubernetes-Expectation-vs-Reality-1.png)
 
-**有没有一种方案，能降低业务研发的心智负担，能快速让他上手？**
+- **有没有一种方案，能降低业务研发的心智负担，能快速让他上手？**
 
-业界有成功的典型：`Heroku`。
+    业界有成功的典型：`Heroku`。
 
-开发人员只需要把自己的代码地址指定下，就可以把它的服务跑出来。
+    开发人员只需要把自己的代码地址指定下，就可以把它的服务跑出来。
 
-国内也有类似的产品，如：`Rainbond`。
+    国内也有类似的产品，如：`Rainbond`。
 
-这就是OAM的来源。
+    这就是OAM的来源。
 
 ## 什么是OAM?
 
