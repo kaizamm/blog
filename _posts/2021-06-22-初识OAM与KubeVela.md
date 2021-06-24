@@ -1,7 +1,7 @@
 ---
 layout: post
 published: true
-title: 初始OAM与KubeVela
+title: 初识OAM与KubeVela
 categories: [k8s]
 tags: [k8s,kubevela,oam]
 ---
