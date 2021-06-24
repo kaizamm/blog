@@ -1,7 +1,7 @@
 ---
 layout: post
 published: true
-title: 基于Minikube搭建不网络环境限制的k8s集群
+title: 基于Minikube搭建不受网络限制的k8s集群
 categories: [k8s]
 tags: [k8s,开发环境]
 ---
@@ -97,7 +97,7 @@ ExecStart=/usr/bin/dockerd --registry-mirror http://x.x.x.x:5000 ....
 
 ## 导入本地私有镜像
 
-# enable ingress，把镜像手动导入
+```bash
 minikube cache add zackzhangkai/minikube-nginx-ingress-controller:v0.40.2
 minikube cache add jettech/kube-webhook-certgen:v1.3.0
 minikube cache add jettech/kube-webhook-certgen:v1.2.2
